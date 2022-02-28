@@ -32,7 +32,7 @@
 
      </form>
 
-        <form action="register.php" method="post">
+    <form action="register.php" method="post">
 
         <button type="submit" name="reg">Register now!</button>
 
