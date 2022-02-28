@@ -1,6 +1,7 @@
 <?php
 session_start(); 
 
+//Server Connection
 include "db_conn.php";
 
 
@@ -18,14 +19,18 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
     }
 
+    //validate user name and password
     $uname = validate($_POST['uname']);
 
     $upass = validate($_POST['password']);
 
+    //encrypt password
+
     $pass=md5($upass);
     
     if (empty($uname)) {
-        
+     
+        //*************************to do: taken from index-to delete*****************
         header("Location: index.php?error=User Name is required");
 
         exit();
@@ -51,7 +56,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
                 error_log("Logged in",0);
                 $_SESSION['user_name'] = $row['user_name'];
-
+                
                 header("Location: home.php");
 
                 exit();
