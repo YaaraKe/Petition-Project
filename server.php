@@ -46,5 +46,7 @@ if (isset($_POST['reg_user'])) {
   	$_SESSION['user_name'] = $email;
   	$_SESSION['success'] = "You are now logged in";
   	header('location: index.php');
+
+    // include "kneset.html";///**************************************** */
   }
 }
