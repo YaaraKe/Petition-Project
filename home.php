@@ -52,7 +52,7 @@ if (isset($_SESSION['user_name'])) {
                     <a class="nav-link" href=#>Shop<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href=kneset.php>Contact Knesset Member<span class="sr-only"></span></a>
+                    <a class="nav-link" href=kneset.html>Contact Knesset Member<span class="sr-only"></span></a>
                 </li>
             </ul>
         </div>
