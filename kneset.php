@@ -41,39 +41,45 @@ $mysqli->close();
             emailjs.init("qZZh-2WKTlDaP8qY3");
         })();
     </script>
+    <script>
+        function email_choesen(clicked_id){
+            alert(clicked_id);
+            document.getElementById("toemail").value=clicked_id;
+        }
+    </script>
 
 <style>
-    table {
-        margin: 0 auto;
-        font-size: large;
-        border: 1px solid black;
-    }
-
-    h1 {
-        text-align: center;
-        color: #006600;
-        font-size: xx-large;
-        font-family: 'Gill Sans', 'Gill Sans MT', 
-        ' Calibri', 'Trebuchet MS', 'sans-serif';
-    }
-
-    td {
-        background-color: #E4F5D4;
-        border: 1px solid black;
-    }
-
-    th,
-    td {
-        font-weight: bold;
-        border: 1px solid black;
-        padding: 10px;
-        text-align: center;
-    }
-
-    td {
-        font-weight: lighter;
-    }
-</style>
+        table {
+            margin: 0 auto;
+            font-size: large;
+            border: 1px solid black;
+        }
+  
+        h1 {
+            text-align: center;
+            color: #006600;
+            font-size: xx-large;
+            font-family: 'Gill Sans', 'Gill Sans MT', 
+            ' Calibri', 'Trebuchet MS', 'sans-serif';
+        }
+  
+        td {
+            background-color: #E4F5D4;
+            border: 1px solid black;
+        }
+  
+        th,
+        td {
+            font-weight: bold;
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+  
+        td {
+            font-weight: lighter;
+        }
+    </style>
 </head>
 
 <body>
@@ -143,12 +149,13 @@ $mysqli->close();
             <?php   // LOOP TILL END OF DATA 
                 while($rows=$result->fetch_assoc())
                 {
+                    $res=$rows['Email'];
              ?>
             <tr>
                 <!--FETCHING DATA FROM EACH 
                     ROW OF EVERY COLUMN-->
                 <td><?php echo $rows['full_name'];?></td>
-                <td><?php echo $rows['Email'];?></td>
+                <td> <button onclick='email_choesen('<?php echo $res; ?>')'><?php echo $rows['Email'];?> </button></td>
                 <td><?php echo $rows['Party'];?></td>
                
             </tr>
@@ -157,8 +164,11 @@ $mysqli->close();
              ?>
         </table>
     </section>
+    <br>
 
 </body>
 
 </html>
+
+
 
