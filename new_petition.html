@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,8 +42,6 @@
 
     <br><br>
 
-    <form>
-
         <!-- Create a new petition form -->
         <section>
             <div class="container" id="all">
@@ -50,9 +49,9 @@
                     <h1> Create a New Petition</h1>
                 </div>
                 <div class="row mb-4">
-                    <form method="post" name="petitionForm" action="">
+                    <form method="post" name="petitionForm" action="new_petition.php" enctype="multipart/form-data">
 
-                        <!-- Name Input -->
+                        <!-- Name Input********************** -->
                         <div class="form-control ">
                             <label> Full Name:</label>
                             <input id="Name" type="text" name="Name" placeholder="Name">
@@ -62,7 +61,7 @@
                         <!-- Subject Input -->
                         <div class="form-control ">
                             <label>Subject:</label>
-                            <input id="subject" type="text" name="subject" placeholder="Sybject">
+                            <input id="subject" type="text" name="subject" placeholder="Sybject" required>
                             
                         </div>
 
@@ -71,14 +70,20 @@
                         <div class="form-control ">
                             <label>Petition Content: </label>
                             <br>
-                            <textarea rows="20" cols="80" id="Content" name="Content"></textarea>
+                            <textarea rows="20" cols="80" id="Content" name="Content" required></textarea>
                            
+                        </div>
+
+                        <!-- select image for a petition -->
+                        <div class="form-control ">
+                            <label for="img">Select image:</label>
+                            <input type="file" id="img" name="img" accept="image/*" required>
                         </div>
 
                          <!--signatures amounts -->
                          <div class="form-control ">
                             <label>How many signatures do you need? </label>
-                            <input id="sign_num" type="text" name="sign_num" placeholder="Total number of signatures">
+                            <input id="sign_num" type="text" name="sign_num" placeholder="Total number of signatures" required>
                             
                         </div>
 
