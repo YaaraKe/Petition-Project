@@ -10,7 +10,7 @@
 
 <body>
 
-     <form action="login.php" method="post">
+     <form action="../Login/login.php" method="post">
 
         <h2>LOGIN</h2>
 
@@ -32,7 +32,7 @@
 
      </form>
 
-    <form action="register.php" method="post">
+    <form action="../Login/register.php" method="post">
 
         <button type="submit" name="reg">Register now!</button>
 

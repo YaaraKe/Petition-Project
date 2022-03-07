@@ -4,23 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>all_petitions</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <title>petition options</title>
-    <style>
-        .border {
-            border: 1px solid #CCC;
-        }
-    </style>
 </head>
 
 <body>
-
+   
     <!-- nav bar for the website -->
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <a class="navbar-brand" href="#">
@@ -36,50 +30,66 @@
                     <a class="nav-link" href=HOME.php>Home<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href=petition_options.html>Petition<span class="sr-only"></span></a>
+                    <a class="nav-link" href=#>Petition<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href=#>Shop<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href=kneset.php>Contact Knesset Member<span class="sr-only"></span></a>
+                    <a class="nav-link" href=kneset.html>Contact Knesset Member<span class="sr-only"></span></a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <br><br>
+    <section>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 mb-4">
-                <div class="card" class="col-5">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Create Petition</h5>
-                        <p class="card-text">Create your own petition with all details and share it with others.</p>
-                        <a href="new_petition.html" class="btn btn-primary">create petition </a>
-                    </div>
+        <!-- PHP CODE TO FETCH DATA FROM ROWS-->
+        <?php    
+         
+       include_once("db_conn.php");
+        
+       // SQL query to select data from database
+       $sql = "SELECT photo,content,title FROM all_petitions";
+       $resultset = mysqli_query($conn,$sql); 
+      
+        // LOOP TILL END OF DATA
+                while($record=mysqli_fetch_assoc($resultset))
+                {
+                    
+             ?>
+
+        <div class="card hovercard">
+            <div class="cardheader">
+                <div class="avatar">
+                    <img alt="" src="<?php echo $record['photo']; ?>">
                 </div>
             </div>
-
-
-            <div class="col-lg-6 mb-4">
-                <div class="card" class="col-5">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Sign on Petition</h5>
-                        <p class="card-text">Read all petitions, here you can sign on petitions.</p>
-                        <a href="all_petitions.php" class="btn btn-primary">To all petitions</a>
-                    </div>
+            <div class="card-body info">
+                <div class="title">
+                    <a href="#">
+                        <?php echo $rows['title']; ?>
+                    </a>
                 </div>
+                <div class="desc"> <a target="_blank" href="#">
+                        <?php echo $rows['content']; ?>
+                    </a></div>
+                <div class="desc">
+                    <?php echo $rows['content']; ?>
+                </div>
+            </div>
+            <div class="card-footer bottom">
+                <a class="btn btn-primary btn-twitter btn-sm" href="#">
+                    <i class="fa fa-twitter"></i>
+                </a>
+      
+              
             </div>
         </div>
-    </div>
-
+        <?php } ?>
+    </section>
+    <br>
 
 </body>
 
 </html>
-
-
