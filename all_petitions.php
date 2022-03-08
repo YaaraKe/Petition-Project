@@ -68,14 +68,14 @@
             <div class="card-body info">
                 <div class="title">
                     <a href="#">
-                        <?php echo $rows['title']; ?>
+                        <?php echo $record['title']; ?>
                     </a>
                 </div>
                 <div class="desc"> <a target="_blank" href="#">
-                        <?php echo $rows['content']; ?>
+                        <?php echo $record['content']; ?>
                     </a></div>
                 <div class="desc">
-                    <?php echo $rows['content']; ?>
+                    <?php echo $record['content']; ?>
                 </div>
             </div>
             <div class="card-footer bottom">
