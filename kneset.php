@@ -155,7 +155,8 @@ $mysqli->close();
                 <!--FETCHING DATA FROM EACH 
                     ROW OF EVERY COLUMN-->
                 <td><?php echo $rows['full_name'];?></td>
-                <td> <button onclick='email_choesen('<?php echo $res; ?>')'><?php echo $rows['Email'];?> </button></td>
+                <!-- the specific mail -->
+                <td> <button onclick="email_choesen('<?php echo $res; ?>')"><?php echo $rows['Email'];?> </button></td>
                 <td><?php echo $rows['Party'];?></td>
                
             </tr>

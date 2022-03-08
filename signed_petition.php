@@ -1,11 +1,15 @@
 
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Petiton</title>
+    <title>Signed a Petiton</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -28,7 +32,7 @@
                     <a class="nav-link" href=HOME.php>Home<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href=Petition_options.html>Petition<span class="sr-only"></span></a>
+                    <a class="nav-link" href=petition_options.html>Petition<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href=#>Shop<span class="sr-only"></span></a>
@@ -39,69 +43,77 @@
             </ul>
         </div>
     </nav>
-
+<link rel="stylesheet" href="signed_petition.css">
     <br><br>
 
-        <!-- Create a new petition form -->
-        <section>
-            <div class="container" id="all">
+    <?php
+include 'db_conn.php';
+
+$id = $_GET['data'];
+$id = mysqli_real_escape_string($conn,$id);
+ 
+ $sql = "SELECT * FROM all_petitions WHERE `id_petition`='" . $id . "'";
+ $resultset = mysqli_query($conn,$sql); 
+
+  // LOOP TILL END OF DATA
+          while($row=mysqli_fetch_assoc($resultset)){
+             ?>
+<!-- the petition: -->
+             <div>
+                <h1  style=" font-family: 'Times New Roman';" > <u><?php echo $row['title']; ?></u> </h1>
+                <small><?php echo $row['date']; ?> </small>
+                <br><br>
+                <?php echo $row['content']; ?>
+
+             </div>
+
+       
+<hr>
+       <br><br>
+        <!-- Sign on a petition -->
                 <div class="header">
-                    <h1> Create a New Petition</h1>
+                    <h3> Sign on a petition</h3
                 </div>
                 <div class="row mb-4">
-                    <form method="post" name="petitionForm" action="new_petition.php" enctype="multipart/form-data">
+                    <form method="post" name="signedForm" action="" >
 
                         <!-- Name Input********************** -->
                         <div class="form-control ">
                             <label> Full Name:</label>
-                            <input id="Name" type="text" name="Name" placeholder="Name">
+                            <input id="Name" type="text" name="sign_name" placeholder="Name">
                             
-                        </div>
-
-                        <!-- Subject Input -->
-                        <div class="form-control ">
-                            <label>Subject:</label>
-                            <input id="subject" type="text" name="subject" placeholder="Sybject" required>
-                            
-                        </div>
-
-
-                        <!-- Petition content input -->
-                        <div class="form-control ">
-                            <label>Petition Content: </label>
-                            <br>
-                            <textarea rows="20" cols="80" id="Content" name="Content" required></textarea>
-                           
-                        </div>
-
-                        <!-- select image for a petition -->
-                        <div class="form-control ">
-                            <label for="img">Select image:</label>
-                            <input type="file" id="img" name="img" accept="image/*" required>
-                        </div>
-
-                         <!--signatures amounts -->
-                         <div class="form-control ">
-                            <label>How many signatures do you need? </label>
-                            <input id="sign_num" type="text" name="sign_num" placeholder="Total number of signatures" required>
-                            
-                        </div>
-
-                        <!--When to notify -->
-                        <div class="form-control ">
-                            <label>How many signatures to alert you? </label>
-                            <input id="alert_sign" type="number" name="alert_sign" placeholder="Number of signatures">
-                           
                         </div>
 
                         <hr>
 
-                        <button type="submit" value="Send" name="submit"
-                            class="btn btn-outline-primary">Submit</button>
+                        <button type="submit" name="submit"
+                            class="btn btn-outline-primary">Sign</button>
                         <button type="reset" value="Reset" name="reset" class="btn btn-outline-secondary"">Reset</button>
-        <hr>
+                        </div>
+        
         <br>
     </form>
+
     
 </body>
 </html>
+
+<?php
+// send the data to db
+if(isset($_POST['submit'])){
+
+    $name =  $_REQUEST['sign_name'];
+    $sql= "INSERT INTO `signatures` VALUES ( 'nofarefa@gmail.com', '$id', '$name')";
+    if(mysqli_query($conn, $sql)){
+        echo '<script> alert ("You signed successfully.") </script>'; 
+        //need check if we get the target of singatures or alerts so we will send an emails
+        echo "(<script> window.location='all_petitions.php';</script>)";
+    } else{
+        echo " Sorry please try again later $sql. " 
+            . mysqli_error($conn);
+    }
+}
+    
+}       
+
+?>

@@ -79,7 +79,8 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
     }
 
-}else{
+}
+else{
 
     header("Location: index.php");
 

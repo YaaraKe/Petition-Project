@@ -43,14 +43,14 @@
     </nav>
 
     <section>
-
+    <h1 style="text-align: center;">New petitions: </h1>
         <!-- PHP CODE TO FETCH DATA FROM ROWS-->
         <?php    
          
        include_once("db_conn.php");
         
        // SQL query to select data from database
-       $sql = "SELECT photo,content,title FROM all_petitions";
+       $sql = "SELECT * FROM all_petitions";
        $resultset = mysqli_query($conn,$sql); 
       
         // LOOP TILL END OF DATA
@@ -59,29 +59,30 @@
                     
              ?>
 
-        <div class="card hovercard">
+        <div class="card hovercard" id="petition">
             <div class="cardheader">
                 <div class="avatar">
-                    <img alt="" src="<?php echo $record['photo']; ?>">
+                    <img alt="" src="<?php echo $record ['photo']; ?>">
+
                 </div>
             </div>
             <div class="card-body info">
-                <div class="title">
-                    <a href="#">
+                <div class="title" >
+            <h5>  <strong>   <a  href="signed_petition.php?data=<?php echo $record['id_petition'] ?>">
                         <?php echo $record['title']; ?>
                     </a>
-                </div>
-                <div class="desc"> <a target="_blank" href="#">
+                </div> </strong> </h5>
+                <div class="desc text-muted">
+                    <?php echo $record['date']; ?>
+                </div> 
+                <div class="desc">
                         <?php echo $record['content']; ?>
                     </a></div>
-                <div class="desc">
-                    <?php echo $record['content']; ?>
-                </div>
+                
             </div>
             <div class="card-footer bottom">
-                <a class="btn btn-primary btn-twitter btn-sm" href="#">
-                    <i class="fa fa-twitter"></i>
-                </a>
+                <div class="btn" > 
+                </div>
       
               
             </div>
@@ -90,6 +91,9 @@
     </section>
     <br>
 
+
+
+    </script>
 </body>
 
 </html>
