@@ -66,7 +66,20 @@ $id = mysqli_real_escape_string($conn,$id);
                 <?php echo $row['content']; ?>
 
              </div>
+<!-- how many signatures -->
+<?php
 
+$sql1 = "SELECT COUNT (*) as total FROM signatures WHERE `id_petition`='" . $id . "'";
+$data=mysqli_query($sql1);
+ ?>
+ if (! $data){
+   throw new My_Db_Exception('Database error: ' . mysql_error());
+}
+while($row = mysql_fetch_assoc($data)){
+    <h3  style=" font-family: 'Times New Roman';" > how many signatures? <?php echo $data['total']; ?> </h3>
+}
+    
+  
        
 <hr>
        <br><br>

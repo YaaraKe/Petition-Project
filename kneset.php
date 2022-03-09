@@ -108,7 +108,7 @@ $mysqli->close();
                     <a class="nav-link" href=HOME.php>Home<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href=#>Petition<span class="sr-only"></span></a>
+                    <a class="nav-link" href=Petition_options.php>Petition<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href=#>Shop<span class="sr-only"></span></a>
