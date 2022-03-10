@@ -1,8 +1,5 @@
 
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,8 +44,8 @@
     <br><br>
 
     <?php
+    session_start();
 include 'db_conn.php';
-
 $id = $_GET['data'];
 $id = mysqli_real_escape_string($conn,$id);
  
@@ -78,8 +75,7 @@ $data=mysqli_query($sql1);
 while($row = mysql_fetch_assoc($data)){
     <h3  style=" font-family: 'Times New Roman';" > how many signatures? <?php echo $data['total']; ?> </h3>
 }
-    
-  
+
        
 <hr>
        <br><br>
@@ -101,7 +97,7 @@ while($row = mysql_fetch_assoc($data)){
 
                         <button type="submit" name="submit"
                             class="btn btn-outline-primary">Sign</button>
-                        <button type="reset" value="Reset" name="reset" class="btn btn-outline-secondary"">Reset</button>
+                        <button type="reset" value="Reset" name="reset" class="btn btn-outline-secondary">Reset</button>
                         </div>
         
         <br>
@@ -114,7 +110,6 @@ while($row = mysql_fetch_assoc($data)){
 <?php
 // send the data to db
 if(isset($_POST['submit'])){
-
     $name =  $_REQUEST['sign_name'];
     $sql= "INSERT INTO `signatures` VALUES ( 'nofarefa@gmail.com', '$id', '$name')";
     if(mysqli_query($conn, $sql)){
@@ -128,5 +123,4 @@ if(isset($_POST['submit'])){
 }
     
 }       
-
 ?>

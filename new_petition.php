@@ -1,7 +1,6 @@
 <?php
+  session_start();
  include 'db_conn.php';
- include 'user_details.php';
- 
 
  
  if(isset($_POST['submit'])){
@@ -17,12 +16,12 @@
         $photo = $_FILES["img"]["name"];
         $content =  $_REQUEST['Content'];
         $target = $_REQUEST['sign_num'];
-       // $email = $_REQUEST['uname']; 
-        $date = date("Y/m/d");
+        $email = $_SESSION['user_name'];
+        $date = date("d/m/y");
         $alert = $_REQUEST['alert_sign'];
         
 
-        $sql= "INSERT INTO `all_petitions` VALUES ( NULL, '$title', '$content', '$target', 'nofarefa@gmail.com', '$date', '$photo', '$alert')";
+        $sql= "INSERT INTO `all_petitions` VALUES ( NULL, '$title', '$content', '$target', '$email', '$date', '$photo', '$alert')";
 
         if(mysqli_query($conn, $sql)){
             echo '<script> alert ("your petition has creates successfully.") </script>'; 
