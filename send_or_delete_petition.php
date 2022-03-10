@@ -63,43 +63,14 @@ $id = mysqli_real_escape_string($conn,$id);
                 <?php echo $row['content']; ?>
 
              </div>
-<!-- how many signatures -->
-<?php
-
-$sql1 = "SELECT COUNT (*) as total FROM signatures WHERE `id_petition`='" . $id . "'";
-$data=mysqli_query($sql1);
- ?>
- if (! $data){
-   throw new My_Db_Exception('Database error: ' . mysql_error());
-}
-while($row = mysql_fetch_assoc($data)){
-    <h3  style=" font-family: 'Times New Roman';" > how many signatures? <?php echo $data['total']; ?> </h3>
-}
-
-       
 <hr>
        <br><br>
-        <!-- Sign on a petition -->
-                <div class="header">
-                    <h3> Sign on a petition</h3
-                </div>
                 <div class="row mb-4">
-                    <form method="post" name="signedForm" action="" >
-
-                        <!-- Name Input********************** -->
-                        <div class="form-control ">
-                            <label> Full Name:</label>
-                            <input id="Name" type="text" name="sign_name" placeholder="Name">
-                            
+                    <form method="post" name="my_petition_form" action="" >
+                        <button type="submit" name="delete"
+                            class="btn btn-outline-primary">Delete petition</button>
+                        <button type="submit"  name="send" class="btn btn-outline-secondary">Send an email to all signatories</button>
                         </div>
-
-                        <hr>
-
-                        <button type="submit" name="submit"
-                            class="btn btn-outline-primary">Sign</button>
-                        <button type="reset" value="Reset" name="reset" class="btn btn-outline-secondary">Reset</button>
-                        </div>
-        
         <br>
     </form>
 
@@ -109,14 +80,20 @@ while($row = mysql_fetch_assoc($data)){
 
 <?php
 // send the data to db
-if(isset($_POST['submit'])){
+if(isset($_POST['delete'])){
     $name =  $_REQUEST['sign_name'];
     $email=$_SESSION['user_name'];
-    $sql= "INSERT INTO `signatures` VALUES ( '$email', '$id', '$name')";
+    $sql= "DELETE FROM `signatures` where id_petition='" . $id . "'";
     if(mysqli_query($conn, $sql)){
-        echo '<script> alert ("You signed successfully.") </script>'; 
-        //need check if we get the target of singatures or alerts so we will send an emails
-        echo "(<script> window.location='all_petitions.php';</script>)";
+        $sql= "DELETE FROM `all_petitions` where id_petition='" . $id . "'";
+        if(mysqli_query($conn, $sql)){
+        echo '<script> alert ("Your petition has deleted successfully.") </script>'; 
+        echo "(<script> window.location='my_petition.php';</script>)";
+        }
+        else{
+            echo " Sorry please try again later $sql. " 
+                . mysqli_error($conn);
+        }
     } else{
         echo " Sorry please try again later $sql. " 
             . mysqli_error($conn);
