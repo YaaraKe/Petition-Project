@@ -7,7 +7,7 @@
 </head>
 <body>
   <div class="header">
-  	<h2>Register</h2>
+  	<h2>Sign Up</h2>
   </div>
 	
   <form method="post" action="register.php">
@@ -25,7 +25,7 @@
   	  <input type="password" name="password_2">
   	</div>
   	<div class="input-group">
-  	  <button type="submit" class="btn" name="reg_user">Register</button>
+  	  <button type="submit" class="btn" name="reg_user">Sign Up</button>
   	</div>
   	<p>
   		Already a member? <a href="login.php">Sign in</a>

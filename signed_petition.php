@@ -63,18 +63,33 @@ $id = mysqli_real_escape_string($conn,$id);
                 <?php echo $row['content']; ?>
 
              </div>
+
 <!-- how many signatures -->
 <?php
+$sql1 = "SELECT COUNT(*) FROM signatures WHERE `id_petition`='" . $id . "'";
+$result= mysqli_query($conn,$sql1); 
+$count_signatures = mysqli_fetch_array($result);
 
-$sql1 = "SELECT COUNT (*) as total FROM signatures WHERE `id_petition`='" . $id . "'";
-$data=mysqli_query($sql1);
  ?>
- if (! $data){
-   throw new My_Db_Exception('Database error: ' . mysql_error());
-}
-while($row = mysql_fetch_assoc($data)){
-    <h3  style=" font-family: 'Times New Roman';" > how many signatures? <?php echo $data['total']; ?> </h3>
-}
+    <!-- <h3  style=" font-family: 'Times New Roman';" > how many signatures do we have? <?php echo $count_signatures[0]; ?> </h3> -->
+            
+<!-- retrieve signatures goal -->
+<?php
+$sql2 = "SELECT target_singatures FROM all_petitions WHERE `id_petition`='" . $id . "'";
+$result1= mysqli_query($conn,$sql2); 
+$target_signatures = mysqli_fetch_row($result1);
+
+?>
+<!--  progress bar -->
+<h1>Number of signatures</h1>
+    <div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $count_signatures[0]; ?>"
+  aria-valuemin="0" aria-valuemax="<?php echo $target_signatures[0]; ?>" style="width:<?php ($count_signatures[0]/$target_signatures[0]) ?>%">
+    <span class="sr-only"><?php echo $count_signatures[0]?>/<?php echo $target_signatures[0]?> Signtures</span>
+  </div>
+</div>
+
+
 
        
 <hr>

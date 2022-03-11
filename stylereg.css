@@ -1,17 +1,18 @@
 * {
     margin: 0px;
     padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
   }
   body {
     font-size: 120%;
-    background: #F8F8FF;
+    background: #c3ced6;
   }
   
   .header {
     width: 30%;
     margin: 50px auto 0px;
-    color: white;
-    background: #5F9EA0;
+    color: rgb(245, 231, 231);
+    background: #18085f;
     text-align: center;
     border: 1px solid #B0C4DE;
     border-bottom: none;
@@ -46,7 +47,7 @@
     padding: 10px;
     font-size: 15px;
     color: white;
-    background: #5F9EA0;
+    background: #18085f;
     border: none;
     border-radius: 5px;
   }
@@ -62,7 +63,7 @@
   }
   .success {
     color: #3c763d; 
-    background: #dff0d8; 
+    background: #3c5532; 
     border: 1px solid #3c763d;
     margin-bottom: 20px;
   }

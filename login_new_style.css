@@ -89,7 +89,7 @@
   /* modules/anchor.css */
   
   :root {
-    --anchorColor: #eee;
+    --anchorColor: rgb(4, 2, 22);
   }
   
   a {

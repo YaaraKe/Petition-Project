@@ -31,7 +31,7 @@
               <label for="login__username"><svg class="icon">
                   <use xlink:href="#icon-user"></use>
                 </svg><span class="hidden">Email Address</span></label>
-              <input autocomplete="Email Address" id="login__username" type="text" name="uname" class="form__input" placeholder="Username" required>
+              <input autocomplete="Email Address" id="login__username" type="text" name="uname" class="form__input" placeholder="Email Address" required>
             </div>
       
             <div class="form__field">

@@ -43,8 +43,11 @@
     </nav>
 
     <section>
-    <h1 style="text-align: center;">New petitions: </h1>
         <!-- PHP CODE TO FETCH DATA FROM ROWS-->
+        <div class="container">
+    <h1>All petitions,
+        <small class="text-muted">Choose your petition</small>
+    </h1>
         <?php    
          
        include_once("db_conn.php");
@@ -57,43 +60,50 @@
                 while($record=mysqli_fetch_assoc($resultset))
                 {
                     
+                   
+                    
              ?>
 
-        <div class="card hovercard" id="petition">
-            <div class="cardheader">
-                <div class="avatar">
-                    <img alt="" src="<?php echo $record ['photo']; ?>">
 
-                </div>
-            </div>
-            <div class="card-body info">
-                <div class="title" >
-            <h5>  <strong>   <a  href="signed_petition.php?data=<?php echo $record['id_petition'] ?>">
-                        <?php echo $record['title']; ?>
-                    </a>
-                </div> </strong> </h5>
-                <div class="desc text-muted">
-                    <?php echo $record['date']; ?>
-                </div> 
-                <div class="desc">
-                        <?php echo $record['content']; ?>
-                    </a></div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card">
                 
-            </div>
-            <div class="card-footer bottom">
-                <div class="btn" > 
+                    <img src="<?php echo $record ['photo']; ?>" class="card-img-top" alt="Petition photo">
+               
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h5 class="card-title">
+                           
+                        <?php echo $record['title']; ?>
+                   
+                </div> </strong></h5>
+                        </div>
+                        <div class="desc text-muted">
+                    <?php echo $record['date']; ?>
                 </div>
-      
-              
+                        <div class="col-md-5 text-right">
+                            <p class="card-text"><?php echo $record['content']; ?></p>
+                        </div>
+                    </div>
+                    <a href="signed_petition.php?data=<?php echo $record['id_petition'] ?>" class="btn btn-primary">Sign now</a>
+                </div>
+                <br>
             </div>
-        </div>
+            <br>
+      
+        
+
         <?php } ?>
-    </section>
-    <br>
+    </div>
 
 
 
-    </script>
+   
+
+
+        
 </body>
 
 </html>
