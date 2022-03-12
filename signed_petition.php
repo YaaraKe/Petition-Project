@@ -12,6 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
       <!-- nav bar for the website -->
@@ -81,17 +82,13 @@ $target_signatures = mysqli_fetch_row($result1);
 
 ?>
 <!--  progress bar -->
-<h1>Number of signatures</h1>
-    <div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $count_signatures[0]; ?>"
-  aria-valuemin="0" aria-valuemax="<?php echo $target_signatures[0]; ?>" style="width:<?php ($count_signatures[0]/$target_signatures[0]) ?>%">
-    <span class="sr-only"><?php echo $count_signatures[0]?>/<?php echo $target_signatures[0]?> Signtures</span>
+<h1>Signtures Progress</h1>
+<div class="w3-grey w3-round-large">
+    <div class="w3-container w3-blue w3-round-large" 
+    style="width:<?php echo ($count_signatures[0]/$target_signatures[0]) ?>%">
+    <?php echo $count_signatures[0]?>/<?php echo $target_signatures[0]?></div>
   </div>
-</div>
 
-
-
-       
 <hr>
        <br><br>
         <!-- Sign on a petition -->
