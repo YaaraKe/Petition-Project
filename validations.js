@@ -3,14 +3,18 @@ function ValidatePetitionForm(){
     var subject = document.petitionForm.subject;
     var content = document.petitionForm.Content;
     var target = document.petitionForm.sign_num;
-    var alertf = document.petitionForm.alert_sign;
+    var alertf = document.petitionForm.alert_sign.value;
+    var alertn = document.petitionForm.alert_sign;
+    var targetv=document.petitionForm.sign_num.value;
+    var targetv_INT=parseInt(targetv);
+    var alertf_INT=parseInt(alertf);
     var counter=0;
     
 if(subject.value.match(/\D/) == null){
     setErrorFor(subject,"\n" +"You must enter letters to your subject.");
 }
    else if(subject.value.length>50 || subject.value.length<5){
-        setErrorFor(subject, "Length: "+ subject.value.length + "\n" +"Title length must be between 5 and 50 characters."  );
+        setErrorFor(subject, "Length: "+ ssubject.value.length + "\n" +"Title length must be between 5 and 50 characters."  );
         return false;
     } 
     else{
@@ -45,13 +49,13 @@ if(subject.value.match(/\D/) == null){
         counter++;
      }
 
-     if(alertf.value>=target.value){
-         alert( alertf.value + ">=" + target.value)
-        setErrorFor(alertf,"\n" +"The number of signatures to be notified must be lower than the target signature. We will also notify you when you reach your full destination:" + "\n" +target.value +".");
+     if(alertf_INT>=targetv_INT){
+         alert( "yay")
+        setErrorFor(alertn,"\n" +"The number of signatures to be notified must be lower than the target signature. We will also notify you when you reach your full destination:" + "\n" +target.value +".");
         return false;
      } 
      else{
-        setSuccessFor(alertf);
+        setSuccessFor(alertn);
         counter++;
      }
    if(counter==4){
