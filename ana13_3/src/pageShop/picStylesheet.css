@@ -1,0 +1,12 @@
+.size{
+    height:10%;
+    width: 10%;
+}
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
+
+.color{
+    color: green;
+}

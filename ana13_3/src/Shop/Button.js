@@ -1,15 +1,13 @@
-import React from 'react';
+import React from "react";
+import "./button.css";
 
-const Button =(props)=> {
+const Button = () => {
+  // const links="";
+  // function handleClick(){
+  //   links= props.link;
+  // }
 
-    const handleClick=()=> {
-      location.href = this.props.link;
-    }
-
-      return (
-        <button onClick={() => this.handleClick()}>
-          Buy
-          </button>
-      );
-    }
-export default Button;   
+  // return <button onClick={handleClick}><a href={links}></a>Buy</button>;
+  return <button><a></a>Buy</button>
+};
+export default Button;
