@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
 <body>
@@ -45,15 +46,13 @@
     <section>
         <!-- PHP CODE TO FETCH DATA FROM ROWS-->
         <div class="container">
-    <h1>All petitions,
-        <small class="text-muted">Choose your petition</small>
-    </h1>
+    <h1>Completed petitions</h1>
         <?php    
          
        include_once("db_conn.php");
         
        // SQL query to select data from database
-       $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition)";
+       $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures = (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition)";
        $resultset = mysqli_query($conn,$sql);
       
         // LOOP TILL END OF DATA
@@ -86,8 +85,15 @@
                         <div class="col-md-5 text-right">
                             <p class="card-text"><?php echo $record['content']; ?></p>
                         </div>
+                        <!--  progress bar -->
+                        <h3>Signtures Progress</h3>
+                        <div class="w3-grey w3-round-large">
+                            <div class="w3-container w3-blue w3-round-large" 
+                            style="width:100%">
+                            <?php echo $record['target_singatures']; ?>/<?php echo $record['target_singatures']; ?></div>
+                        </div>
+
                     </div>
-                    <a href="signed_petition.php?data=<?php echo $record['id_petition'] ?>" class="btn btn-primary">Sign now</a>
                 </div>
                 <br>
             </div>
