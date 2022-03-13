@@ -18,23 +18,25 @@ if (isset($_POST['reg_user'])) {
 
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
-  if (empty($email)) { array_push($errors, "Email is required"); }
-  if (empty($password_1)) { array_push($errors, "Password is required"); }
-  if ($password_1 != $password_2) {
-	array_push($errors, "The two passwords do not match");
-  }
+  if (empty($email)){  array_push($errors, "E-mail is required"); }
+  else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { array_push($errors, "Invalid email"); }
+    else if (empty($password_1)){  array_push($errors, "Password is required"); }
+    else  if (strlen($password_1)<5){ array_push($errors, "Password must be over 5 characters");}
+    else if ($password_1 != $password_2) {
+      array_push($errors, "The two passwords do not match");
+      }
 
   // first check the database to make sure 
   // a user does not already exist with the same username and/or email
   $user_check_query = "SELECT * FROM users WHERE user_name='$email' LIMIT 1";
   $result = mysqli_query($conn, $user_check_query);
-  $user = mysqli_fetch_assoc($result);
   
-  if ($user) { // if user exists
-    if ($user['email'] === $email) {
+  while($user = mysqli_fetch_assoc($result)){
+   // if user exists
+    if ($user['user_name'] == $email) {
       array_push($errors, "Email already exists");
-    }
   }
+}
 
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
@@ -46,7 +48,5 @@ if (isset($_POST['reg_user'])) {
   	$_SESSION['user_name'] = $email;
   	$_SESSION['success'] = "You are now logged in";
   	header('location: index.php');
-
-    // include "kneset.html";///**************************************** */
   }
 }

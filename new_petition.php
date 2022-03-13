@@ -17,7 +17,7 @@
         $content =  $_REQUEST['Content'];
         $target = $_REQUEST['sign_num'];
         $email = $_SESSION['user_name'];
-        $date = date("d/m/y");
+        $date = date("y/m/d");
         $alert = $_REQUEST['alert_sign'];
         
 

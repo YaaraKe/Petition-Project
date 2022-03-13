@@ -13,6 +13,7 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="petitions_errors.css" rel="stylesheet">
 </head>
 <body>
       <!-- nav bar for the website -->
@@ -101,13 +102,18 @@ $target_signatures = mysqli_fetch_row($result1);
                         <!-- Name Input********************** -->
                         <div class="form-control ">
                             <label> Full Name:</label>
-                            <input id="Name" type="text" name="sign_name" placeholder="Name">
+                            <input id="Namef" type="text" name="signName" placeholder="Name" required>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+  <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+</svg>
+                            <small> Error message </small>
                             
                         </div>
 
                         <hr>
 
-                        <button type="submit" name="submit"
+                        <button type="submit" name="submit" id="sign" onclick="return sign_name()"
                             class="btn btn-outline-primary">Sign</button>
                         <button type="reset" value="Reset" name="reset" class="btn btn-outline-secondary">Reset</button>
                         </div>
@@ -115,15 +121,26 @@ $target_signatures = mysqli_fetch_row($result1);
         <br>
     </form>
 
-    
+    <script src="validations.js"></script>
 </body>
 </html>
 
 <?php
+ $email=$_SESSION['user_name'];
+$sql_two=" SELECT email_signed, id_petition FROM signatures where id_petition='" . $id . "' AND email_signed='" . $email . "' ";
+$result = mysqli_query($conn,$sql_two); 
+ if ($result === FALSE) {
+    die(mysqli_error($conn));
+  }
+  if(mysqli_num_rows($result)!=0){
+    echo "<script> document.getElementById('Namef').setAttribute('disabled', ' '); </script>";
+    echo "<script> document.getElementById('Namef').setValue('disabled', ' '); </script>";
+     echo "You can't signed twice";
+  }
+
 // send the data to db
 if(isset($_POST['submit'])){
     $name =  $_REQUEST['sign_name'];
-    $email=$_SESSION['user_name'];
     $sql= "INSERT INTO `signatures` VALUES ( '$email', '$id', '$name')";
     if(mysqli_query($conn, $sql)){
         echo '<script> alert ("You signed successfully.") </script>'; 
@@ -134,6 +151,5 @@ if(isset($_POST['submit'])){
             . mysqli_error($conn);
     }
 }
-    
 }       
 ?>
