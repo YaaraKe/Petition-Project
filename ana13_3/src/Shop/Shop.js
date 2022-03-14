@@ -5,9 +5,27 @@ import scotch from '../picShop/scotch.jpg';
 import sharpi from '../picShop/Sharpi.jpg';
 import colorsharp from '../picShop/Sharpi1.jpg';
 import './shop.css'
+//bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+//Axios for get request
+import axios from 'axios'
 
     //render() method, this method returns HTML.
 const Shop = ()=> {
+  // constructor(props) {
+  //   super(props)
+  //     this.state = {
+  //       data: []
+  //             }
+  //     }
+
+  //     axios.get('http://localhost/save.php').then(res => 
+  //       {
+        
+  //       this.setState({data: res.data});
+  //          }); 
+        
+  //       }
       const art = 
         {
           amount1: 94.12,
