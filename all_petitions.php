@@ -72,15 +72,14 @@
                     
                    
                     
-             ?>
+             
 
+                  
+    echo '<div class="row">';
+        echo '<div class="col-md-7">';
+            echo '<div class="card">';
+              echo '<img src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'" class="card-img-top"/>';?>
 
-    <div class="row">
-        <div class="col-md-7">
-            <div class="card">
-                
-                    <img src="<?php echo $record ['photo']; ?>" class="card-img-top" alt="Petition photo">
-               
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-7">
