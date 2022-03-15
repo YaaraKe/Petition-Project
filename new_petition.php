@@ -13,7 +13,7 @@
         if(check!==false){
 
         $title =  $_REQUEST['subject'];
-        $photo = $_FILES["img"]["name"];
+        $photo = addslashes(file_get_contents($_FILES["img"]["tmp_name"]));
         $content =  $_REQUEST['Content'];
         $target = $_REQUEST['sign_num'];
         $email = $_SESSION['user_name'];
@@ -24,7 +24,7 @@
         $sql= "INSERT INTO `all_petitions` VALUES ( NULL, '$title', '$content', '$target', '$email', '$date', '$photo', '$alert')";
 
         if(mysqli_query($conn, $sql)){
-            echo '<script> alert ("your petition has creates successfully.") </script>'; 
+            echo '<script> alert ("your petition uploaded successfully.") </script>'; 
             echo "(<script> window.location='new_petition.html';</script>)";
             //header("Location: new_petition.html");
   
