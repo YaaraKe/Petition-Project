@@ -69,17 +69,12 @@
         // LOOP TILL END OF DATA
                 while($record=mysqli_fetch_assoc($resultset))
                 {
-                    
-                   
-                    
-             
-
-                  
-    echo '<div class="row">';
-        echo '<div class="col-md-7">';
-            echo '<div class="card">';
-              echo '<img src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'" class="card-img-top"/>';?>
-
+     ?>               
+                           
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card">
+            <?php  echo '<img src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'" class="card-img-top"/>';?>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-7">

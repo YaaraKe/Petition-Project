@@ -97,8 +97,7 @@ $target_signatures = mysqli_fetch_row($result1);
 <!--  progress bar -->
 <h1>Signtures Progress</h1>
 <div class="w3-grey w3-round-large">
-    <div class="w3-container w3-blue w3-round-large" 
-    style="width:<?php echo ($count_signatures[0]/$target_signatures[0]) ?>%">
+    <div class="w3-container w3-blue w3-round-large" style="width:<?php echo ($count_signatures[0]/$target_signatures[0])*100 ?>%">
     <?php echo $count_signatures[0]?>/<?php echo $target_signatures[0]?></div>
   </div>
 
