@@ -10,7 +10,7 @@ function ValidatePetitionForm(){
     var alertf_INT=parseInt(alertf);
     var counter=0;
     
-if(subject.value.match(/\D/) == null){
+if(subject.value.match(/\D/) === null){
     setErrorFor(subject,"\n" +"You must enter some content.");
     
 }
@@ -22,7 +22,7 @@ if(subject.value.match(/\D/) == null){
         setSuccessFor(subject);
         counter++;
      }
-     if(content.value.match(/\D/) == null){
+     if(content.value.match(/\D/) === null){
         setErrorFor(content,"\n" +"You must enter some content.");
        
      }
@@ -37,14 +37,14 @@ if(subject.value.match(/\D/) == null){
             counter++;
          }
      }
-     if(target.value===null){
+     if(target.value.length===0){
         setErrorFor(target,"\n" +"You must pick a number.");
      }
-     else if(targetv_INT.value<1){
+     else if(targetv_INT<1){
         setErrorFor(target,"\n" +"Target signatures must be a positive number.");
         
      }
-     else if (targetv_INT.value>999999999){
+     else if (targetv_INT>999999999){
         setErrorFor(target,"\n" +"Please try to select a lower target signatures.");
        
      }
@@ -52,7 +52,7 @@ if(subject.value.match(/\D/) == null){
         setSuccessFor(target);
         counter++;
      }
-     if(alertn.value===null){
+     if(alertn.value.length===0){
         setErrorFor(alertn,"\n" +"You must pick a number.");
      }
 
@@ -77,7 +77,10 @@ if(subject.value.match(/\D/) == null){
 
 function sign_name(){
     var namef = document.signedForm.signName;
-    if(namef.value.length>100){
+    if(namef.value.length===0){
+        setErrorFor(namef,"\n" +"You must enter your name.");  
+    }
+    else if(namef.value.length>100){
         setErrorFor(namef,"\n" +"please enter a name length less than 100 charcters.");
         return false;
     }

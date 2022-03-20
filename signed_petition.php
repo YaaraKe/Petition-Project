@@ -146,9 +146,10 @@ $result = mysqli_query($conn,$sql_two);
  if ($result === FALSE) {
     die(mysqli_error($conn));
   }
+  //user cant signed twice
   if(mysqli_num_rows($result)!=0){
     echo "<script> document.getElementById('Namef').setAttribute('disabled', ' '); </script>";
-    echo "<script> document.getElementById('Namef').setValue('disabled', ' '); </script>";
+    echo "<script> document.getElementById('sign').setAttribute('disabled', ' '); </script>";
      echo "You can't signed twice";
   }
 
