@@ -184,14 +184,18 @@ $mysqli->close();
      var tomail=document.getElementById("toemail");
      var userName=document.getElementById("fromname");
      var counter=0;
+     var blacklist=/["';`]+/;
      
     
 
-    if(to_send.value.match(/\D/) == null){
+    if(to_send.value.match(/\D/) === null){
         
         setErrorFor(to_send,"\n" +"You must enter some content.");
         
     }
+    else if(blacklist.test(to_send.value)){
+    setErrorFor(to_send,"\n" +"You can not enter spacial characters.");
+}
     else{
      setSuccessFor(to_send);
      counter++;
@@ -200,6 +204,10 @@ $mysqli->close();
     
          setErrorFor(msg,"\n" +"You must enter some content to your message.");
      }
+     else if(blacklist.test(msg.value)){
+    setErrorFor(msg,"\n" +"You can not enter spacial characters.");
+     }
+     
      else if(msg.value.length<5) {
          setErrorFor(msg,"\n" +"Message content must be longer than 5 characters.");
      }
@@ -211,6 +219,10 @@ $mysqli->close();
    
          setErrorFor(userName,"\n" +"You must enter some content to the name.");
      }
+     else if(blacklist.test(userName.value)){
+    setErrorFor(userName,"\n" +"You can not enter spacial characters.");
+     }
+     
      else{
  setSuccessFor(userName);
  counter++;

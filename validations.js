@@ -9,10 +9,14 @@ function ValidatePetitionForm(){
     var targetv_INT=parseInt(targetv);
     var alertf_INT=parseInt(alertf);
     var counter=0;
+    var blacklist=/["';`]+/;
     
 if(subject.value.match(/\D/) === null){
     setErrorFor(subject,"\n" +"You must enter some content.");
     
+}
+else if(blacklist.test(subject.value)){
+    setErrorFor(subject,"\n" +"You can not enter spacial characters.");
 }
    else if(subject.value.length>50 || subject.value.length<5){
         setErrorFor(subject, "Length: "+ ssubject.value.length + "\n" +"Title length must be between 5 and 50 characters."  );
@@ -26,6 +30,9 @@ if(subject.value.match(/\D/) === null){
         setErrorFor(content,"\n" +"You must enter some content.");
        
      }
+     else if(blacklist.test(content.value)){
+        setErrorFor(content,"\n" +"You can not enter spacial characters.");
+    }
      else{
         
          if(content.value.length>65535 || content.value.length<10){
@@ -77,10 +84,17 @@ if(subject.value.match(/\D/) === null){
 
 function sign_name(){
     var namef = document.signedForm.signName;
+    var blacklist=/["';`]+/;
     if(namef.value.length===0){
         setErrorFor(namef,"\n" +"You must enter your name.");  
+        return false;
+    }
+    else if(blacklist.test(namef.value)){
+        setErrorFor(namef,"\n" +"You can not enter spacial characters.");
+        return false;
     }
     else if(namef.value.length>100){
+        alert("ggg")
         setErrorFor(namef,"\n" +"please enter a name length less than 100 charcters.");
         return false;
     }
