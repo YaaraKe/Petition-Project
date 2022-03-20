@@ -19,7 +19,7 @@ else if(blacklist.test(subject.value)){
     setErrorFor(subject,"\n" +"You can not enter spacial characters.");
 }
    else if(subject.value.length>50 || subject.value.length<5){
-        setErrorFor(subject, "Length: "+ ssubject.value.length + "\n" +"Title length must be between 5 and 50 characters."  );
+        setErrorFor(subject, "Length: "+ subject.value.length + "\n" +"Title length must be between 5 to 50 characters."  );
        
     } 
     else{
