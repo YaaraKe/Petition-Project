@@ -80,7 +80,7 @@
         <div class="card hovercard" id="petition">
             <div class="cardheader">
                 <div class="avatar">
-                    <img alt="" src="<?php echo $record ['photo']; ?>">
+                <?php  echo '<img src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'" class="card-img-top"/>';?>
 
                 </div>
             </div>
