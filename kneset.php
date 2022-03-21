@@ -44,7 +44,6 @@ $mysqli->close();
     <script>
        var  flag=0;
         function email_choesen(clicked_id){
-            alert(clicked_id);
             document.getElementById("toemail").value=clicked_id;
             flag=1;
         }
