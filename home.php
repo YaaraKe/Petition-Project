@@ -55,6 +55,9 @@ if (isset($_SESSION['user_name'])) {
                 <li class="nav-item active">
                     <a class="nav-link" href="../kneset.php">Contact Knesset Member<span class="sr-only"></span></a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../my_petition.php">My petitions<span class="sr-only"></span></a>
+                </li>
             </ul>
         </div>
     </nav>

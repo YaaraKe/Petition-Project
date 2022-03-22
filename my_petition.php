@@ -47,13 +47,17 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="../kneset.php">Contact Knesset Member<span class="sr-only"></span></a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../my_petition.php">My petitions<span class="sr-only"></span></a>
+                </li>
             </ul>
         </div>
     </nav>
     <br>
 
     <section>
-    <h1 style="text-align: center;">My petitions: </h1>
+    <div class="container">
+    <h1> My petitions</h1>
         <!-- PHP CODE TO FETCH DATA FROM ROWS-->
         <?php    
        session_start();
@@ -67,6 +71,10 @@
         die(mysqli_error($conn));
       }
       if(mysqli_num_rows($result)!=0){
+           ?>
+       
+       <div class="row">
+       <?php
       
         // LOOP TILL END OF DATA
                 while($record=mysqli_fetch_assoc($result))
@@ -74,36 +82,35 @@
                     
              ?>
 
-        <div class="card hovercard" id="petition">
-            <div class="cardheader">
-                <div class="avatar">
-                    <img alt="" src="<?php echo $record ['photo']; ?>">
-
-                </div>
-            </div>
-            <div class="card-body info">
-                <div class="title" >
-            <h5>  <strong>   <a  href="send_or_delete_petition.php?data=<?php echo $record['id_petition'] ?>">
-                        <?php echo $record['title']; ?>
-                    </a>
-                </div> </strong> </h5>
-                <div class="desc text-muted">
-                    <?php echo $record['date']; ?>
-                </div> 
-                <div class="desc">
-                        <?php echo $record['content']; ?>
-                    </a></div>
                 
+        <div class="col-md-7">
+            <div class="card">
+                <div class="text-center">
+  
+
+            <?php  echo '<img style="width: 18rem;" src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'" class="card-img-top"/>';?>
             </div>
-            <div class="card-footer bottom">
-                <div class="btn" > 
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h5 class="card-title">
+                           
+                        <?php echo $record['title']; ?>
+                   
+                </div> </strong></h5>
+                        </div>
+                        <div class="desc text-muted">
+                    <?php echo $record['date']; ?>
                 </div>
-      
-              
+                        <div class=" ">
+                            <p class="card-text"><?php echo $record['content']; ?></p>
+                        </div>
+                    </div>
+                    <a href="send_or_delete_petition.php?data=<?php echo $record['id_petition'] ?>" class="btn btn-primary">To my petition</a>
+                </div>
+                <br>
             </div>
-        </div>
-        </section>
-    <br>
+            <br>
 
         <?php 
     

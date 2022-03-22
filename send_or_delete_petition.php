@@ -47,6 +47,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="../kneset.php">Contact Knesset Member<span class="sr-only"></span></a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../my_petition.php">My petitions<span class="sr-only"></span></a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -79,8 +82,8 @@ $id = mysqli_real_escape_string($conn,$id);
                 <div class="row mb-4">
                     <form method="post" name="my_petition_form" action="" >
                         <button type="submit" name="delete"
-                            class="btn btn-outline-primary">Delete petition</button>
-                        <button type="submit"  name="send" class="btn btn-outline-secondary">Send an email to all signatories</button>
+                            class="btn btn-outline-danger">Delete petition</button>
+                        <button type="submit"  name="send" class="btn btn-outline-success">Send an email to all signatories</button>
                         </div>
         <br>
     </form>

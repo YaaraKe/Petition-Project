@@ -57,6 +57,9 @@ emailjs.init("qZZh-2WKTlDaP8qY3");
                 <li class="nav-item active">
                     <a class="nav-link" href="../kneset.php">Contact Knesset Member<span class="sr-only"></span></a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../my_petition.php">My petitions<span class="sr-only"></span></a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -151,9 +154,10 @@ $result = mysqli_query($conn,$sql_two);
  if ($result === FALSE) {
     die(mysqli_error($conn));
   }
+  //user cant signed twice
   if(mysqli_num_rows($result)!=0){
     echo "<script> document.getElementById('Namef').setAttribute('disabled', ' '); </script>";
-    echo "<script> document.getElementById('Namef').setValue('disabled', ' '); </script>";
+    echo "<script> document.getElementById('sign').setAttribute('disabled', ' '); </script>";
      echo "You can't signed twice";
   }
 

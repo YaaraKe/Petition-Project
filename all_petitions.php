@@ -47,6 +47,9 @@
         <li class="nav-item active">
           <a class="nav-link" href="../kneset.php">Contact Knesset Member<span class="sr-only"></span></a>
         </li>
+        <li class="nav-item active">
+                    <a class="nav-link" href="../my_petition.php">My petitions<span class="sr-only"></span></a>
+                </li>
       </ul>
     </div>
   </nav>
@@ -65,16 +68,21 @@
        // SQL query to select data from database
        $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition)";
        $resultset = mysqli_query($conn,$sql);
-      
+       ?>
+       
+       <div class="row">
+       <?php
         // LOOP TILL END OF DATA
                 while($record=mysqli_fetch_assoc($resultset))
                 {
      ?>               
-                           
-    <div class="row">
         <div class="col-md-7">
             <div class="card">
-            <?php  echo '<img src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'" class="card-img-top"/>';?>
+                <div class="text-center">
+  
+
+            <?php  echo '<img style="width: 18rem;" src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'" class="card-img-top"/>';?>
+            </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-7">
@@ -87,7 +95,7 @@
                         <div class="desc text-muted">
                     <?php echo $record['date']; ?>
                 </div>
-                        <div class="col-md-5 text-right">
+                        <div class=" ">
                             <p class="card-text"><?php echo $record['content']; ?></p>
                         </div>
                     </div>
