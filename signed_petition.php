@@ -14,6 +14,14 @@
     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="petitions_errors.css" rel="stylesheet">
+    <script src="alertmail.js"></script>
+    <!-- integration to Emailjs -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+(function() {
+emailjs.init("qZZh-2WKTlDaP8qY3");
+})();
+</script>
 </head>
 <body>
 
@@ -156,6 +164,19 @@ if(isset($_POST['submit'])){
     if(mysqli_query($conn, $sql)){
         echo '<script> alert ("You signed successfully.") </script>'; 
         //need check if we get the target of singatures or alerts so we will send an emails
+        $sql3 = " SELECT * FROM all_petitions WHERE `id_petition`='" . $id . "' AND `alert_singatures` = (SELECT COUNT(*) FROM signatures WHERE `id_petition`='" . $id . "')  ";
+        $record_a = mysqli_query($conn,$sql3);
+        if($record_a){
+            $result_a=mysqli_fetch_assoc($record_a); 
+            // insert into alert varaiable the number of signatures to notify the petition owner
+            $alert = $result_a['alert_singatures'];
+            $p_name = $result_a['title'];
+            $owner_mail = $result_a['email'];
+
+            ?>
+            <script type="text/javascript"> sendalert('<?php echo $alert;?>','<?php echo $p_name;?>','<?php echo $owner_mail;?>')</script>
+            <?php
+        }
         echo "(<script> window.location='all_petitions.php';</script>)";
     } else{
         echo " Sorry please try again later $sql. " 
