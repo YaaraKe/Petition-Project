@@ -115,12 +115,12 @@ $target_signatures = mysqli_fetch_row($result1);
 <hr>
        <br><br>
         <!-- Sign on a petition -->
-                <div class="header">
+               
+                <div class="row mb-4" id="SignForm">
+                    <form method="post" name="signedForm" action="" >
+                    <div class="header">
                     <h3> Sign on a petition</h3
                 </div>
-                <div class="row mb-4">
-                    <form method="post" name="signedForm" action="" >
-
                         <!-- Name Input********************** -->
                         <div class="form-control ">
                             <label> Full Name:</label>
@@ -142,6 +142,7 @@ $target_signatures = mysqli_fetch_row($result1);
         
         <br>
     </form>
+    </div>
 
     <script src="validations.js"></script>
 </body>
@@ -156,9 +157,13 @@ $result = mysqli_query($conn,$sql_two);
   }
   //user cant signed twice
   if(mysqli_num_rows($result)!=0){
-    echo "<script> document.getElementById('Namef').setAttribute('disabled', ' '); </script>";
-    echo "<script> document.getElementById('sign').setAttribute('disabled', ' '); </script>";
-     echo "You can't signed twice";
+        echo " <p style='color: red;'> You have already signed this petition <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pen-fill' viewBox='0 0 16 16'>
+  <path d='m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z'/>
+</svg></p>";
+   
+    echo "<script> document.getElementById('SignForm').remove(); </script>";
+    //echo "<script> document.getElementById('sign').setAttribute('disabled', ' '); </script>";
+     
   }
 
 // send the data to db
