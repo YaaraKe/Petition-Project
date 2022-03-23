@@ -45,25 +45,25 @@ const Shop = () => {
         <h1>{art.title1}</h1>
         <img src={paper} alt=""></img>
         <div>$ {art.amount1}</div>
-        <Button link={"artItem.link"} />
+        <Button link={"../pageShop/picProduct1/product1.html"} />
       </div>
        <div class="border">
         <h1>{art.title2}</h1>
         <img src={scotch} alt=""></img>
         <div>$ {art.amount2}</div>
-        <Button link={"..ShoppageShoppicProduct2product2.html"} />
+        <Button link={"../pageShop/picProduct2/product2.html"} />
       </div>
       <div class="border">
         <h1>{art.title3}</h1>
         <img src={sharpi} alt=""></img>
         <div>$ {art.amount3}</div>
-        <Button link={"..ShoppageShoppicProduct3product3.html"} />
+        <Button link={"../pageShop/picProduct3/product3.html"} />
       </div>
       <div class="border">
         <h1>{art.title4}</h1>
         <img src={colorsharp} alt=""></img>
         <div>$ {art.amount4}</div>
-        <Button link={"..ShoppageShoppicProduct4product4.html"} />
+        <Button link={"../pageShop/picProduct4/product4.html"} />
       </div>
     </>
   );
