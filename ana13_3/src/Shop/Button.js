@@ -1,13 +1,12 @@
 import React from "react";
 import "./button.css";
 
-const Button = () => {
-  // const links="";
-  // function handleClick(){
-  //   links= props.link;
-  // }
+const Button = ({ link }) => {
 
-  // return <button onClick={handleClick}><a href={links}></a>Buy</button>;
-  return <button><a></a>Buy</button>
+  return (
+    <button onClick={() => console.log(link)}>
+      <a href={link}>Buy</a>
+    </button>
+  );
 };
 export default Button;
