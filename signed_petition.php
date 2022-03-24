@@ -169,13 +169,13 @@ $result = mysqli_query($conn,$sql_two);
     //echo "<script> document.getElementById('sign').setAttribute('disabled', ' '); </script>";
      
   }
+  
 
 // send the data to db
 if(isset($_POST['submit'])){
     $name =  $_REQUEST['sign_name'];
     $sql= "INSERT INTO `signatures` VALUES ( '$email', '$id', '$name')";
     if(mysqli_query($conn, $sql)){
-        echo '<script> alert ("You signed successfully.") </script>'; 
         //Check how many signatures do we have and what is the number of signature to notify the owner
         $sql3 = " SELECT * FROM all_petitions WHERE `id_petition`='" . $id . "' AND `alert_singatures` = (SELECT COUNT(*) FROM signatures WHERE `id_petition`='" . $id . "')  ";
         $record_a = mysqli_query($conn,$sql3);
@@ -185,12 +185,30 @@ if(isset($_POST['submit'])){
             $alert = $result_a['alert_singatures'];
             $p_name = $result_a['title'];
             $owner_mail = $result_a['email'];
+?>
+            
+         <script type="text/javascript">
+                     var alertS="<?php echo $alert;?>";
+                     var title="<?php echo $p_name;?>";
+                     var mail="<?php echo $owner_mail;?>";
+                     
+                     </script>
+                     
+                     <?php echo "<script>sendalert(alertS,title,mail); </script>"
+                    
+                    ?>
 
-            ?>
-            <script type="text/javascript"> sendalert('<?php echo $alert;?>','<?php echo $p_name;?>','<?php echo $owner_mail;?>')</script>
+ ?>
             <?php
         }
-        // echo "(<script> window.location='all_petitions.php';</script>)";
+        ?>
+    
+         <script>
+           alert ("You signed successfully.");
+              window.location='all_petitions.php';
+              
+              </script>
+         <?php
     } else{
         echo " Sorry please try again later $sql. " 
             . mysqli_error($conn);
