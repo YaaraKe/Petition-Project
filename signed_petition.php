@@ -195,11 +195,13 @@ if(isset($_POST['submit'])){
  ?>
             <?php
         }
+        // retrieve petition title
         $sql4= "SELECT * FROM all_petitions WHERE `id_petition`='" . $id . "'";
         $record4= mysqli_query($conn,$sql4); 
         $result4 = mysqli_fetch_assoc($record4);
         $p_title = $result4['title'];
         ?>
+        <!-- sending confirmation mail -->
                  <script type="text/javascript">
                      var p_title="<?php echo $p_title;?>";
                      var email="<?php echo $email;?>";
