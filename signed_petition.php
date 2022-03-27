@@ -197,7 +197,6 @@ if(isset($_POST['submit'])){
                      <?php echo "<script>sendalert(alertS,title,mail); </script>"
                     
                     ?>
-
  ?>
             <?php
         }
