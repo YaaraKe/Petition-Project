@@ -63,8 +63,8 @@ else if(blacklist.test(subject.value)){
         setErrorFor(alertn,"\n" +"You must pick a number.");
      }
 
-     else if(alertf_INT>=targetv_INT){
-        setErrorFor(alertn,"\n" +"The number of signatures to be notified must be lower than the target signature. We will also notify you when you reach your full destination:" + "\n" +target.value +".");
+     else if(alertf_INT>targetv_INT){
+        setErrorFor(alertn,"\n" +"The number of signatures to be notified must be lower  or equal to the target signature.");
       
      } 
      else{
