@@ -6,9 +6,10 @@ function sendalert(alertnum, petition_name, owner_email){
         to_email:owner_email,
 
     }
-    emailjs.send('service_a5xtsoa','template_c9p7bke',tempParams)
+    emailjs.send('service_78pjhbs','template_bdrvkod',tempParams)
     .then(function(res){
         console.log("success", res.status)
+        console.log(tempParams)
     })
    
    

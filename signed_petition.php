@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,13 +13,14 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="petitions_errors.css" rel="stylesheet">
     <script src="alertmail.js"></script>
+    <script src="newSignMail.js"></script>
     <!-- integration to Emailjs -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script type="text/javascript">
-(function() {
-emailjs.init("qZZh-2WKTlDaP8qY3");
-})();
-</script>
+    <script type="text/javascript">
+    (function() {
+    emailjs.init("AvaDpF5PyCEE6uPYR");
+    })();
+    </script>
 </head>
 <body>
 
@@ -185,26 +184,32 @@ if(isset($_POST['submit'])){
             $alert = $result_a['alert_singatures'];
             $p_name = $result_a['title'];
             $owner_mail = $result_a['email'];
-?>
-            
+?>       
          <script type="text/javascript">
                      var alertS="<?php echo $alert;?>";
                      var title="<?php echo $p_name;?>";
                      var mail="<?php echo $owner_mail;?>";
-                     
                      </script>
-                     
                      <?php echo "<script>sendalert(alertS,title,mail); </script>"
-                    
                     ?>
  ?>
             <?php
         }
+        $sql4= "SELECT * FROM all_petitions WHERE `id_petition`='" . $id . "'";
+        $record4= mysqli_query($conn,$sql4); 
+        $result4 = mysqli_fetch_assoc($record4);
+        $p_title = $result4['title'];
         ?>
-    
+                 <script type="text/javascript">
+                     var p_title="<?php echo $p_title;?>";
+                     var email="<?php echo $email;?>";
+                     </script>
+                     <?php echo "<script>newsign(p_title,email); </script>"
+                    ?>
+ ?>
          <script>
            alert ("You signed successfully.");
-              window.location='all_petitions.php';
+            window.location='all_petitions.php';
               
               </script>
          <?php
