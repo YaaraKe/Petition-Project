@@ -96,21 +96,39 @@
                 </div>
             </div>
 
+            <?php
+             $sname = "localhost";
+             $unmae = "root";
+             $password = "";
+             $db_name = "test";
+             $connection = mysqli_connect($sname, $unmae, $password, $db_name);
+             // SQL query to select data from database
+             $sql = "SELECT DISTINCT * FROM shop WHERE id ='1'";
+             $resultset = mysqli_query($connection,$sql);
+            ?>
             <!-- Information of the product -->
             <div class="col-md-4">
                 <div>
                     <br>
-                    <p>Pacon Peacock Poster Board</p>
+                    <?php
+                      // LOOP TILL END OF DATA
+                        while($row=mysqli_fetch_assoc($resultset))
+                        {
+                        ?>  
+                    <p><?php echo $row['name']; ?></p>
                     <h2>22" x 28" - Assorted Colors - 50/ Carton</h2><br>
                     <p> Product Number: 0001 Poster Board Class Pack offers a convenient assortment of four-ply
                         poster board. Colors include black, white, magenta, light blue, dark blue, holiday green, pink,
                         red, orange and lemon yellow. Poster board contains a high percentage of recycled material with
-                        post-consumer content.
+                        post-consumer content.</p>
+
+                    <div>
+                    <p><?php echo $row['num']; ?>$</p>
                     <div>
                         <button id="notvaild" class="btn btn-outline-success" type="button" value="Buy Now"
                             name="buy">Buy now</button>
                     </div>
-
+                    <?php } ?>
                 </div>
             </div>
         </div>

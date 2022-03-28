@@ -61,7 +61,6 @@
     </nav>
     <br>
 
-
     <!-- Show more information about the product -->
     <main class="container">
         <div class="row">
@@ -76,13 +75,13 @@
                     <!-- Carousle of pictures of the product -->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100 size" src="..\picProduct4\pic1.jpg" alt="First slide">
+                            <img class="d-block w-100 size" src="..\picProduct2\pic1.jpg" alt="First slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100 size" src="..\picProduct4\pic2.jpg" alt="Second slide">
+                            <img class="d-block w-100 size" src="..\picProduct2\pic2.jpg" alt="Second slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100 size" src="..\picProduct4\pic3.jpg" alt="Third slide">
+                            <img class="d-block w-100 size" src="..\picProduct2\pic3.jpg" alt="Third slide">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -96,15 +95,33 @@
                 </div>
             </div>
 
+            <?php
+             $sname = "localhost";
+             $unmae = "root";
+             $password = "";
+             $db_name = "test";
+             $connection = mysqli_connect($sname, $unmae, $password, $db_name);
+             // SQL query to select data from database
+             $sql = "SELECT DISTINCT * FROM shop WHERE id ='2'";
+             $resultset = mysqli_query($connection,$sql);
+            ?>
             <!-- Information of the product -->
             <div class="col-md-4">
                 <div>
                     <br>
-                    <p>Sharpie Accent Pocket Highlighters</p>
-                    <h2>Chisel Tip, Assorted, Pack Of 12</h2><br>
-                    <p> Product Number: 0004 Sharpie Accent Pocket Highlighters, Chisel Tip, Assorted, Pack Of 12
-                        - These versatile highlighters are designed to fit effortlessly in your pocket or clip to your
-                        shirt, so they're easy to take with you anywhere
+                    <?php
+                      // LOOP TILL END OF DATA
+                        while($row=mysqli_fetch_assoc($resultset))
+                        {
+                        ?> 
+                    <p><?php echo $row['name']; ?></p>
+                    <h2>Dispenser, 1.5" Core, 1.88" x 22.2 yds, Clear, 6/Pack</h2><br>
+                    <p> Product Number: 0002 Scotch Sure Start Packaging Tape with Dispenser, 1.5" Core, 1.88" x 22.2 yds, Clear, 6/Pack -
+                        Smooth, easy unwind. Ideal choice for quiet office settings. Dispenser helps prevent tape from
+                        falling back on the roll so it is easy to start every time.</p>
+                    <div>
+                    <p><?php echo $row['num']; ?>$</p>
+                    <div>
                     <div>
                         <button id="notvaild" class="btn btn-outline-success" type="button" value="Buy Now"
                             name="buy">Buy now</button>

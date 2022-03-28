@@ -95,16 +95,36 @@
                 </div>
             </div>
 
+            <?php
+             $sname = "localhost";
+             $unmae = "root";
+             $password = "";
+             $db_name = "test";
+             $connection = mysqli_connect($sname, $unmae, $password, $db_name);
+             // SQL query to select data from database
+             $sql = "SELECT DISTINCT * FROM shop WHERE id ='3'";
+             $resultset = mysqli_query($connection,$sql);
+            ?>
+
             <!-- Information of the product -->
             <div class="col-md-4">
                 <div>
                     <br>
-                    <p>Sharpie Fine Tip Permanent Marker,</p>
+                    <?php
+                      // LOOP TILL END OF DATA
+                        while($row=mysqli_fetch_assoc($resultset))
+                        {
+                        ?> 
+                    <p><?php echo $row['name']; ?></p>
                     <h2>Fine Bullet Tip, Black, Dozen</h2><br>
                     <p> Product Number: 0003 Sharpie Fine Tip Permanent Marker, Fine Bullet Tip, Black, Dozen - For
                         a permanent marker that works on most surfaces, trust the original Sharpie. The fine point black
                         marker creates permanent markings on even hard-to-write surfaces. Sharpie ink is alcohol-based
                         and dries quickly, resists fading and is water-resistant.
+                    </p>
+                    <div>
+                    <p><?php echo $row['num']; ?>$</p>
+                    <div>
                     <div>
                         <button id="notvaild" class="btn btn-outline-success" type="button" value="Buy Now"
                             name="buy">Buy now</button>
