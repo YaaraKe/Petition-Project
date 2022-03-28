@@ -115,8 +115,9 @@
                         while($row=mysqli_fetch_assoc($resultset))
                         {
                         ?>  
-                    <p><?php echo $row['name']; ?></p>
-                    <h2>22" x 28" - Assorted Colors - 50/ Carton</h2><br>
+                    <p>UcanClaim</p>
+                    <!-- 22" x 28" - Assorted Colors - 50/ Carton -->
+                    <h2><?php echo $row['name']; ?></h2><br>
                     <p> Product Number: 0001 Poster Board Class Pack offers a convenient assortment of four-ply
                         poster board. Colors include black, white, magenta, light blue, dark blue, holiday green, pink,
                         red, orange and lemon yellow. Poster board contains a high percentage of recycled material with

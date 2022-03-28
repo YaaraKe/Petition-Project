@@ -114,8 +114,9 @@
                         while($row=mysqli_fetch_assoc($resultset))
                         {
                         ?> 
-                    <p><?php echo $row['name']; ?></p>
-                    <h2>Dispenser, 1.5" Core, 1.88" x 22.2 yds, Clear, 6/Pack</h2><br>
+                    <p>UcanClaim</p>
+                    <!-- Dispenser, 1.5" Core, 1.88" x 22.2 yds, Clear, 6/Pack -->
+                    <h2><?php echo $row['name']; ?></h2><br>
                     <p> Product Number: 0002 Scotch Sure Start Packaging Tape with Dispenser, 1.5" Core, 1.88" x 22.2 yds, Clear, 6/Pack -
                         Smooth, easy unwind. Ideal choice for quiet office settings. Dispenser helps prevent tape from
                         falling back on the roll so it is easy to start every time.</p>

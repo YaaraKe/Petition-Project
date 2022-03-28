@@ -115,8 +115,9 @@
                         while($row=mysqli_fetch_assoc($resultset))
                         {
                         ?> 
-                    <p><?php echo $row['name']; ?></p>
-                    <h2>Fine Bullet Tip, Black, Dozen</h2><br>
+                    <p>UcanClaim</p>
+                    <!-- Fine Bullet Tip, Black, Dozen -->
+                    <h2><?php echo $row['name']; ?></h2><br>
                     <p> Product Number: 0003 Sharpie Fine Tip Permanent Marker, Fine Bullet Tip, Black, Dozen - For
                         a permanent marker that works on most surfaces, trust the original Sharpie. The fine point black
                         marker creates permanent markings on even hard-to-write surfaces. Sharpie ink is alcohol-based

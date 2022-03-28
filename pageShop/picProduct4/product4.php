@@ -116,8 +116,9 @@
                         while($row=mysqli_fetch_assoc($resultset))
                         {
                         ?> 
-                    <p><?php echo $row['name']; ?></p>
-                    <h2>Chisel Tip, Assorted, Pack Of 12</h2><br>
+                    <p>UcanClaim</p>
+                    <!-- Chisel Tip, Assorted, Pack Of 12 -->
+                    <h2><?php echo $row['name']; ?></h2><br>
                     <p> Product Number: 0004 Sharpie Accent Pocket Highlighters, Chisel Tip, Assorted, Pack Of 12
                         - These versatile highlighters are designed to fit effortlessly in your pocket or clip to your
                         shirt, so they're easy to take with you anywhere
