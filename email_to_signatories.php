@@ -10,6 +10,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
+    <script src="email_to_supporters.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+    (function() {
+    emailjs.init("qZZh-2WKTlDaP8qY3");
+    })();
+    </script>
 </head>
 <body>
 
@@ -172,6 +179,32 @@ $result=mysqli_query($conn,$sql2);
 
 if(counter==3){
  //sendMail();
+ <?php
+    $sql3 = "SELECT * FROM signatures WHERE `id_petition`='" . $id . "'";
+    $result2 = mysqli_query($conn,$sql3);
+    // retrieve petition title
+    $sql4= "SELECT * FROM all_petitions WHERE `id_petition`='" . $id . "'";
+    $record4= mysqli_query($conn,$sql4); 
+    $result4 = mysqli_fetch_assoc($record4);
+    $p_title = $result4['title'];
+    while($record = mysqli_fetch_assoc($result2)){
+        $email = $record['email_signed'];
+  ?>
+        // sending email to each supporter
+        <script type="text/javascript">
+            var email="<?php echo $email;?>";
+            var p_title="<?php echo $p_title;?>";
+        </script>
+                     <?php echo "<script>sendMailtosupporters(email,p_title); </script>" ?>
+         <script>
+        //    alert ("Email was sent successfully.");
+        //     window.location='send_or_delete_petition.php';
+              
+        </script>
+        
+     <?php
+    }
+    ?>
  //alert("Your message was sent successfully.")
  return true;
 }
@@ -191,7 +224,7 @@ else{
       const formControl=input.parentElement;
       formControl.className='form-control success';
   }
-        </script>
+</script>
 
 </body>
 </html>
