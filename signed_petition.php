@@ -68,7 +68,6 @@
    <br><br>
 
     <?php
-    session_start();
 include 'db_conn.php';
 $id = $_GET['data'];
 $id = mysqli_real_escape_string($conn,$id);
@@ -165,14 +164,13 @@ $result = mysqli_query($conn,$sql_two);
 </svg></p>";
    
     echo "<script> document.getElementById('SignForm').remove(); </script>";
-    //echo "<script> document.getElementById('sign').setAttribute('disabled', ' '); </script>";
      
   }
   
 
 // send the data to db
 if(isset($_POST['submit'])){
-    $name =  $_REQUEST['sign_name'];
+    $name =  $_REQUEST['signName'];
     $sql= "INSERT INTO `signatures` VALUES ( '$email', '$id', '$name')";
     if(mysqli_query($conn, $sql)){
         //Check how many signatures do we have and what is the number of signature to notify the owner

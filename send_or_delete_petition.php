@@ -86,10 +86,10 @@ $id = mysqli_real_escape_string($conn,$id);
 <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
 </svg> | Delete petition</button>
 
-                        <button type="submit"  name="send" class="btn btn-outline-success"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-check" viewBox="0 0 16 16">
+<a href="email_to_signatories.php?id=<?php echo $row['id_petition']; ?>" class="btn btn-outline-success"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-check" viewBox="0 0 16 16">
   <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
   <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z"/>
-</svg> | Send an email to all signatories</button>
+</svg> |Send an email to all signatories</a>
                         </div>
         <br>
     </form>
@@ -105,13 +105,13 @@ if(isset($_POST['delete'])){
     $email=$_SESSION['user_name'];
     $sql= "DELETE FROM `signatures` where id_petition='" . $id . "'";
     if(mysqli_query($conn, $sql)){
-        $sql= "DELETE FROM `all_petitions` where id_petition='" . $id . "'";
-        if(mysqli_query($conn, $sql)){
+        $sql2= "DELETE FROM `all_petitions` where id_petition='" . $id . "'";
+        if(mysqli_query($conn, $sql2)){
         echo '<script> alert ("Your petition has deleted successfully.") </script>'; 
         echo "(<script> window.location='my_petition.php';</script>)";
         }
         else{
-            echo " Sorry please try again later $sql. " 
+            echo " Sorry please try again later $sql2. " 
                 . mysqli_error($conn);
         }
     } else{

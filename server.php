@@ -47,6 +47,7 @@ if (isset($_POST['reg_user'])) {
   	mysqli_query($conn, $query);
   	$_SESSION['user_name'] = $email;
   	$_SESSION['success'] = "You are now logged in";
-  	header('location: index.php');
+    echo "<script>alert ('Welcome to UCanClaim!');
+    window.location='home.php' </script>";
   }
 }

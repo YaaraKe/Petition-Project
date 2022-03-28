@@ -75,7 +75,7 @@
     <div class="row">
         <div class="col-md-7">
             <div class="card">
-            <?php  echo '<img src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'" class="card-img-top"/>';?>
+            <?php  echo '<img style="width: 18rem;" src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'" class="card-img-top"/>';?>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-7">
