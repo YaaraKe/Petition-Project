@@ -70,8 +70,8 @@ $id = mysqli_real_escape_string($conn,$id);
   // echo the title of the selected petition
 while($row=mysqli_fetch_assoc($resultset)){
  ?> 
-<h1> Send email to your signatories </h1>
-<h6>About petition: <?php echo'"'; echo $row['title']; ?>" </h6>
+<h1> Send email to your supporters </h1>
+<h6>Petition Subject: <?php echo'"'; echo $row['title']; ?>" </h6>
 
 
 <?php 
@@ -87,7 +87,7 @@ $result=mysqli_query($conn,$sql2);
   $data=mysqli_fetch_assoc($result);
   ?>
 
-        <h6>Number of signatories is: <?php echo $data['total']; ?> </h6>
+        <h6>Number of supporters: <?php echo $data['total']; ?> </h6>
 <?php
   }
  ?>
@@ -96,7 +96,7 @@ $result=mysqli_query($conn,$sql2);
     <form class="col-7">
 
     <div class="form-control">
-        <label>name:</label>  <input type="text" id="fromname" placeholder="Your name" required name="userName"> 
+        <label>Name:</label>  <input type="text" id="fromname" placeholder="Your name" required name="userName"> 
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
 </svg>
