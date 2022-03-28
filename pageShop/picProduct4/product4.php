@@ -129,7 +129,7 @@
                         <button id="notvaild" class="btn btn-outline-success" type="button" value="Buy Now"
                             name="buy">Buy now</button>
                     </div>
-
+                    <?php } ?>
                 </div>
             </div>
         </div>
