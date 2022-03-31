@@ -17,6 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+        <script src="../pageshop.js"></script>
 </head>
 
 <body>
@@ -124,20 +125,17 @@
                         and dries quickly, resists fading and is water-resistant.
                     </p>
                     <div>
-                    <p><?php echo $row['num']; ?>$</p>
-                    <div>
-                    <div>
-                        <button id="notvaild" class="btn btn-outline-success" type="button" value="Buy Now"
-                            name="buy">Buy now</button>
-                    </div>
+                    <p><?php echo $row['num']; ?>$</p></div>
                     <?php } ?>
+                    <div id="googlebutton"></div>
                 </div>
             </div>
         </div>
     </main>
     <br>
-
-
+    <script async
+            src="https://pay.google.com/gp/p/js/pay.js"
+            onload="onGooglePayLoaded()"></script>
 </body>
 
 </html>

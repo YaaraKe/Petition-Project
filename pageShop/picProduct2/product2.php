@@ -17,6 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+        <script src="../pageshop.js"></script>
 </head>
 
 <body>
@@ -120,19 +121,18 @@
                     <p> Product Number: 0002 Scotch Sure Start Packaging Tape with Dispenser, 1.5" Core, 1.88" x 22.2 yds, Clear, 6/Pack -
                         Smooth, easy unwind. Ideal choice for quiet office settings. Dispenser helps prevent tape from
                         falling back on the roll so it is easy to start every time.</p>
-                    <div>
-                    <p><?php echo $row['num']; ?>$</p>
-                    <div>
-                    <div>
-                        <button id="notvaild" class="btn btn-outline-success" type="button" value="Buy Now"
-                            name="buy">Buy now</button>
-                    </div>
+                        <div>
+                    <p><?php echo $row['num']; ?>$</p></div>
                     <?php } ?>
+                    <div id="googlebutton"></div>
                 </div>
             </div>
         </div>
     </main>
     <br>
+    <script async
+            src="https://pay.google.com/gp/p/js/pay.js"
+            onload="onGooglePayLoaded()"></script>
 
 
 </body>
