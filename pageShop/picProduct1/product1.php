@@ -135,7 +135,7 @@
     <br>
     <script async
             src="https://pay.google.com/gp/p/js/pay.js"
-            onload="onGooglePayLoaded()"></script>
+            onload="onGooglePayLoaded('56')"></script>
 </body>
 
 </html>
