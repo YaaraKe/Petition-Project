@@ -50,7 +50,7 @@ if (isset($_SESSION['user_name'])) {
                     <a class="nav-link" href="../Petition_options.html">Petition<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="../index.html">Shop<span class="sr-only"></span></a>
+                    <a class="nav-link" href="../index_react/index.html">Shop<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="../kneset.php">Contact Knesset Member<span class="sr-only"></span></a>
