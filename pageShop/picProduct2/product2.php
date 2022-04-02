@@ -122,9 +122,9 @@
                         Smooth, easy unwind. Ideal choice for quiet office settings. Dispenser helps prevent tape from
                         falling back on the roll so it is easy to start every time.</p>
                         <div>
-                    <p><?php echo $row['num']; ?>$</p></div>
+                    <p id="price2"><?php echo $row['num']; ?>₪</p></div>
                     <?php } ?>
-                    <div id="googlebutton"></div>
+                    <div id="container"></div>
                 </div>
             </div>
         </div>
@@ -132,7 +132,7 @@
     <br>
     <script async
             src="https://pay.google.com/gp/p/js/pay.js"
-            onload="onGooglePayLoaded()"></script>
+            onload="onGooglePayLoaded(document.getElementById('price2').innerHTML.replace('₪', ''))"></script>
 
 
 </body>

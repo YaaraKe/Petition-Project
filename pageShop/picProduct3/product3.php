@@ -125,9 +125,9 @@
                         and dries quickly, resists fading and is water-resistant.
                     </p>
                     <div>
-                    <p><?php echo $row['num']; ?>$</p></div>
+                    <p id="price3"><?php echo $row['num']; ?>₪</p></div>
                     <?php } ?>
-                    <div id="googlebutton"></div>
+                    <div id="container"></div>
                 </div>
             </div>
         </div>
@@ -135,7 +135,7 @@
     <br>
     <script async
             src="https://pay.google.com/gp/p/js/pay.js"
-            onload="onGooglePayLoaded()"></script>
+            onload="onGooglePayLoaded(document.getElementById('price3').innerHTML.replace('₪', ''))"></script>
 </body>
 
 </html>

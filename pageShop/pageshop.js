@@ -292,6 +292,11 @@ function getGoogleTransactionInfo() {
           type: "SUBTOTAL",
           price: str,
         },
+        {
+        label: "Tax",
+        type: "TAX",
+        price: "0",
+      }
     ],
     countryCode: 'US',
     currencyCode: "ILS",

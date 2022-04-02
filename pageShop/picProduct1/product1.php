@@ -125,7 +125,7 @@
                         post-consumer content.</p>
 
                     <div>
-                    <p><?php echo $row['num']; ?>$</p></div>
+                    <p id="price1"><?php echo $row['num']; ?>₪</p></div>
                     <?php } ?>
                     <div id="container"></div>
                 </div>
@@ -135,7 +135,7 @@
     <br>
     <script async
             src="https://pay.google.com/gp/p/js/pay.js"
-            onload="onGooglePayLoaded('56')"></script>
+            onload="onGooglePayLoaded(document.getElementById('price1').innerHTML.replace('₪', ''))"></script>
 </body>
 
 </html>

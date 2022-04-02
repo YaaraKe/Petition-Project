@@ -125,9 +125,9 @@
                         shirt, so they're easy to take with you anywhere
                     </p>
                     <div>
-                    <p><?php echo $row['num']; ?>$</p></div>
+                    <p id="price4"><?php echo $row['num']; ?>₪</p></div>
                     <?php } ?>
-                    <div id="googlebutton"></div>
+                    <div id="container"></div>
                 </div>
             </div>
         </div>
@@ -135,7 +135,7 @@
     <br>
     <script async
             src="https://pay.google.com/gp/p/js/pay.js"
-            onload="onGooglePayLoaded()"></script>
+            onload="onGooglePayLoaded(document.getElementById('price4').innerHTML.replace('₪', ''))"></script>
 
 </body>
 
