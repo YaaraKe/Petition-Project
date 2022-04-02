@@ -135,7 +135,7 @@
     <br>
     <script async
             src="https://pay.google.com/gp/p/js/pay.js"
-            onload="onGooglePayLoaded(document.getElementById('price1').innerHTML.replace('₪', ''))"></script>
+            onload="onGooglePayLoaded(document.getElementById('price1').innerHTML.replace('₪', ''))" ></script>
 </body>
 
 </html>

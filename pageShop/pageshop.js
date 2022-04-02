@@ -155,6 +155,8 @@ function onPaymentAuthorized(paymentData) {
   processPayment(paymentData)
     .then(function() {
       resolve({transactionState: 'SUCCESS'});
+      setTimeout(function(){
+      alert("Your order was successfully processed. After receiving the payment we will send you the receipt to your email."); }, 1000);
     })
     .catch(function() {
         resolve({
@@ -413,7 +415,7 @@ function processPayment(paymentData) {
         // show returned data in developer console for debugging
          console.log(paymentData);
                 // @todo pass payment token to your gateway to process payment
-                paymentToken = paymentData.paymentMethodData.tokenizationData.token;
+        paymentToken = paymentData.paymentMethodData.tokenizationData.token;
 
 
         resolve({});
