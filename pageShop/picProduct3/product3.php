@@ -49,7 +49,7 @@
                     <a class="nav-link" href="/Petition_options.html">Petition<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/index.html">Shop<span class="sr-only"></span></a>
+                    <a class="nav-link" href="/index_react/index.html">Shop<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/kneset.php">Contact Knesset Member<span class="sr-only"></span></a>
@@ -103,7 +103,7 @@
              $db_name = "test";
              $connection = mysqli_connect($sname, $unmae, $password, $db_name);
              // SQL query to select data from database
-             $sql = "SELECT DISTINCT * FROM shop WHERE id ='3'";
+             $sql = "SELECT DISTINCT * FROM shop WHERE num =3  LIMIT 1";
              $resultset = mysqli_query($connection,$sql);
             ?>
 
@@ -119,15 +119,31 @@
                     <p>UcanClaim</p>
                     <!-- Fine Bullet Tip, Black, Dozen -->
                     <h2><?php echo $row['name']; ?></h2><br>
-                    <p> Product Number: 0003 Sharpie Fine Tip Permanent Marker, Fine Bullet Tip, Black, Dozen - For
-                        a permanent marker that works on most surfaces, trust the original Sharpie. The fine point black
-                        marker creates permanent markings on even hard-to-write surfaces. Sharpie ink is alcohol-based
-                        and dries quickly, resists fading and is water-resistant.
+                    <p><?php echo $row['description']; ?>
                     </p>
                     <div>
-                    <p><?php echo $row['num']; ?>$</p></div>
+                    <p id="price3"><?php echo $row['cost']; ?>₪</p></div>
                     <?php } ?>
-                    <div id="googlebutton"></div>
+                    <div id="container"></div>
+                    <div id="update" style="display:none"></div>
+                        <script type="text/javascript">
+                            var element = document.getElementById('update');
+                            element.addEventListener('DOMSubtreeModified', updateModified);
+
+                            function updateModified(e) {
+                                console.log(element.innerHTML);
+                                if (element.innerHTML == "success") {
+                                    <?php
+                                    $sql1 = "UPDATE shop SET status='0' WHERE num=3 AND status=1 LIMIT 1";
+                                    if ($connection->query($sql1) === TRUE) {
+                                        echo "success";
+                                      } else {
+                                        echo "Error updating record: " . $connection->error;
+                                      }
+                                    ?>
+                                }
+                            }
+                        </script>
                 </div>
             </div>
         </div>
@@ -135,7 +151,7 @@
     <br>
     <script async
             src="https://pay.google.com/gp/p/js/pay.js"
-            onload="onGooglePayLoaded()"></script>
+            onload="onGooglePayLoaded(document.getElementById('price3').innerHTML.replace('₪', ''))"></script>
 </body>
 
 </html>

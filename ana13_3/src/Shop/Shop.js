@@ -13,14 +13,14 @@ import axios from "axios";
 //render() method, this method returns HTML.
 const Shop = () => {
   const art = {
-    amount1: 94.12,
-    amount2: 37,
-    amount3: 35.08,
-    amount4: 25.6,
-    title1: "Paper 01",
-    title2: "Scotch 02",
-    title3: "Sharpie v2",
-    title4: "Sharpie v1",
+    amount1: 5,
+    amount2: 15,
+    amount3: 6,
+    amount4: 12,
+    title1: "Poster Board",
+    title2: "Scotch",
+    title3: "Sharpie Fine Tip Marker",
+    title4: "Sharpie Accent Pocket",
   };
 
   // const art1 = [
@@ -42,27 +42,27 @@ const Shop = () => {
         </div>
       ))} */}
       <div class="border">
-        <h1>{art.title1}</h1>
+        <h3>{art.title1}</h3>
         <img src={paper} alt=""></img>
-        <div>$ {art.amount1}</div>
+        <div>{art.amount1} ₪</div>
         <Button link={"../pageShop/picProduct1/product1.php"} />
       </div>
        <div class="border">
-        <h1>{art.title2}</h1>
+        <h3>{art.title2}</h3>
         <img src={scotch} alt=""></img>
-        <div>$ {art.amount2}</div>
+        <div>{art.amount2} ₪</div>
         <Button link={"../pageShop/picProduct2/product2.php"} />
       </div>
       <div class="border">
-        <h1>{art.title3}</h1>
+        <h3>{art.title3}</h3>
         <img src={sharpi} alt=""></img>
-        <div>$ {art.amount3}</div>
+        <div>{art.amount3} ₪</div>
         <Button link={"../pageShop/picProduct3/product3.php"} />
       </div>
       <div class="border">
-        <h1>{art.title4}</h1>
+        <h3>{art.title4}</h3>
         <img src={colorsharp} alt=""></img>
-        <div>$ {art.amount4}</div>
+        <div>{art.amount4} ₪</div>
         <Button link={"../pageShop/picProduct4/product4.php"} />
       </div>
     </>

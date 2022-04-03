@@ -155,6 +155,10 @@ function onPaymentAuthorized(paymentData) {
   processPayment(paymentData)
     .then(function() {
       resolve({transactionState: 'SUCCESS'});
+      document.getElementById('update').innerHTML="success";
+      setTimeout(function(){
+      alert("Your order was successfully processed. After receiving the payment we will send you the receipt to your email."); }, 1000);
+
     })
     .catch(function() {
         resolve({
@@ -236,7 +240,7 @@ function calculateNewTransactionInfo(shippingOptionId) {
  * Display a Google Pay payment button after confirmation of the viewer's
  * ability to pay.
  */
-function onGooglePayLoaded() {
+function onGooglePayLoaded(a) {
   const paymentsClient = getGooglePaymentsClient();
   paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest())
       .then(function(response) {
@@ -250,6 +254,11 @@ function onGooglePayLoaded() {
         // show error in developer console for debugging
         console.error(err);
       });
+      var price =parseInt(a);
+      console.log(price);
+
+      getGoogleTransactionInfo(price);
+      localStorage.setItem('value1', `${price}`);
 }
 
 /**
@@ -277,23 +286,26 @@ function addGooglePayButton() {
  * @returns {object} transaction info, suitable for use as transactionInfo property of PaymentDataRequest
  */
 function getGoogleTransactionInfo() {
+  let str = localStorage.getItem('value1');
+  console.log("this value");
+  console.log(str);
   return {
         displayItems: [
         {
           label: "Subtotal",
           type: "SUBTOTAL",
-          price: "11.00",
+          price: str,
         },
-      {
-          label: "Tax",
-          type: "TAX",
-          price: "1.00",
-        }
+        {
+        label: "Tax",
+        type: "TAX",
+        price: "0",
+      }
     ],
     countryCode: 'US',
     currencyCode: "ILS",
     totalPriceStatus: "FINAL",
-    totalPrice: "12.00",
+    totalPrice: str,
     totalPriceLabel: "Total"
   };
 }
@@ -405,7 +417,8 @@ function processPayment(paymentData) {
         // show returned data in developer console for debugging
          console.log(paymentData);
                 // @todo pass payment token to your gateway to process payment
-                paymentToken = paymentData.paymentMethodData.tokenizationData.token;
+        paymentToken = paymentData.paymentMethodData.tokenizationData.token;
+
 
         resolve({});
     }, 3000);

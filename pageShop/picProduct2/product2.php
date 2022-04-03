@@ -49,7 +49,7 @@
                     <a class="nav-link" href="/Petition_options.html">Petition<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/index.html">Shop<span class="sr-only"></span></a>
+                    <a class="nav-link" href="/index_react/index.html">Shop<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/kneset.php">Contact Knesset Member<span class="sr-only"></span></a>
@@ -103,7 +103,7 @@
              $db_name = "test";
              $connection = mysqli_connect($sname, $unmae, $password, $db_name);
              // SQL query to select data from database
-             $sql = "SELECT DISTINCT * FROM shop WHERE id ='2'";
+             $sql = "SELECT DISTINCT * FROM shop WHERE num =2  LIMIT 1";
              $resultset = mysqli_query($connection,$sql);
             ?>
             <!-- Information of the product -->
@@ -118,13 +118,30 @@
                     <p>UcanClaim</p>
                     <!-- Dispenser, 1.5" Core, 1.88" x 22.2 yds, Clear, 6/Pack -->
                     <h2><?php echo $row['name']; ?></h2><br>
-                    <p> Product Number: 0002 Scotch Sure Start Packaging Tape with Dispenser, 1.5" Core, 1.88" x 22.2 yds, Clear, 6/Pack -
-                        Smooth, easy unwind. Ideal choice for quiet office settings. Dispenser helps prevent tape from
-                        falling back on the roll so it is easy to start every time.</p>
+                    <p><?php echo $row['description']; ?></p>
                         <div>
-                    <p><?php echo $row['num']; ?>$</p></div>
+                    <p id="price2"><?php echo $row['cost']; ?>₪</p></div>
                     <?php } ?>
-                    <div id="googlebutton"></div>
+                    <div id="container"></div>
+                    <div id="update" style="display:none"></div>
+                        <script type="text/javascript">
+                            var element = document.getElementById('update');
+                            element.addEventListener('DOMSubtreeModified', updateModified);
+
+                            function updateModified(e) {
+                                console.log(element.innerHTML);
+                                if (element.innerHTML == "success") {
+                                    <?php
+                                    $sql1 = "UPDATE shop SET status='0' WHERE num=2 AND status=1 LIMIT 1";
+                                    if ($connection->query($sql1) === TRUE) {
+                                        echo "success";
+                                      } else {
+                                        echo "Error updating record: " . $connection->error;
+                                      }
+                                    ?>
+                                }
+                            }
+                        </script>
                 </div>
             </div>
         </div>
@@ -132,7 +149,7 @@
     <br>
     <script async
             src="https://pay.google.com/gp/p/js/pay.js"
-            onload="onGooglePayLoaded()"></script>
+            onload="onGooglePayLoaded(document.getElementById('price2').innerHTML.replace('₪', ''))"></script>
 
 
 </body>

@@ -49,7 +49,7 @@
                     <a class="nav-link" href="/Petition_options.html">Petition<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/index.html">Shop<span class="sr-only"></span></a>
+                    <a class="nav-link" href="/index_react/index.html">Shop<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/kneset.php">Contact Knesset Member<span class="sr-only"></span></a>
@@ -104,7 +104,7 @@
              $db_name = "test";
              $connection = mysqli_connect($sname, $unmae, $password, $db_name);
              // SQL query to select data from database
-             $sql = "SELECT DISTINCT * FROM shop WHERE id ='4'";
+             $sql = "SELECT DISTINCT * FROM shop WHERE num =4  LIMIT 1";
              $resultset = mysqli_query($connection,$sql);
             ?>
 
@@ -120,14 +120,31 @@
                     <p>UcanClaim</p>
                     <!-- Chisel Tip, Assorted, Pack Of 12 -->
                     <h2><?php echo $row['name']; ?></h2><br>
-                    <p> Product Number: 0004 Sharpie Accent Pocket Highlighters, Chisel Tip, Assorted, Pack Of 12
-                        - These versatile highlighters are designed to fit effortlessly in your pocket or clip to your
-                        shirt, so they're easy to take with you anywhere
+                    <p><?php echo $row['description']; ?>
                     </p>
                     <div>
-                    <p><?php echo $row['num']; ?>$</p></div>
+                    <p id="price4"><?php echo $row['cost']; ?>₪</p></div>
                     <?php } ?>
-                    <div id="googlebutton"></div>
+                    <div id="container"></div>
+                    <div id="update" style="display:none"></div>
+                        <script type="text/javascript">
+                            var element = document.getElementById('update');
+                            element.addEventListener('DOMSubtreeModified', updateModified);
+
+                            function updateModified(e) {
+                                console.log(element.innerHTML);
+                                if (element.innerHTML == "success") {
+                                    <?php
+                                    $sql1 = "UPDATE shop SET status='0' WHERE num=4 AND status=1 LIMIT 1";
+                                    if ($connection->query($sql1) === TRUE) {
+                                        echo "success";
+                                      } else {
+                                        echo "Error updating record: " . $connection->error;
+                                      }
+                                    ?>
+                                }
+                            }
+                        </script>
                 </div>
             </div>
         </div>
@@ -135,7 +152,7 @@
     <br>
     <script async
             src="https://pay.google.com/gp/p/js/pay.js"
-            onload="onGooglePayLoaded()"></script>
+            onload="onGooglePayLoaded(document.getElementById('price4').innerHTML.replace('₪', ''))"></script>
 
 </body>
 
