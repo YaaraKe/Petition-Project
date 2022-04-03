@@ -15,7 +15,7 @@ if ($mysqli->connect_error) {
 }
   
 // SQL query to select data from database
-$sql = "SELECT * FROM Knesset_Member ORDER BY full_name DESC ";
+$sql = "SELECT * FROM Knesset_Member ORDER BY full_name ASC ";
 $result = $mysqli->query($sql);
 $mysqli->close(); 
 ?>
