@@ -118,20 +118,28 @@
                         <div>
                             <p id="price1"><?php echo $row['num']; ?>₪</p>
                         </div>
+                        <?php } ?>
                         <div id="container"></div>
                         <div id="update"></div>
-                        <script>
+                        <script type="text/javascript">
                             var element = document.getElementById('update');
                             element.addEventListener('DOMSubtreeModified', updateModified);
 
                             function updateModified(e) {
                                 console.log(element.innerHTML);
                                 if (element.innerHTML == "success") {
-                                    console.log("heyy");
+                                    <?php
+                                    $sql1 = "UPDATE shop SET status='0' WHERE id=1";
+                                    if ($connection->query($sql1) === TRUE) {
+                                        echo "success";
+                                      } else {
+                                        echo "Error updating record: " . $connection->error;
+                                      }
+                                    ?>
                                 }
                             }
                         </script>
-                    <?php } ?>
+                    
                 </div>
             </div>
         </div>
