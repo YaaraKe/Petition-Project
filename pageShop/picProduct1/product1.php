@@ -120,7 +120,7 @@
                         </div>
                         <?php } ?>
                         <div id="container"></div>
-                        <div id="update"></div>
+                        <div id="update" style="display:none"></div>
                         <script type="text/javascript">
                             var element = document.getElementById('update');
                             element.addEventListener('DOMSubtreeModified', updateModified);
