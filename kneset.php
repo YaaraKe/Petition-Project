@@ -146,15 +146,19 @@ $mysqli->close();
     
 
     <section>
-        <h1>Contacts Member</h1>
+        <h1>Contact Members</h1>
         <!-- TABLE CONSTRUCTION-->
+        <div class="tableFixHead">
         <table>
-            <tr>
+        <thead>    
+        <tr>
                 <th>Full Name</th>
                 <th>Email Address</th>
                 <th>Party</th>
                 
-            </tr>
+        </tr>
+        </thead>
+        <tbody>
             <!-- PHP CODE TO FETCH DATA FROM ROWS-->
             <?php   // LOOP TILL END OF DATA 
                 while($rows=$result->fetch_assoc())
@@ -173,7 +177,9 @@ $mysqli->close();
             <?php
                 }
              ?>
+        </tbody>
         </table>
+        </div>
     </section>
     <br>
 
