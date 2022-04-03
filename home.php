@@ -41,7 +41,7 @@ if (isset($_SESSION['user_name'])) {
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-between " id="navbarNav">
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="../home.php">Home<span class="sr-only"></span></a>
@@ -58,17 +58,54 @@ if (isset($_SESSION['user_name'])) {
                 <li class="nav-item active">
                     <a class="nav-link" href="../my_petition.php">My petitions<span class="sr-only"></span></a>
                 </li>
+
+              <a href="logout.php">Logout</a> 
             </ul>
         </div>
     </nav>
-    <br>
 
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <!-- display the user name -->
+    <script>
+    var user_name_full= "<?php echo $_SESSION['user_name']; ?>";
+    user_name=user_name_full.split("@")[0];
+</script>
+<div class="top">
+        <img class="img_top" src="simple.jpg" alt="welcome_img" >
+        <div class="centered">Hello,<script> document.write(user_name)</script>
+            <br>
+            Make a change!
+        </div>
+      </div>
+   <br><br>
+   <!-- display petitions -->
+  
+         
+   <!-- display recent petitions -->
+   <div class="container">
+   <div class="row" style="justify-content: center">
+      <h1 > New petitions </h1> 
+      <?php    
+         
+         include_once("db_conn.php");
+         // display 8 recent petitions
+         $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition)  ORDER BY id_petition DESC LIMIT 8";
+         $resultset = mysqli_query($conn,$sql);
+         while($record=mysqli_fetch_assoc($resultset))
+      
+                {
+         ?>
+                     <div class="column">
+                     <div class="card">
+                        <?php  echo '<img src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'"/>';?>
+                        <a href="signed_petition.php?data=<?php echo $record['id_petition'] ?>" > <h5> <?php echo $record['title']; ?></h5></a>
+                        </div>
+                </div>
 
-
-     <h1>Hello, <?php echo $_SESSION['user_name']; ?></h1>
-
-     <a href="logout.php">Logout</a>
+      <?php } ?>
+                </div>
+                </div>
 
 </body>
 
