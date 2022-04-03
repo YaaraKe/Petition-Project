@@ -3,7 +3,7 @@ table {
     font-size: large;
     border: 1px solid black;
 }
-.tableFixHead          { overflow: auto; height: 250px; }
+.tableFixHead          { overflow: auto;  }
 .tableFixHead thead th { position: relative; top: 0; z-index: 1;}
 
 h1 {

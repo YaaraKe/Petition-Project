@@ -53,15 +53,19 @@ if (isset($_SESSION['user_name'])) {
                     <a class="nav-link" href="../index_react/index.html">Shop<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="../kneset.php">Contact Knesset Member<span class="sr-only"></span></a>
+                    <a class="nav-link" href="../kneset.php">Contact a Knesset Member<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="../my_petition.php">My petitions<span class="sr-only"></span></a>
                 </li>
-
-              <a href="logout.php">Logout</a> 
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Logout</a>
+                </li>
             </ul>
         </div>
+      
     </nav>
 
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -73,19 +77,22 @@ if (isset($_SESSION['user_name'])) {
 </script>
 <div class="top">
         <img class="img_top" src="simple.jpg" alt="welcome_img" >
-        <div class="centered">Hello,<script> document.write(user_name)</script>
+        <div class="centered">Hello, <script> document.write(user_name)</script>
             <br>
-            Make a change!
+            <b>Make a change!</b>
+            <br>
+            This site is designed to help create social change. Here you can purchase equipment that will help you, contact a Knesset member, sign petitions and create new petitions.
         </div>
       </div>
-   <br><br>
+      <br><br>
+
    <!-- display petitions -->
   
          
    <!-- display recent petitions -->
    <div class="container">
    <div class="row" style="justify-content: center">
-      <h1 > New petitions </h1> 
+      <h1 > Recently added petitions </h1> 
       <?php    
          
          include_once("db_conn.php");
@@ -106,7 +113,15 @@ if (isset($_SESSION['user_name'])) {
       <?php } ?>
                 </div>
                 </div>
+<br>
 
+<footer class="bg-white">
+    <div class="bg-light py-2">
+        <div class="container text-center">
+            <p class="text-muted mb-0 py-2">© 2022 UCanClaim All rights reserved.</p>
+        </div>
+    </div>
+</footer>
 </body>
 
 </html>
