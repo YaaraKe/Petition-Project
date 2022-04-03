@@ -97,10 +97,10 @@
             </div>
 
             <?php
-            $sname = "localhost";
-            $unmae = "nofarrei_user";
-            $password = "12345";
-            $db_name = "nofarrei_Petition";
+             $sname = "localhost";
+             $unmae = "root";
+             $password = "";
+             $db_name = "test";
              $connection = mysqli_connect($sname, $unmae, $password, $db_name);
              // SQL query to select data from database
              $sql = "SELECT DISTINCT * FROM shop WHERE num =3  LIMIT 1";
