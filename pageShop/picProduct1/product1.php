@@ -91,12 +91,12 @@
 
             <?php
             $sname = "localhost";
-            $unmae = "root";
-            $password = "";
-            $db_name = "test";
+            $unmae = "nofarrei_user";
+            $password = "12345";
+            $db_name = "nofarrei_Petition";
             $connection = mysqli_connect($sname, $unmae, $password, $db_name);
             // SQL query to select data from database
-            $sql = "SELECT DISTINCT * FROM shop WHERE id ='1'";
+            $sql = "SELECT DISTINCT * FROM shop WHERE num =1  LIMIT 1";
             $resultset = mysqli_query($connection, $sql);
             ?>
             <!-- Information of the product -->
@@ -110,13 +110,10 @@
                         <p>UcanClaim</p>
                         <!-- 22" x 28" - Assorted Colors - 50/ Carton -->
                         <h2><?php echo $row['name']; ?></h2><br>
-                        <p> Product Number: 0001 Poster Board Class Pack offers a convenient assortment of four-ply
-                            poster board. Colors include black, white, magenta, light blue, dark blue, holiday green, pink,
-                            red, orange and lemon yellow. Poster board contains a high percentage of recycled material with
-                            post-consumer content.</p>
+                        <p><?php echo $row['description']; ?></p>
 
                         <div>
-                            <p id="price1"><?php echo $row['num']; ?>₪</p>
+                            <p id="price1"><?php echo $row['cost']; ?>₪</p>
                         </div>
                         <?php } ?>
                         <div id="container"></div>
@@ -129,7 +126,7 @@
                                 console.log(element.innerHTML);
                                 if (element.innerHTML == "success") {
                                     <?php
-                                    $sql1 = "UPDATE shop SET status='0' WHERE id=1 AND status=1 LIMIT 1";
+                                    $sql1 = "UPDATE shop SET status='0' WHERE num=1 AND status=1 LIMIT 1";
                                     if ($connection->query($sql1) === TRUE) {
                                         echo "success";
                                       } else {

@@ -98,13 +98,13 @@
             </div>
 
             <?php
-             $sname = "localhost";
-             $unmae = "root";
-             $password = "";
-             $db_name = "test";
+            $sname = "localhost";
+            $unmae = "nofarrei_user";
+            $password = "12345";
+            $db_name = "nofarrei_Petition";
              $connection = mysqli_connect($sname, $unmae, $password, $db_name);
              // SQL query to select data from database
-             $sql = "SELECT DISTINCT * FROM shop WHERE id ='4'";
+             $sql = "SELECT DISTINCT * FROM shop WHERE num =4  LIMIT 1";
              $resultset = mysqli_query($connection,$sql);
             ?>
 
@@ -120,12 +120,10 @@
                     <p>UcanClaim</p>
                     <!-- Chisel Tip, Assorted, Pack Of 12 -->
                     <h2><?php echo $row['name']; ?></h2><br>
-                    <p> Product Number: 0004 Sharpie Accent Pocket Highlighters, Chisel Tip, Assorted, Pack Of 12
-                        - These versatile highlighters are designed to fit effortlessly in your pocket or clip to your
-                        shirt, so they're easy to take with you anywhere
+                    <p><?php echo $row['description']; ?>
                     </p>
                     <div>
-                    <p id="price4"><?php echo $row['num']; ?>₪</p></div>
+                    <p id="price4"><?php echo $row['cost']; ?>₪</p></div>
                     <?php } ?>
                     <div id="container"></div>
                     <div id="update" style="display:none"></div>
@@ -137,7 +135,7 @@
                                 console.log(element.innerHTML);
                                 if (element.innerHTML == "success") {
                                     <?php
-                                    $sql1 = "UPDATE shop SET status='0' WHERE id=4 AND status=1 LIMIT 1";
+                                    $sql1 = "UPDATE shop SET status='0' WHERE num=4 AND status=1 LIMIT 1";
                                     if ($connection->query($sql1) === TRUE) {
                                         echo "success";
                                       } else {

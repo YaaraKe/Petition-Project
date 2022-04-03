@@ -97,13 +97,13 @@
             </div>
 
             <?php
-             $sname = "localhost";
-             $unmae = "root";
-             $password = "";
-             $db_name = "test";
+            $sname = "localhost";
+            $unmae = "nofarrei_user";
+            $password = "12345";
+            $db_name = "nofarrei_Petition";
              $connection = mysqli_connect($sname, $unmae, $password, $db_name);
              // SQL query to select data from database
-             $sql = "SELECT DISTINCT * FROM shop WHERE id ='3'";
+             $sql = "SELECT DISTINCT * FROM shop WHERE num =3  LIMIT 1";
              $resultset = mysqli_query($connection,$sql);
             ?>
 
@@ -119,13 +119,10 @@
                     <p>UcanClaim</p>
                     <!-- Fine Bullet Tip, Black, Dozen -->
                     <h2><?php echo $row['name']; ?></h2><br>
-                    <p> Product Number: 0003 Sharpie Fine Tip Permanent Marker, Fine Bullet Tip, Black, Dozen - For
-                        a permanent marker that works on most surfaces, trust the original Sharpie. The fine point black
-                        marker creates permanent markings on even hard-to-write surfaces. Sharpie ink is alcohol-based
-                        and dries quickly, resists fading and is water-resistant.
+                    <p><?php echo $row['description']; ?>
                     </p>
                     <div>
-                    <p id="price3"><?php echo $row['num']; ?>₪</p></div>
+                    <p id="price3"><?php echo $row['cost']; ?>₪</p></div>
                     <?php } ?>
                     <div id="container"></div>
                     <div id="update" style="display:none"></div>
@@ -137,7 +134,7 @@
                                 console.log(element.innerHTML);
                                 if (element.innerHTML == "success") {
                                     <?php
-                                    $sql1 = "UPDATE shop SET status='0' WHERE id=3 AND status=1 LIMIT 1";
+                                    $sql1 = "UPDATE shop SET status='0' WHERE num=3 AND status=1 LIMIT 1";
                                     if ($connection->query($sql1) === TRUE) {
                                         echo "success";
                                       } else {

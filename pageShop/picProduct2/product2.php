@@ -97,13 +97,13 @@
             </div>
 
             <?php
-             $sname = "localhost";
-             $unmae = "root";
-             $password = "";
-             $db_name = "test";
+            $sname = "localhost";
+            $unmae = "nofarrei_user";
+            $password = "12345";
+            $db_name = "nofarrei_Petition";
              $connection = mysqli_connect($sname, $unmae, $password, $db_name);
              // SQL query to select data from database
-             $sql = "SELECT DISTINCT * FROM shop WHERE id ='2'";
+             $sql = "SELECT DISTINCT * FROM shop WHERE num =2  LIMIT 1";
              $resultset = mysqli_query($connection,$sql);
             ?>
             <!-- Information of the product -->
@@ -118,11 +118,9 @@
                     <p>UcanClaim</p>
                     <!-- Dispenser, 1.5" Core, 1.88" x 22.2 yds, Clear, 6/Pack -->
                     <h2><?php echo $row['name']; ?></h2><br>
-                    <p> Product Number: 0002 Scotch Sure Start Packaging Tape with Dispenser, 1.5" Core, 1.88" x 22.2 yds, Clear, 6/Pack -
-                        Smooth, easy unwind. Ideal choice for quiet office settings. Dispenser helps prevent tape from
-                        falling back on the roll so it is easy to start every time.</p>
+                    <p><?php echo $row['description']; ?></p>
                         <div>
-                    <p id="price2"><?php echo $row['num']; ?>₪</p></div>
+                    <p id="price2"><?php echo $row['cost']; ?>₪</p></div>
                     <?php } ?>
                     <div id="container"></div>
                     <div id="update" style="display:none"></div>
@@ -134,7 +132,7 @@
                                 console.log(element.innerHTML);
                                 if (element.innerHTML == "success") {
                                     <?php
-                                    $sql1 = "UPDATE shop SET status='0' WHERE id=2 AND status=1 LIMIT 1";
+                                    $sql1 = "UPDATE shop SET status='0' WHERE num=2 AND status=1 LIMIT 1";
                                     if ($connection->query($sql1) === TRUE) {
                                         echo "success";
                                       } else {
