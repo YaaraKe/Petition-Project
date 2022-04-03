@@ -126,8 +126,9 @@
 
                     <div>
                     <p id="price1"><?php echo $row['num']; ?>₪</p></div>
-                    <?php } ?>
                     <div id="container"></div>
+                    <div id="update"><div>    
+                    <?php } ?>
                 </div>
             </div>
         </div>

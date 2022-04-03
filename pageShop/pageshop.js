@@ -155,8 +155,10 @@ function onPaymentAuthorized(paymentData) {
   processPayment(paymentData)
     .then(function() {
       resolve({transactionState: 'SUCCESS'});
+      document.getElementById('update').innerHTML="success";
       setTimeout(function(){
       alert("Your order was successfully processed. After receiving the payment we will send you the receipt to your email."); }, 1000);
+
     })
     .catch(function() {
         resolve({
