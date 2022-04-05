@@ -22,9 +22,10 @@
 <body>
 
     <!-- IMPORT BOOTSTRAP SCRIPTS-->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
@@ -61,6 +62,8 @@
     </nav>
     <br>
     <link href="petitions_errors.css" rel="stylesheet">
+    <link href="email_to_supporters.css" rel="stylesheet">
+
     <br><br>
 
     <?php
@@ -78,8 +81,12 @@ $id = mysqli_real_escape_string($conn,$id);
   // echo the title of the selected petition
 while($row=mysqli_fetch_assoc($resultset)){
  ?> 
-<h1> Send email to your supporters </h1>
-<h6>Petition Subject: <?php echo'"'; echo $row['title']; ?>" </h6>
+ <main class="container" id="all" >
+     <div id="first_title">
+<h1 id= "title1"> Send email to your supporters </h1>
+</div>
+<br>
+<h6 id="title2"> <strong>Petition Subject: <?php echo'"'; echo $row['title']; ?>"</strong> </h6>
 
 
 <?php 
@@ -95,13 +102,14 @@ $result=mysqli_query($conn,$sql2);
   $data=mysqli_fetch_assoc($result);
   ?>
 
-        <h6>Number of supporters: <?php echo $data['total']; ?> </h6>
+        <h6 id="title3"> <strong>Number of supporters: <?php echo $data['total']; ?> </strong> </h6>
 <?php
   }
  ?>
 
     <br>
-    <form class="col-7" method="POST">
+    <div class="row mb-4" >
+    <form id="supporters_form" class="col-7" method="POST">
 
     <div class="form-control">
         <label>Name:</label>  <input type="text" id="fromname" placeholder="Your name" required name="userName"> 
@@ -110,7 +118,7 @@ $result=mysqli_query($conn,$sql2);
 </svg>
         <small> Error message </small>
     </div>
-    <div class="form-control ">
+    <div class="form-control">
     <lable>Subject:</lable> 
     <input  type="text" id="subject" placeholder="Email's subject" required  >
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
@@ -126,15 +134,21 @@ $result=mysqli_query($conn,$sql2);
 </svg>
         <small> Error message </small>
 </div>
-   
+
+<div class="form-control buttons">
+<button type="reset" value="Reset" name="reset" class="btn btn-outline-secondary">           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser" viewBox="0 0 16 16">
+  <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414l-3.879-3.879zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+</svg> | Reset</button>
         <button name="submit" onclick="return signatories_validate()" class="btn btn-outline-primary"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
   <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
 </svg> | Send Email</button> 
-        <button type="reset" value="Reset" name="reset" class="btn btn-outline-secondary">           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser" viewBox="0 0 16 16">
-  <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414l-3.879-3.879zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
-</svg> | Reset</button>
+</div>
+
+<br><br>
 
     </form>
+</div>
+</main>
    
 
     <!-- validation form -->
@@ -199,7 +213,6 @@ if(counter==3){
      <?php
     }
     ?>
- //alert("Your message was sent successfully.")
             alert ("Email was sent successfully.");
  return true;
 }
@@ -226,11 +239,16 @@ else{
 if(isset($_POST['submit'])){
     ?>
     <script>
-     window.location='home.php';
+    //  window.location='home.php';
      </script>
      <?php
 }
 ?>
+<script>
+    $(document).ready(function(){
+        $("#msg").emojioneArea();
+    })
+    </script>
 </body>
 </html>
 
