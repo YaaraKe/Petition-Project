@@ -96,7 +96,7 @@
              $db_name = "test";
             $connection = mysqli_connect($sname, $unmae, $password, $db_name);
             // SQL query to select data from database
-            $sql = "SELECT DISTINCT * FROM shop WHERE num =1  LIMIT 1";
+            $sql = "SELECT DISTINCT * FROM shop WHERE id =1  LIMIT 1";
             $resultset = mysqli_query($connection, $sql);
             ?>
             <!-- Information of the product -->
@@ -126,7 +126,7 @@
                                 console.log(element.innerHTML);
                                 if (element.innerHTML == "success") {
                                     <?php
-                                    $sql1 = "UPDATE shop SET status=status-1 WHERE num=1 LIMIT 1";
+                                    $sql1 = "UPDATE shop SET status=status-1 WHERE id=1 LIMIT 1";
                                     
                                     if ($connection->query($sql1) === TRUE) {
                                         echo "success";
