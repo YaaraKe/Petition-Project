@@ -134,7 +134,7 @@
                                 console.log(element.innerHTML);
                                 if (element.innerHTML == "success") {
                                     <?php
-                                    $sql1 = "UPDATE shop SET status='0' WHERE num=3 AND status=1 LIMIT 1";
+                                    $sql1 = "UPDATE shop SET status=status-1 WHERE num=1 LIMIT 1";
                                     if ($connection->query($sql1) === TRUE) {
                                         echo "success";
                                       } else {
