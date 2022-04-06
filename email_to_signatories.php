@@ -239,7 +239,7 @@ else{
 if(isset($_POST['submit'])){
     ?>
     <script>
-    //  window.location='home.php';
+      window.location='home.php';
      </script>
      <?php
 }
