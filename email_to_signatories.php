@@ -83,7 +83,7 @@ while($row=mysqli_fetch_assoc($resultset)){
  ?> 
  <main class="container" id="all" >
      <div id="first_title">
-<h1 id= "title1"> Send email to your supporters </h1>
+<h1 id= "title1"> Send an Email to your supporters </h1>
 </div>
 <br>
 <h6 id="title2"> <strong>Petition Subject: <?php echo'"'; echo $row['title']; ?>"</strong> </h6>

@@ -12,6 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 
@@ -77,6 +78,34 @@ $id = mysqli_real_escape_string($conn,$id);
                 <?php echo $row['content']; ?>
 
              </div>
+         
+<!--  progress bar -->
+        <!-- how many signatures -->
+        <?php
+        include 'db_conn.php';
+        $sql1 = "SELECT COUNT(*) FROM signatures WHERE `id_petition`='" . $id . "'";
+        $result = mysqli_query($conn, $sql1);
+        $count_signatures = mysqli_fetch_array($result);
+
+        ?>
+        <!-- <h3  style=" font-family: 'Times New Roman';" > how many signatures do we have? <?php echo $count_signatures[0]; ?> </h3> -->
+
+        <!-- retrieve signatures goal -->
+        <?php
+        $sql2 = "SELECT target_singatures FROM all_petitions WHERE `id_petition`='" . $id . "'";
+        $result1 = mysqli_query($conn, $sql2);
+        $target_signatures = mysqli_fetch_row($result1);
+
+        ?>
+
+        <h1>Signtures Progress</h1>
+        <div class="w3-grey w3-round-large">
+            <div class="w3-container w3-blue w3-round-large" style="width:<?php echo ($count_signatures[0] / $target_signatures[0]) * 100 ?>%">
+                <?php echo $count_signatures[0] ?>/<?php echo $target_signatures[0] ?></div>
+        </div>
+
+        <hr>
+        <br><br>
 <hr>
        <br><br>
                 <div class="row mb-4">
@@ -89,7 +118,7 @@ $id = mysqli_real_escape_string($conn,$id);
 <a href="email_to_signatories.php?id=<?php echo $row['id_petition']; ?>" class="btn btn-outline-success"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-check" viewBox="0 0 16 16">
   <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
   <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z"/>
-</svg> | Send an email to all supporters</a>
+</svg> | Send an Email to all supporters</a>
                         </div>
         <br>
     </form>
