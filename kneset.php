@@ -101,7 +101,6 @@ $mysqli->close();
             <form>
                 <h1>Send Email to a Knesset Member</h1>
                 <br>
-
                 <div class="form-control ">
                     <lable>To:</lable>
                     <input name="to" type="text" id="toname" placeholder="Recipient name" required>
@@ -208,7 +207,7 @@ $mysqli->close();
       
                      
                      <div class="card col-md-3">
-                     <?php  echo '<img style="width: 18rem;" src="data:image/jpeg;base64,'.base64_encode( $rows['photo'] ).'" class="card-img-top"/>';?>
+                     <?php  echo '<img style="height:16rem; width:auto;" src="data:image/jpeg;base64,'.base64_encode( $rows['photo'] ).'" class="card-img-top"/>';?>
                         
                      
                      <h5 class="card-title">
