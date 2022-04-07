@@ -43,10 +43,14 @@ $mysqli->close();
         })();
     </script>
     <script>
-        var flag = 0;
+        
         function email_choesen(clicked_id) {
-            document.getElementById("toemail").value = clicked_id;
-            flag = 1;
+            var emails=document.getElementById("toemail").value;
+     if(document.getElementById("toemail").value != ""){
+        emails=document.getElementById("toemail").value =emails+ ",";
+     }
+     document.getElementById("toemail").value =emails+ clicked_id
+            
         }
     </script>
     <link rel="stylesheet" href="kneset.css">
@@ -292,7 +296,7 @@ $mysqli->close();
                     counter++;
                 }
 
-                if (flag == 0) {
+                if (tomail.value == "") {
                     setErrorFor(tomail, "\n" + "You must select an Email address from the table.");
                 }
                 else {
@@ -300,7 +304,13 @@ $mysqli->close();
                     counter++;
                 }
                 if (counter == 4) {
-                    sendMail();
+                 //   sendMail();
+                 var emails=document.getElementById("toemail").value;
+            var emails_list=emails.split(",");
+              for(var i=0; i<emails_list.length; i++){
+            var email=emails_list[i];
+            sendMail(email);
+              }
                     alert("Your message was sent successfully.")
                     return true;
                 }
