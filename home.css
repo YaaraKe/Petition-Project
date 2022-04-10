@@ -1,10 +1,9 @@
-
+/* Container holding the image and the text */
 
 html, body{
   height: 100%;
 }
 
-/* Container holding the images and the text */
 .container{
    height: 85%;
 }
@@ -20,11 +19,12 @@ html, body{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  
 }
 
 .img_top{
   width:100%;
-  height:200px;
+  height:250px;
 }
 
 * {
@@ -39,6 +39,8 @@ body {
  float: left; 
  width: 100%;  
  border: 2px solid grey; height:25%;
+ margin-bottom: 0.5%;
+ box-shadow:1px 2px #888888;
 }
 
 .img_box{
@@ -47,6 +49,8 @@ body {
 
 .content{
     float: left;margin-left: 0.5%; width:77%; height:100%;
+    word-wrap:break-word;
+    overflow-x: scroll;
 }
 
 a{
@@ -62,10 +66,22 @@ a{
    div.content{
        font-size: 0.71rem;
    }
+   h5{
+       font-size: 1rem
+   }
 }
 @media screen and (min-width: 991px){
    
    div.content{
        font-size: 1rem;
+   }
+}
+
+
+@media screen and (max-width: 450px){
+   
+   div.content{
+       font-size: 0.6rem;
+      
    }
 }

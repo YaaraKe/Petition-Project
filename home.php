@@ -81,7 +81,7 @@ if (isset($_SESSION['user_name'])) {
     user_name=user_name_full.split("@")[0];
 </script>
 <div class="top">
-        <img class="img_top" src="simple.jpg" alt="welcome_img" >
+        <img class="img_top" src="global2.webp" alt="welcome_img" >
         <div class="centered">Hello, <script> document.write(user_name)</script>
             <br>
             <b>Make a change!</b>
@@ -95,7 +95,9 @@ if (isset($_SESSION['user_name'])) {
    <!-- display recent petitions -->
     <div class="container">
       <h1 > Recently added petitions </h1> 
+       
        <?php    
+         $count=0;
          
          include_once("db_conn.php");
          // display 8 recent petitions
@@ -104,9 +106,19 @@ if (isset($_SESSION['user_name'])) {
          while($record=mysqli_fetch_assoc($resultset))
       
                 {
+                    $count=$count+1;
+                    if($count%2==0){
          ?> 
-  <div class="box">
-      
+        
+  <div class="box" style="background-color:white">
+      <?php
+      }
+else{ ?>
+
+     <div class="box" style="background-color:#F0F8FF">
+         
+<?php } ?>
+
 <div class="img_box">
     <?php  echo '<img alt="petition_img" width="100%" height="100%" src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'"/>';?>
 </div>
@@ -118,7 +130,7 @@ if (isset($_SESSION['user_name'])) {
     </div>
     
     <div class="petition_content">
-    <a class="in_content" href="signed_petition.php?data=<?php echo $record['id_petition'] ?>" >  <?php echo substr_replace($record['content'],"...", 390); ?></a>
+    <a class="in_content" href="signed_petition.php?data=<?php echo $record['id_petition'] ?>" >  <?php echo substr_replace($record['content'],"...", 500); ?></a>
    </div>
 </div>
 
@@ -128,6 +140,7 @@ if (isset($_SESSION['user_name'])) {
      <?php } ?> 
      </div> 
 <br>
+<br><br><br><br><br><br>
 
 <footer class="bg-white">
     <div class="bg-light py-2">
