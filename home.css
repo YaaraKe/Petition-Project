@@ -64,7 +64,7 @@ a{
 @media screen and (max-width: 990px){
    
    div.content{
-       font-size: 0.71rem;
+       font-size: 0.9rem;
    }
    h5{
        font-size: 1rem
@@ -77,11 +77,3 @@ a{
    }
 }
 
-
-@media screen and (max-width: 450px){
-   
-   div.content{
-       font-size: 0.6rem;
-      
-   }
-}
