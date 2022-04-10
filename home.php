@@ -86,38 +86,47 @@ if (isset($_SESSION['user_name'])) {
             <br>
             <b>Make a change!</b>
             <br>
-            This site is designed to help create social change. Here you can purchase equipment that will help you, contact a Knesset member, sign petitions and create new petitions.
+            <!-- This site is designed to help create social change. Here you can purchase equipment that will help you, contact a Knesset member, sign petitions and create new petitions. -->
         </div>
       </div>
       <br><br>
-
-   <!-- display petitions -->
   
          
    <!-- display recent petitions -->
-   <div class="container">
-   <div class="row" style="justify-content: center">
+    <div class="container">
       <h1 > Recently added petitions </h1> 
-      <?php    
+       <?php    
          
          include_once("db_conn.php");
          // display 8 recent petitions
-         $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition)  ORDER BY id_petition DESC LIMIT 8";
+         $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition)  ORDER BY id_petition DESC LIMIT 4";
          $resultset = mysqli_query($conn,$sql);
          while($record=mysqli_fetch_assoc($resultset))
       
                 {
-         ?>
-                     <div class="column">
-                     <div class="card">
-                        <?php  echo '<img src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'"/>';?>
-                        <a href="signed_petition.php?data=<?php echo $record['id_petition'] ?>" > <h5> <?php echo $record['title']; ?></h5></a>
-                        </div>
-                </div>
+         ?> 
+  <div class="box">
+      
+<div class="img_box">
+    <?php  echo '<img alt="petition_img" width="100%" height="100%" src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'"/>';?>
+</div>
 
-      <?php } ?>
-                </div>
-                </div>
+
+<div class="content">
+    <div>
+    <a class="petition_title" href="signed_petition.php?data=<?php echo $record['id_petition'] ?>" > <h5> <b> <?php echo $record['title']; ?></b></h5></a>
+    </div>
+    
+    <div class="petition_content">
+    <a class="in_content" href="signed_petition.php?data=<?php echo $record['id_petition'] ?>" >  <?php echo substr_replace($record['content'],"...", 390); ?></a>
+   </div>
+</div>
+
+ </div>
+
+
+     <?php } ?> 
+     </div> 
 <br>
 
 <footer class="bg-white">
