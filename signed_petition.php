@@ -58,7 +58,7 @@
     </nav>
     <br>
 
-    <link rel="stylesheet" href="signed_petition.css">
+    
     <br><br>
 
     <?php

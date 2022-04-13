@@ -1,0 +1,35 @@
+
+
+
+.title{
+    font-family:'Trebuchet MS';
+   
+    
+}
+
+
+.petition{
+    margin: auto;
+    text-align: center;
+}
+
+.content{
+    width: 90%;
+    margin: auto;
+    
+    
+}
+
+.petition_box{
+    border: 3px solid;
+    border-radius: 5px;
+    width:80%;
+    margin: auto;
+    
+    
+}
+
+.w3-grey {
+    width:80%;
+    margin: auto;
+}
