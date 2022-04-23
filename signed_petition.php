@@ -12,6 +12,7 @@
     <link href="petitions_errors.css" rel="stylesheet">
     <script src="alertmail.js"></script>
     <script src="newSignMail.js"></script>
+     <link rel="stylesheet" href="signed_petition.css">
     <!-- integration to Emailjs -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
@@ -58,7 +59,7 @@
     </nav>
     <br>
 
-    <link rel="stylesheet" href="signed_petition.css">
+    
     <br><br>
 
     <?php
@@ -72,13 +73,17 @@
     // LOOP TILL END OF DATA
     while ($row = mysqli_fetch_assoc($resultset)) {
     ?>
+
+    <main class="petition">
         <!-- the petition: -->
-        <div>
-            <h1 style=" font-family: 'Times New Roman';"> <u><?php echo $row['title']; ?></u> </h1>
+        <div class="petition_box">
+            <h1 class="title"> <u><?php echo $row['title']; ?></u> </h1>
             <small><?php echo $row['date']; ?> </small>
             <br><br>
+            <div class="content">
             <?php echo $row['content']; ?>
-
+            <br><br>
+</div>
         </div>
 
         <!-- how many signatures -->
@@ -105,7 +110,7 @@
         </div>
 
         <hr>
-        <br><br>
+       
         <!-- Sign on a petition -->
 
         <div class="row mb-4" id="SignForm">
@@ -120,24 +125,25 @@
                             <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                             <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
                         </svg>
+                             
                         <small> Error message </small>
+                      
 
                     </div>
-
-                    <hr>
-                    <button type="reset" value="Reset" name="reset" class="btn btn-outline-secondary"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser" viewBox="0 0 16 16">
-                            <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414l-3.879-3.879zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z" />
-                        </svg> | Reset</button>
-                        <button type="submit" name="submit" id="sign" onclick="return sign_name()" class="btn btn-outline-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+           
+<br>
+            
+                       <button type="submit" name="submit" id="sign" onclick="return sign_name()" class="btn custom btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
                             <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                        </svg> | Sign</button>
+                        </svg> | Sign</button>   
+                      
+                   
                 </div>
-
-                <br>
             </form>
         </div>
 
         <script src="validations.js"></script>
+        </main>
 </body>
 
 </html>
