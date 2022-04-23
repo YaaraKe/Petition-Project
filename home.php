@@ -21,7 +21,7 @@ if (isset($_SESSION['user_name'])) {
         crossorigin="anonymous"></script>
     <style>
         body {
-        background-image: url('cool-background.png');
+        background-image: url('cool-background.jpg');
         }
     </style>
 

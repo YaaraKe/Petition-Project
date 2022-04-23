@@ -72,7 +72,7 @@
                     <!-- Subject Input -->
                     <div class="form-control ">
                         <label>Subject:</label>
-                        <input id="subject" type="text" name="subject" placeholder="Subject" required>
+                        <input class="form-control" id="subject" type="text" name="subject" placeholder="Subject" required>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-pen-fill" viewBox="0 0 16 16">
                             <path
@@ -86,7 +86,7 @@
                     <div class="form-control ">
                         <label>Petition Content: </label>
                         <br>
-                        <textarea rows="20" cols="80" id="Content" name="Content" required></textarea>
+                        <textarea class="form-control" rows="20" cols="80" id="Content" name="Content" required></textarea>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-body-text" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -99,14 +99,14 @@
                     <!-- select image for a petition -->
                     <div class="form-control ">
                         <label for="img">Select image:</label>
-                        <input type="file" id="img" name="img" accept="image/*" required>
+                        <input class="form-control" type="file" id="img" name="img" accept="image/*" required>
 
                     </div>
 
                     <!--signatures amounts -->
                     <div class="form-control ">
                         <label>How many signatures do you need? </label>
-                        <input id="sign_num" type="number" name="sign_num" placeholder="Goal number" required min="1"
+                        <input class="form-control" id="sign_num" type="number" name="sign_num" placeholder="Goal number" required min="1"
                             max="999999999">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-pin-angle-fill" viewBox="0 0 16 16">
@@ -119,7 +119,7 @@
                     <!--When to notify -->
                     <div class="form-control ">
                         <label>How many signatures to alert you? </label>
-                        <input id="alert_sign" type="number" name="alert_sign" placeholder="Alert number" min="0"
+                        <input class="form-control" id="alert_sign" type="number" name="alert_sign" placeholder="Alert number" min="0"
                             max="999999998" required>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-envelope-exclamation-fill" viewBox="0 0 16 16">

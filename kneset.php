@@ -121,7 +121,7 @@ $mysqli->close();
                 <br>
                 <div class="form-control ">
                     <lable>To:</lable>
-                    <input name="to" type="text" id="toname" placeholder="Recipient name" required>
+                    <input class="form-control" name="to" type="text" id="toname" placeholder="Recipient name" required>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-pen-fill" viewBox="0 0 16 16">
                         <path
@@ -130,7 +130,7 @@ $mysqli->close();
                     <small> Error message </small>
                 </div>
                 <div class="form-control">
-                    <label>name:</label> <input type="text" id="fromname" placeholder="Your name" required
+                    <label>name:</label> <input class="form-control" type="text" id="fromname" placeholder="Your name" required
                         name="userName">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-person-fill" viewBox="0 0 16 16">
@@ -140,7 +140,7 @@ $mysqli->close();
                 </div>
                 <div class="form-control ">
                     <lable>Message:</lable> <br>
-                    <textarea name="msg" id="msg" placeholder="Your message" rows="10" cols="30" required></textarea>
+                    <textarea class="form-control" name="msg" id="msg" placeholder="Your message" rows="10" cols="30" required></textarea>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-chat-left-quote-fill" viewBox="0 0 16 16">
                         <path
@@ -150,7 +150,7 @@ $mysqli->close();
                 </div>
                 <div class="form-control ">
                     <p style="color:blue;"> Click on a Member of Knesset in the list below or select all</p>
-                    <label> Recipient Email address:</label> <input type="text" name="tomail" id="toemail" required
+                    <label> Recipient Email address:</label> <input class="form-control" type="text" name="tomail" id="toemail" required
                         disabled>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-envelope-check-fill" viewBox="0 0 16 16">
