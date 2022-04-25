@@ -25,32 +25,51 @@
 
     <!-- nav bar for the website -->
     <br>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <nav class="navbar navbar-expand-md navbar-light" style="background-color :#F0B27A">
+
         <a class="navbar-brand" href="#">
-            <img src="/NavBar/UcanClaim.png" width="125" height="60" class="d-inline-block align-top" alt="">
+            <img src="../NavBar/UcanClaim.png" width="95" height="40" class="d-inline-block align-top" alt="">
         </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/home.php">Home<span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/Petition_options.html">Petition<span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/index_react/index.html">Shop<span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/kneset.php">Contact Knesset Member<span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/my_petition.php">My petitions<span class="sr-only"></span></a>
-                </li>
-            </ul>
+        <div class="container">
+            <div class="collapse navbar-collapse justify-content-between " id="navbarNav">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../home.php">Home<span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Petition<span class="sr-only"></span></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="all_petitions.php">Sign a Petition</a>
+                            <a class="dropdown-item" href="new_petition.html">Create a Petition</a>
+                            <a class="dropdown-item" href="achieved_tareget_petitions.php">Completed petitions</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../index_react/index.html">Shop<span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../kneset.php">Contact a Knesset Member<span class="sr-only"></span></a>
+                    </li>
+
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account<span class="sr-only"></span></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="../my_petition.php">My Petitions</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="logout.php">Log Out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
+
     </nav>
     <br>
 
@@ -90,10 +109,10 @@
             </div>
 
             <?php
-             $sname = "localhost";
-             $unmae = "root";
-             $password = "";
-             $db_name = "test";
+            $sname = "localhost";
+            $unmae = "root";
+            $password = "";
+            $db_name = "test";
             $connection = mysqli_connect($sname, $unmae, $password, $db_name);
             // SQL query to select data from database
             $sql = "SELECT DISTINCT * FROM shop WHERE id =1  LIMIT 1";
@@ -115,29 +134,29 @@
                         <div>
                             <p id="price1"><?php echo $row['cost']; ?>₪</p>
                         </div>
-                        <?php } ?>
-                        <div id="container"></div>
-                        <div id="update" style="display:none"></div>
-                        <script type="text/javascript">
-                            var element = document.getElementById('update');
-                            element.addEventListener('DOMSubtreeModified', updateModified);
+                    <?php } ?>
+                    <div id="container"></div>
+                    <div id="update" style="display:none"></div>
+                    <script type="text/javascript">
+                        var element = document.getElementById('update');
+                        element.addEventListener('DOMSubtreeModified', updateModified);
 
-                            function updateModified(e) {
-                                console.log(element.innerHTML);
-                                if (element.innerHTML == "success") {
-                                    <?php
-                                    $sql1 = "UPDATE shop SET status=status-1 WHERE id=1 LIMIT 1";
-                                    
-                                    if ($connection->query($sql1) === TRUE) {
-                                        echo "success";
-                                      } else {
-                                        echo "Error updating record: " . $connection->error;
-                                      }
-                                    ?>
+                        function updateModified(e) {
+                            console.log(element.innerHTML);
+                            if (element.innerHTML == "success") {
+                                <?php
+                                $sql1 = "UPDATE shop SET status=status-1 WHERE id=1 LIMIT 1";
+
+                                if ($connection->query($sql1) === TRUE) {
+                                    echo "success";
+                                } else {
+                                    echo "Error updating record: " . $connection->error;
                                 }
+                                ?>
                             }
-                        </script>
-                    
+                        }
+                    </script>
+
                 </div>
             </div>
         </div>
