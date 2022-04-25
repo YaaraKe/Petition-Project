@@ -46,6 +46,7 @@ if (isset($_POST['reg_user'])) {
   			  VALUES('$email', '$password')";
   	mysqli_query($conn, $query);
   	$_SESSION['user_name'] = $email;
+    $_SESSION['password'] = $password;
   	$_SESSION['success'] = "You are now logged in";
     echo "<script>alert ('Welcome to UCanClaim!');
     window.location='home.php' </script>";

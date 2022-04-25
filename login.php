@@ -56,6 +56,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
                 error_log("Logged in",0);
                 $_SESSION['user_name'] = $row['user_name'];
+                $_SESSION['password'] = $row['upassword'];
                 
                 header("Location: home.php");
 
