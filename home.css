@@ -106,3 +106,23 @@ b{
     word-spacing: -5px;
     font-family: Lucida Console;
 }
+
+h3{
+    text-align: center;
+}
+
+h5{
+    margin-left:1rem;
+}
+.rem{
+    margin-left:1rem;
+    text-decoration:none;
+    color:#F0B27A;
+}
+
+#date{
+    font-size:11px;
+    margin-bottom:0.5rem; 
+    color:#808080;
+}
+.card {display:inline-block;}
