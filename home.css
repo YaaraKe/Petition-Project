@@ -77,3 +77,35 @@ a{
    }
 }
 
+#personal_text{
+    width:50% ;
+    float: right;
+    background-color:#F0B27A;
+}
+@media screen and (max-width: 1000px){
+   
+ #img_protest{
+     display: none;
+ }
+ #personal_text{
+     float :none;
+     width:100%;
+ }
+ 
+}
+.top1 {
+  position: relative;
+  text-align: left;
+  font-size: 150%;
+}
+p{
+    display: inline-block;
+    margin-left:1rem;
+    
+}
+b{
+    margin-left:1rem;
+    letter-spacing: -0.05em;
+    word-spacing: -5px;
+    font-family: Lucida Console;
+}
