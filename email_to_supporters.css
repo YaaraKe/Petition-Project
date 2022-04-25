@@ -6,14 +6,6 @@
    margin: auto;
 }
 
-
-.container{
-    /* background-color: #edf3f5; */
-    background-image: url("https://media.istockphoto.com/vectors/seamless-graph-paper-vector-id1278208215?k=20&m=1278208215&s=170667a&w=0&h=_wHPPN6eZdnPc4CRQhNwb0XGhwTPERJs-KOcpIw6dNY=");
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgb(85, 76, 85);
-    width: 85%;
-}
 #first_title{
     background-color: #cde4f7; 
     font-style:oblique;
