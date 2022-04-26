@@ -124,12 +124,13 @@ if (isset($_SESSION['user_name'])) {
         
         <br>
         <!-- display recent petitions -->
+        <div class="bg-image col-12">
         <div class="container">
             <hr>
             <br>
             <h3> Recently added petitions </h3>
             <br>
-            <br>
+        <div class="row">
             <?php
             $count = 0;
 
@@ -141,13 +142,12 @@ if (isset($_SESSION['user_name'])) {
                 $count = $count + 1;
                 if ($count % 2 == 0) {
             ?>
-
-            <div class="card" style="width: 16rem;">
+            
+            <div class="card">
                     <?php
                 } else { ?>
-
-                        <div class="card" style="width: 16rem;">
-
+                
+                    <div class="card">
                         <?php } ?>
                             <?php echo '<img class="card-img-top" alt="petition_img" src="data:image/jpeg;base64,' . base64_encode($record['photo']) . '"/>'; ?>
 
@@ -162,13 +162,13 @@ if (isset($_SESSION['user_name'])) {
                             <a href="signed_petition.php?data=<?php echo $record['id_petition'] ?>" class="card-link rem">Read more</a>
                         </div>
 
-                        </div>
-
+                    </div>
 
                     <?php } ?>
                     </div>
+                    </div>
+                    </div>
                     <br>
-                    <br><br><br><br><br><br>
 
                     <footer class="bg-white">
                         <div class="bg-light py-2">
