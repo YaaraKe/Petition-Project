@@ -4,6 +4,11 @@ session_start();
 // connect to the database
 include "db_conn.php";
 
+ $current_mail=$_SESSION['user_name'];
+ $current_pass=$_SESSION['password'];
+ echo $current_mail;
+ echo $current_pass;
+
 // initializing variables
 $email = "";
 $errors = array(); 
@@ -14,18 +19,17 @@ if (isset($_POST['reg_user'])) {
   // receive all input values from the form
   $email = mysqli_real_escape_string($conn, $_POST['email']);
   $password_1 = mysqli_real_escape_string($conn, $_POST['password_1']);
-  $password_2 = mysqli_real_escape_string($conn, $_POST['password_2']);
-
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
   if (empty($email)){  array_push($errors, "E-mail is required"); }
   else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { array_push($errors, "Invalid email"); }
     else if (empty($password_1)){  array_push($errors, "Password is required"); }
-    else  if (strlen($password_1)<5){ array_push($errors, "Password must be over 5 characters");}
-    else if ($password_1 != $password_2) {
-      array_push($errors, "The two passwords do not match");
+    else{
+          $password2 = md5($_POST['password_1']);//encrypt the password before saving in the database
+      if($password2!=$current_pass){
+          array_push($errors, "Wrong password");
       }
-
+    }
   // first check the database to make sure 
   // a user does not already exist with the same username and/or email
   $user_check_query = "SELECT * FROM users WHERE user_name='$email' LIMIT 1";
@@ -36,19 +40,19 @@ if (isset($_POST['reg_user'])) {
     if ($user['user_name'] == $email) {
       array_push($errors, "Email already exists");
   }
-}
+  }
+  
 
   // Finally, register user if there are no errors in the form
-  if (count($errors) == 0) {
-  	$password = md5($password_1);//encrypt the password before saving in the database
-
-  	$query = "INSERT INTO users (user_name, upassword) 
-  			  VALUES('$email', '$password')";
-  	mysqli_query($conn, $query);
-  	$_SESSION['user_name'] = $email;
-    $_SESSION['password'] = $password;
-  	$_SESSION['success'] = "You are now logged in";
-    echo "<script>alert ('Welcome to UCanClaim!');
-    window.location='home.php' </script>";
+   if (count($errors) == 0) {
+//   	$query = "INSERT INTO users (user_name, upassword) 
+// //   			  VALUES('$email')";
+$query13 = "UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail' ";
+  	mysqli_query($conn, $query13);
+   	$_SESSION['user_name'] = $email;
+//     $_SESSION['password'] = $password;
+//   	$_SESSION['success'] = "You are now logged in";
+//     echo "<script>alert ('Welcome to UCanClaim!');
+//     window.location='home.php' </script>";
   }
-}
+ }
