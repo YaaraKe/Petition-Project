@@ -11,7 +11,8 @@ include "db_conn.php";
 
 // initializing variables
 $email = "";
-$errors = array(); 
+$errors = array();
+$errors1 = array(); 
 
 
 // REGISTER USER
@@ -21,13 +22,13 @@ if (isset($_POST['reg_user'])) {
   $password_1 = mysqli_real_escape_string($conn, $_POST['password_1']);
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
-  if (empty($email)){  array_push($errors, "E-mail is required"); }
-  else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { array_push($errors, "Invalid email"); }
-    else if (empty($password_1)){  array_push($errors, "Password is required"); }
+  if (empty($email)){  array_push($errors1, "E-mail is required"); }
+  else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { array_push($errors1, "Invalid email"); }
+    else if (empty($password_1)){  array_push($errors1, "Password is required"); }
     else{
           $password2 = md5($_POST['password_1']);//encrypt the password before saving in the database
       if($password2!=$current_pass){
-          array_push($errors, "Wrong password");
+          array_push($errors1, "Wrong password");
       }
     }
   // first check the database to make sure 
@@ -38,18 +39,45 @@ if (isset($_POST['reg_user'])) {
   while($user = mysqli_fetch_assoc($result)){
    // if user exists
     if ($user['user_name'] == $email) {
-      array_push($errors, "Email already exists");
+      array_push($errors1, "Email already exists");
   }
   }
   
 
   // Finally, register user if there are no errors in the form
-   if (count($errors) == 0) {
-//   	$query = "INSERT INTO users (user_name, upassword) 
-// //   			  VALUES('$email')";
+   if (count($errors1) == 0) {
 $query13 = "UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail' ";
   	mysqli_query($conn, $query13);
    	$_SESSION['user_name'] = $email;
+  }
+ }
+
+
+ if (isset($_POST['reg_user2'])) {
+  // receive all input values from the form
+  $pass1 = mysqli_real_escape_string($conn, $_POST['pas1']);
+  $pass2 = mysqli_real_escape_string($conn, $_POST['pas2']);
+  $oldpass = mysqli_real_escape_string($conn, $_POST['pas3']);
+  // form validation: ensure that the form is correctly filled ...
+  // by adding (array_push()) corresponding error unto $errors array
+  if (empty($oldpass)){  array_push($errors, "Current password is required"); }
+    else if (empty($pass1)){  array_push($errors, " New password is required"); }
+    else if (empty($pass2)){  array_push($errors, "Please confirm your new password"); }
+    else if ($pass1!=$pass2){  array_push($errors, "Passwords not match"); }
+    else{
+          $oldpass2 = md5($_POST['pas3']);//encrypt the password before saving in the database
+      if($oldpass2!=$current_pass){
+          array_push($errors, "Wrong password");
+      }
+    }
+
+
+  // Finally, register user if there are no errors in the form
+   if (count($errors) == 0) {
+     $newpass=md5($pass1);
+    $query14 = "UPDATE `users` SET `upassword`='$newpass' WHERE `user_name`='$current_mail' ";
+  	mysqli_query($conn, $query14);
+   	$_SESSION['password'] = $newpass;
 //     $_SESSION['password'] = $password;
 //   	$_SESSION['success'] = "You are now logged in";
 //     echo "<script>alert ('Welcome to UCanClaim!');
