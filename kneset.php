@@ -1,23 +1,6 @@
 <?php
   
-$user = 'nofarrei_user';
-$password = '12345'; 
-$database = 'nofarrei_Petition'; 
-$servername='localhost';
-$mysqli = new mysqli($servername, $user, 
-                $password, $database);
-  
-// Checking for connections
-if ($mysqli->connect_error) {
-    die('Connect Error (' . 
-    $mysqli->connect_errno . ') '. 
-    $mysqli->connect_error);
-}
-  
-// SQL query to select data from database
-$sql = "SELECT * FROM Knesset_Member ORDER BY full_name ASC ";
-$result = $mysqli->query($sql);
-$mysqli->close(); 
+
 ?>
 
 
@@ -217,71 +200,154 @@ $mysqli->close();
                             d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
                     </svg> | Send Email</button>
             </form>
+            <br>
+<br><br>
+
     </div>
     </div>
 
 
      <!-- display  Knesset members -->
+   
+
    <div class="container">
    <div class="row" style="justify-content: center">
+<br>
+<br>
+<hr>
+ 
+   <form style="text-align:center;" action="" method="POST">
+<input style="width:20%"; id="search" name="char" type="text" placeholder="Search name">
+<button style="margin: auto;" id="submit" name="submit2" type="submit"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+</svg> |  Search
+</button>
+
+
+
+<br>
+<br>
+     <h1 > Choose to whom the Email will be sent </h1> 
+</form>
    <?php
-  
-$user = 'nofarrei_user';
-$password = '12345'; 
-$database = 'nofarrei_Petition'; 
-$servername='localhost';
-$mysqli = new mysqli($servername, $user, 
-                $password, $database);
-  
-// Checking for connections
-if ($mysqli->connect_error) {
-    die('Connect Error (' . 
-    $mysqli->connect_errno . ') '. 
-    $mysqli->connect_error);
-}
-  
-// SQL query to select data from database
-$sql = "SELECT * FROM Knesset_Member ORDER BY full_name ASC ";
-$result = $mysqli->query($sql);
-$mysqli->close(); 
+
+if(isset($_POST["submit2"])){
+include_once("db_conn.php");
+$char= $_REQUEST['char'];
+$sql = "SELECT * FROM `Knesset_Member` WHERE `full_name` LIKE
+'%%$char%%' ";
+$result = mysqli_query($conn,$sql); 
+       if ($result === FALSE) {
+        die(mysqli_error($conn));
+      }
+      if(mysqli_num_rows($result)!=0){
+
 ?>
 <br><br>
-<hr>
-      <h1 > Choose to whom the Email will be sent </h1> 
+
       <div class="container">
    <div class="row" style="justify-content: center">
       <?php    
          
                 // LOOP TILL END OF DATA 
-                while($rows=$result->fetch_assoc())
+                while($record=mysqli_fetch_assoc($result))
                 {
-                    $res=$rows['Email'];
+                    $res=$record['Email'];
              ?>
       
                      
                      <div class="card col-md-3">
-                     <?php  echo '<img style="height:16rem; width:auto;" src="data:image/jpeg;base64,'.base64_encode( $rows['photo'] ).'" class="card-img-top"/>';?>
+                     <?php  echo '<img style="height:16rem; width:auto;" src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'" class="card-img-top"/>';?>
                         
                      
                      <h5 class="card-title">
                            
-                     <?php echo $rows['full_name'];?>
+                     <?php echo $record['full_name'];?>
                       
                     </strong></h5>
                      
-                        <?php echo $rows['Party'];?>
+                        <?php echo $record['Party'];?>
                         <button class="btn btn-primary" onclick="email_choesen('<?php echo $res; ?>')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
   <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
 </svg>
-                        <?php echo $rows['Email'];?>
+                        <?php echo $record['Email'];?>
                     </button>
                 </div>
 
-      <?php } ?>
+      <?php }
+      
+      }
+      else{
+          ?>
+         <h5 style="text-align:center;"> The knesset member was not found</h5>
+          <?php
+      }
+       ?>
                 </div>
                 </div>
                 
                 </div>
+                <?php
+
+}
+else{
+
+include_once("db_conn.php");
+$char= $_REQUEST['char'];
+$sql = "SELECT * FROM Knesset_Member ORDER BY full_name ASC ";
+$result = mysqli_query($conn,$sql); 
+       if ($result === FALSE) {
+        die(mysqli_error($conn));
+      }
+      if(mysqli_num_rows($result)!=0){
+
+?>
+<br><br>
+
+
+      <div class="container">
+   <div class="row" style="justify-content: center">
+      <?php    
+         
+                // LOOP TILL END OF DATA 
+                while($record=mysqli_fetch_assoc($result))
+                {
+                    $res=$record['Email'];
+             ?>
+      
+                     
+                     <div class="card col-md-3">
+                     <?php  echo '<img style="height:16rem; width:auto;" src="data:image/jpeg;base64,'.base64_encode( $record['photo'] ).'" class="card-img-top"/>';?>
+                        
+                     
+                     <h5 class="card-title">
+                           
+                     <?php echo $record['full_name'];?>
+                      
+                    </strong></h5>
+                     
+                        <?php echo $record['Party'];?>
+                        <button class="btn btn-primary" onclick="email_choesen('<?php echo $res; ?>')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+</svg>
+                        <?php echo $record['Email'];?>
+                    </button>
+                </div>
+
+      <?php }
+      }
+       ?>
+                </div>
+                </div>
+                
+                </div>
+                <?php
+
+
+
+
+}
+?>
 <br>
 
 
