@@ -40,37 +40,34 @@ if (isset($_SESSION['user_name'])) {
 
         <nav class="navbar navbar-expand-md navbar-light" style="background-color :#F0B27A">
 
-        <a class="navbar-brand" href="#">
-            <img src="../NavBar/UcanClaim.png" width="95" height="40" class="d-inline-block align-top" alt="">
-        </a>
+            <a class="navbar-brand" href="#">
+                <img src="../NavBar/UcanClaim.png" width="95" height="40" class="d-inline-block align-top" alt="">
+            </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="container">
-            <div class="collapse navbar-collapse justify-content-between " id="navbarNav">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../home.php">Home<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Petition<span
-                                class="sr-only"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="all_petitions.php">Sign a Petition</a>
-                            <a class="dropdown-item" href="new_petition.html">Create a Petition</a>
-                            <a class="dropdown-item" href="achieved_tareget_petitions.php">Completed petitions</a>
-                        </div>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../index_react/index.html">Shop<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../kneset.php">Contact a Knesset Member<span
-                                class="sr-only"></span></a>
-                    </li>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="container">
+                <div class="collapse navbar-collapse justify-content-between " id="navbarNav">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="../home.php">Home<span class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Petition<span class="sr-only"></span></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color :#F0B27A;
+                        border: none;outline: none;scroll-behavior: smooth">
+                                <a class="dropdown-item" href="all_petitions.php">Sign a Petition</a>
+                                <a class="dropdown-item" href="new_petition.html">Create a Petition</a>
+                                <a class="dropdown-item" href="achieved_tareget_petitions.php">Completed petitions</a>
+                            </div>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="../index_react/index.html">Shop<span class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="../kneset.php">Contact a Knesset Member<span class="sr-only"></span></a>
+                        </li>
 
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -87,9 +84,8 @@ if (isset($_SESSION['user_name'])) {
                     </li>
                 </ul>
             </div>
-        </div>
 
-    </nav>
+        </nav>
 
 
         <link rel="stylesheet" type="text/css" href="style.css">
@@ -121,62 +117,67 @@ if (isset($_SESSION['user_name'])) {
             </div>
 
         </div>
-        
+
         <br>
         <!-- display recent petitions -->
-        <div class="container">
-            <hr>
-            <br>
-            <h3> Recently added petitions </h3>
-            <br>
-            <br>
-            <?php
-            $count = 0;
-
-            include_once("db_conn.php");
-            // display 8 recent petitions
-            $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition)  ORDER BY id_petition DESC LIMIT 4";
-            $resultset = mysqli_query($conn, $sql);
-            while ($record = mysqli_fetch_assoc($resultset)) {
-                $count = $count + 1;
-                if ($count % 2 == 0) {
-            ?>
-
-            <div class="card" style="width: 16rem;">
+        <div class="bg-image col-12">
+            <div class="container">
+                <hr>
+                <br>
+                <h3> Recently added petitions </h3>
+                <br>
+                <div class="row">
                     <?php
-                } else { ?>
+                    $count = 0;
 
-                        <div class="card" style="width: 16rem;">
+                    include_once("db_conn.php");
+                    // display 8 recent petitions
+                    $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition)  ORDER BY id_petition DESC LIMIT 4";
+                    $resultset = mysqli_query($conn, $sql);
+                    while ($record = mysqli_fetch_assoc($resultset)) {
+                        $count = $count + 1;
+                        if ($count % 2 == 0) {
+                    ?>
 
-                        <?php } ?>
-                            <?php echo '<img class="card-img-top" alt="petition_img" src="data:image/jpeg;base64,' . base64_encode($record['photo']) . '"/>'; ?>
+                            <div class="card">
+                            <?php
+                        } else { ?>
+
+                                <div class="card">
+                                <?php } ?>
+                                <?php echo '<img class="card-img-top" alt="petition_img" src="data:image/jpeg;base64,' . base64_encode($record['photo']) . '"/>'; ?>
 
 
-                        <div class="card-body">
-                            
-                            <p class="card-title" style="font-weight: bold;"> <?php echo $record['title']; ?></p>
-                            <br>
-                            <p id="date"> <?php echo $record['date']; ?></p>
-                            <p class="card-text" style="font-family: Times New Roman, Times, serif;" href="signed_petition.php?data=<?php echo $record['id_petition'] ?>"> <?php echo substr_replace($record['content'], "...",100); ?></p>
-                            <br>
-                            <a href="signed_petition.php?data=<?php echo $record['id_petition'] ?>" class="card-link rem">Read more</a>
-                        </div>
+                                <div class="card-body">
+                                    <p id="date"> <?php echo $record['date']; ?></p>
+                                    <p class="card-title" style="font-weight: bold;"> <?php echo $record['title']; ?></p>
+                                    <br>
+                                    <p id="date"><?php
+                                                    $name = $record['email'];
+                                                    $name1 = explode("@", $name);
+                                                    echo $name1[0];
 
-                        </div>
+                                                    ?></p>
+                                    <p class="card-text" style="font-family: Times New Roman, Times, serif;" href="signed_petition.php?data=<?php echo $record['id_petition'] ?>"> <?php echo substr_replace($record['content'], "...", 100); ?></p>
+                                    <br>
+                                    <a href="signed_petition.php?data=<?php echo $record['id_petition'] ?>" class="card-link rem">Read more</a>
+                                </div>
 
+                                </div>
 
-                    <?php } ?>
-                    </div>
-                    <br>
-                    <br><br><br><br><br><br>
-
-                    <footer class="bg-white">
-                        <div class="bg-light py-2">
-                            <div class="container text-center">
-                                <p class="text-muted mb-0 py-2">© 2022 UCanClaim All rights reserved.</p>
+                            <?php } ?>
                             </div>
-                        </div>
-                    </footer>
+                </div>
+            </div>
+            <br>
+
+            <footer class="bg-white">
+                <div class="bg-light py-2">
+                    <div class="container text-center">
+                        <p class="text-muted mb-0 py-2">© 2022 UCanClaim All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
     </body>
 
     </html>

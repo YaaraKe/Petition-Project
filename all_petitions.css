@@ -1,0 +1,46 @@
+iframe {
+  height: 300px;
+  width: 300px;
+  resize: both;
+}
+h3 {
+  text-align: center;
+}
+.card {
+  display: inline-block;
+  width: 17rem;
+  /*margin-right: 0.5rem;*/
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+  border: none;
+}
+#date {
+  font-size: 11px;
+  margin-bottom: 0.5rem;
+  color: #808080;
+  display: block;
+}
+p {
+  display: inline-block;
+  margin-left: 1rem;
+}
+.rem {
+  margin-left: 2rem;
+}
+@media screen and (max-width: 760px) {
+  .card {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+.card .no {
+  display: none;
+}
+.card:hover .no {
+  display: inline;
+}
+
+.card:hover .yes {
+  display: none;
+}

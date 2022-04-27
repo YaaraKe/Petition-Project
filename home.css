@@ -124,5 +124,12 @@ h5{
     font-size:11px;
     margin-bottom:0.5rem; 
     color:#808080;
+    display:block;
 }
-.card {display:inline-block;}
+.card {display:inline-block;
+  width: 17rem;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top:0.5rem;
+  border: none;
+}
