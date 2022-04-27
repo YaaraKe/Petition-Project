@@ -1,0 +1,36 @@
+
+#personal_img{
+    background-image: url('../photos/confeti.png');
+    background-size: 60%;
+   background-repeat: no-repeat;
+}
+#text_con{
+    width:50%;
+}
+@media screen and (max-width: 1000px) {
+  .img_jump {
+      display:none;
+  }
+  #text_con{
+      width:80%;
+  }
+  #personal_img{
+   background-size:80%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  #text_con{
+      margin-left:3rem;
+  }
+  #personal_img{
+   background-position:25% 2%
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #personal_img{
+   background-size:100%;
+  }
+}
