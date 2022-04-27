@@ -78,6 +78,18 @@
     <br>
 
     <section>
+        <form style="text-align:center;" action="" method="POST">
+<input style="width:20%"; id="search" name="char" type="text" placeholder="Search petition">
+<button style="margin: auto;" id="submit" name="submit2" type="submit"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+</svg> |  Search
+</button>
+
+
+
+<br>
+<br>
+</form>
         <!-- PHP CODE TO FETCH DATA FROM ROWS-->
         <h3>All petitions,
             <small class="text-muted">Choose your petition</small>
@@ -86,6 +98,62 @@
 
         include_once("db_conn.php");
 
+if(isset($_POST["submit2"])){
+$char= $_REQUEST['char'];
+$sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition) AND (`content` LIKE '%%$char%%' OR `title` LIKE '%%$char%%')";
+$resultset = mysqli_query($conn, $sql);
+ if(mysqli_num_rows($resultset)!=0){
+        ?>
+        <div class="bg-image col-12">
+            <div class="container">
+                <div class="row">
+                    <?php
+                    // LOOP TILL END OF DATA
+                    while ($record = mysqli_fetch_assoc($resultset)) {
+                    ?>
+
+                        <div class="card">
+
+                            <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($record['photo']) . '" class="card-img-top yes"/> 
+                                <img src="../photos/hover.jpg" class="card-img-top no">'; ?>
+
+                            <div class="card-body">
+                                <p id="date"> <?php echo $record['date']; ?></p>
+                                <p class="card-title" style="font-weight: bold;"> <?php echo $record['title']; ?></p>
+                                <br>
+                                <p id="date"><?php
+                                                $name = $record['email'];
+                                                $name1 = explode("@", $name);
+                                                echo $name1[0];
+
+                                                ?></p>
+                                <p class="card-text" style="font-family: Times New Roman, Times, serif;" href="signed_petition.php?data=<?php echo $record['id_petition'] ?>"> <?php echo substr_replace($record['content'], "...", 95); ?></p>
+                            </div>
+                            <a href="signed_petition.php?data=<?php echo $record['id_petition'] ?>" class="btn btn-primary rem"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                                    <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
+                                </svg> | Sign now</a>
+                            <hr>
+                            <br>
+                        </div>
+                        <br>
+
+
+
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+        <br>
+            <?php
+ }
+      else{
+          ?>
+         <h5 style="text-align:center;"> The petition was not found</h5>
+          <?php
+      }
+       
+}
+else{
         // SQL query to select data from database
         $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition)";
         $resultset = mysqli_query($conn, $sql);
@@ -130,6 +198,11 @@
             </div>
         </div>
         <br>
+        <?php
+        }
+        ?>
+        
+        
         <footer class="bg-white">
             <div class="bg-light py-2">
                 <div class="container text-center">
