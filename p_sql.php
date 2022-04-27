@@ -15,8 +15,9 @@ $errors = array();
 $errors1 = array(); 
 
 
-// REGISTER USER
+//press change password button
 if (isset($_POST['reg_user'])) {
+  // $_SESSION['password'] = md5($_POST['password_1']);
   // receive all input values from the form
   $email = mysqli_real_escape_string($conn, $_POST['email']);
   $password_1 = mysqli_real_escape_string($conn, $_POST['password_1']);
@@ -27,9 +28,21 @@ if (isset($_POST['reg_user'])) {
     else if (empty($password_1)){  array_push($errors1, "Password is required"); }
     else{
           $password2 = md5($_POST['password_1']);//encrypt the password before saving in the database
-      if($password2!=$current_pass){
-          array_push($errors1, "Wrong password");
-      }
+         
+          
+          $user_check_query = "SELECT upassword FROM users WHERE user_name='$current_mail'";
+  $result = mysqli_query($conn, $user_check_query);
+  
+  while($user = mysqli_fetch_assoc($result)){
+   // if user exists
+    if ($user['upassword'] !=  $password2 ) {
+      array_push($errors1, "Wrong password");
+  }
+  }
+          
+    //   if($password2!=$current_pass){
+    //       array_push($errors1, "Wrong password");
+    //   }
     }
   // first check the database to make sure 
   // a user does not already exist with the same username and/or email
@@ -46,13 +59,20 @@ if (isset($_POST['reg_user'])) {
 
   // Finally, register user if there are no errors in the form
    if (count($errors1) == 0) {
+       echo $email;//מייל חדש
+       echo $current_mail;//זה המייל מהסשן
+
 $query13 = "UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail' ";
+$query_petition = "UPDATE `all_petitions` SET `email`='$email' WHERE `email`='$current_mail' ";
+$query_signed = "UPDATE `signatures` SET `email_signed`='$email' WHERE `email_signed`='$current_mail' ";
+    mysqli_query($conn, $query_petition);
   	mysqli_query($conn, $query13);
+    mysqli_query($conn, $query_signed);
    	$_SESSION['user_name'] = $email;
   }
  }
 
-
+//press change password button
  if (isset($_POST['reg_user2'])) {
   // receive all input values from the form
   $pass1 = mysqli_real_escape_string($conn, $_POST['pas1']);
@@ -72,7 +92,7 @@ $query13 = "UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_
     }
 
 
-  // Finally, register user if there are no errors in the form
+  // Finally, change password to the user if there are no errors
    if (count($errors) == 0) {
      $newpass=md5($pass1);
     $query14 = "UPDATE `users` SET `upassword`='$newpass' WHERE `user_name`='$current_mail' ";

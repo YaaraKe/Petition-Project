@@ -68,6 +68,20 @@
 
 </nav>
 
+<script>
+            var user_name_full = "<?php echo $_SESSION['user_name']; ?>";
+</script>
+
+<div id="personal_text" class="col">
+<br>
+    <h1>Current Email address:
+        <script>
+             document.write(user_name_full)
+        </script>
+     </h1>
+<br> 
+                                      
+</div>
 
   <div class="header">
   	<h2>Change Email</h2>
@@ -88,7 +102,7 @@
   	</div>
   </form>
   
-  
+  <br><br><br>
   
   <div class="header">
   	<h2>Change Password</h2>
@@ -111,5 +125,6 @@
   	  <button type="submit" class="btn btn-secondary" name="reg_user2">Change Passsword</button>
   	</div>
   </form>
+
 </body>
 </html>
