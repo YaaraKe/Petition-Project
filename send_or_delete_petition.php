@@ -68,7 +68,7 @@
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account<span
                         class="sr-only"></span></a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="p_form.php">Profile</a>
                     <a class="dropdown-item" href="../my_petition.php">My Petitions</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="logout.php">Log Out</a>
