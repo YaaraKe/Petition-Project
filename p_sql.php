@@ -62,12 +62,12 @@ if (isset($_POST['reg_user'])) {
        echo $email;//מייל חדש
        echo $current_mail;//זה המייל מהסשן
 
-$query13 = "UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail' ";
-$query_petition = "UPDATE `all_petitions` SET `email`='$email' WHERE `email`='$current_mail' ";
-$query_signed = "UPDATE `signatures` SET `email_signed`='$email' WHERE `email_signed`='$current_mail' ";
+  //  $query13 = "UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail' ";
+    $query_petition = "
+                        UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail'";
+                       
     mysqli_query($conn, $query_petition);
-  	mysqli_query($conn, $query13);
-    mysqli_query($conn, $query_signed);
+  	// mysqli_query($conn, $query13);
    	$_SESSION['user_name'] = $email;
   }
  }
@@ -83,7 +83,6 @@ $query_signed = "UPDATE `signatures` SET `email_signed`='$email' WHERE `email_si
   if (empty($oldpass)){  array_push($errors, "Current password is required"); }
     else if (empty($pass1)){  array_push($errors, " New password is required"); }
     else if (empty($pass2)){  array_push($errors, "Please confirm your new password"); }
-    else  if (strlen($pass1)<5){ array_push($errors, "Password must be over 5 characters");}
     else if ($pass1!=$pass2){  array_push($errors, "Passwords not match"); }
     else{
           $oldpass2 = md5($_POST['pas3']);//encrypt the password before saving in the database
