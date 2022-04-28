@@ -6,8 +6,7 @@ include "db_conn.php";
 
  $current_mail=$_SESSION['user_name'];
  $current_pass=$_SESSION['password'];
- echo $current_mail;
- echo $current_pass;
+
 
 // initializing variables
 $email = "";
@@ -59,8 +58,6 @@ if (isset($_POST['reg_user'])) {
 
   // Finally, register user if there are no errors in the form
    if (count($errors1) == 0) {
-       echo $email;//מייל חדש
-       echo $current_mail;//זה המייל מהסשן
 
   //  $query13 = "UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail' ";
     $query_petition = "
