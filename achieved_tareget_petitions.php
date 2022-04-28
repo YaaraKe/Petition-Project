@@ -68,10 +68,9 @@
 
     </nav>
 
-    <br>
-    <hr>
     <div class="container" style="position: relative;text-align: left;">
         <div class="row">
+            <div class="col-2"></div>
             <div class="col-3 mx-auto img_jump" style="float: right;">
                 <img src="../photos/juming.gif" alt="welcome_img" style="width:100%">
             </div>
@@ -80,8 +79,7 @@
                 <br>
                 <br>
                 <br>
-                <br>
-                <p id="text_con">We are happy to present you all the Petitions that have been <span id="bold_p">successfully completed</span>, thanks to all the people that signed and made a difference</p>
+                <p id="text_con" class="show">We are happy to present you all the Petitions that have been <span id="bold_p">successfully completed</span>, thanks to all the people that signed and made a difference</p>
                 <br>
             </div>
         </div>

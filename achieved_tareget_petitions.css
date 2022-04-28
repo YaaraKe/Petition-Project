@@ -1,11 +1,17 @@
 
-#personal_img{
-  background-image: url('../photos/confeti.png');
-  background-size: 60%;
- background-repeat: no-repeat;
+/*#personal_img{*/
+/*    background-image: url('../photos/confeti.png');*/
+/*    background-size: 60%;*/
+/*   background-repeat: no-repeat;*/
+/*}*/
+
+.show{
+  background-color:#F0B27A;
+  border-radius: 25px;
+  padding:2rem;
 }
 #text_con{
-  width:50%;
+  width:70%;
 }
 #bold_p{
   font-weight: bold;
