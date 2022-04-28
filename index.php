@@ -8,7 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
-    
+
 
 
     <link rel="stylesheet" href="login_new_style.css">
@@ -39,9 +39,9 @@
                   <use xlink:href="#icon-lock"></use>
                 </svg><span class="hidden">Password</span></label>
               <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required>
-            </div>
-      
-            <div class="form__field">
+
+
+              <div class="form__field">
               <input type="submit" value="Sign In">
             </div>
       
@@ -67,3 +67,4 @@
       
       </body>
 </html>
+
