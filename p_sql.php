@@ -83,6 +83,7 @@ $query_signed = "UPDATE `signatures` SET `email_signed`='$email' WHERE `email_si
   if (empty($oldpass)){  array_push($errors, "Current password is required"); }
     else if (empty($pass1)){  array_push($errors, " New password is required"); }
     else if (empty($pass2)){  array_push($errors, "Please confirm your new password"); }
+    else  if (strlen($pass1)<5){ array_push($errors, "Password must be over 5 characters");}
     else if ($pass1!=$pass2){  array_push($errors, "Passwords not match"); }
     else{
           $oldpass2 = md5($_POST['pas3']);//encrypt the password before saving in the database
