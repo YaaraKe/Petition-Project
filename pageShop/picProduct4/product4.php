@@ -27,52 +27,51 @@
     <br>
     <nav class="navbar navbar-expand-md navbar-light" style="background-color :#F0B27A">
 
-<a class="navbar-brand" href="#">
-    <img src="/NavBar/UcanClaim.png" width="95" height="40" class="d-inline-block align-top" alt="">
-</a>
+        <a class="navbar-brand" href="#">
+            <img src="/NavBar/UcanClaim.png" width="85" height="40" class="d-inline-block align-top" alt="">
+        </a>
 
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-</button>
-<div class="container">
-    <div class="collapse navbar-collapse justify-content-between " id="navbarNav">
-        <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/home.php">Home<span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Petition<span class="sr-only"></span></a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/all_petitions.php">Sign a Petition</a>
-                    <a class="dropdown-item" href="/new_petition.html">Create a Petition</a>
-                    <a class="dropdown-item" href="/achieved_tareget_petitions.php">Completed petitions</a>
-                </div>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/index_react/index.html">Shop<span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/kneset.php">Contact a Knesset Member<span class="sr-only"></span></a>
-            </li>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container">
+            <div class="collapse navbar-collapse justify-content-between " id="navbarNav">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home.php">Home<span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Petition<span class="sr-only"></span></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/all_petitions.php">Sign a Petition</a>
+                            <a class="dropdown-item" href="/new_petition.html">Create a Petition</a>
+                            <a class="dropdown-item" href="/achieved_tareget_petitions.php">Completed petitions</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/index_react/index.html">Shop<span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/kneset.php">Contact a Knesset Member<span class="sr-only"></span></a>
+                    </li>
 
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account<span class="sr-only"></span></a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="/my_petition.php">My Petitions</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="logout.php">Log Out</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account<span class="sr-only"></span></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="/my_petition.php">My Petitions</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="logout.php">Log Out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-</nav>
+    </nav>
     <br>
-
 
     <!-- Show more information about the product -->
     <main class="container">
@@ -110,12 +109,12 @@
 
             <?php
             $sname = "localhost";
-            $unmae = "root";
-            $password = "";
-            $db_name = "test";
+            $unmae = "nofarrei_user";
+            $password = "12345";
+            $db_name = "nofarrei_Petition";
             $connection = mysqli_connect($sname, $unmae, $password, $db_name);
             // SQL query to select data from database
-            $sql1 = "UPDATE shop SET status=status-1 WHERE id=4 LIMIT 1";
+            $sql = "SELECT DISTINCT * FROM shop WHERE id =40001 LIMIT 1";
             $resultset = mysqli_query($connection, $sql);
             ?>
 
@@ -128,12 +127,12 @@
                     while ($row = mysqli_fetch_assoc($resultset)) {
                     ?>
                         <p>UcanClaim</p>
-                        <!-- Chisel Tip, Assorted, Pack Of 12 -->
+                        <!-- Fine Bullet Tip, Black, Dozen -->
                         <h2><?php echo $row['name']; ?></h2><br>
                         <p><?php echo $row['description']; ?>
                         </p>
                         <div>
-                            <p id="price4"><?php echo $row['cost']; ?>₪</p>
+                            <p id="price3"><?php echo $row['cost']; ?>₪</p>
                         </div>
                     <?php } ?>
                     <div id="container"></div>
@@ -146,7 +145,7 @@
                             console.log(element.innerHTML);
                             if (element.innerHTML == "success") {
                                 <?php
-                                $sql1 = "UPDATE shop SET status=status-1 WHERE id=4 LIMIT 1";
+                                $sql1 = "UPDATE shop SET status=status-1 WHERE id=30001 LIMIT 1";
                                 if ($connection->query($sql1) === TRUE) {
                                     echo "success";
                                 } else {
@@ -161,8 +160,7 @@
         </div>
     </main>
     <br>
-    <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded(document.getElementById('price4').innerHTML.replace('₪', ''))"></script>
-
+    <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded(document.getElementById('price3').innerHTML.replace('₪', ''))"></script>
 </body>
 
 </html>

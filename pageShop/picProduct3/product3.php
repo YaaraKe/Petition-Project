@@ -109,12 +109,12 @@
 
             <?php
             $sname = "localhost";
-            $unmae = "root";
-            $password = "";
-            $db_name = "test";
+            $unmae = "nofarrei_user";
+            $password = "12345";
+            $db_name = "nofarrei_Petition";
             $connection = mysqli_connect($sname, $unmae, $password, $db_name);
             // SQL query to select data from database
-            $sql = "SELECT DISTINCT * FROM shop WHERE id =3  LIMIT 1";
+            $sql = "SELECT DISTINCT * FROM shop WHERE id =30001 LIMIT 1";
             $resultset = mysqli_query($connection, $sql);
             ?>
 
@@ -145,7 +145,7 @@
                             console.log(element.innerHTML);
                             if (element.innerHTML == "success") {
                                 <?php
-                                $sql1 = "UPDATE shop SET status=status-1 WHERE id=3 LIMIT 1";
+                                $sql1 = "UPDATE shop SET status=status-1 WHERE id=30001 LIMIT 1";
                                 if ($connection->query($sql1) === TRUE) {
                                     echo "success";
                                 } else {

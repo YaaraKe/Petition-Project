@@ -1,12 +1,49 @@
-.size{
-    height:10%;
+.size {
+    height: 10%;
     width: 10%;
-}
-.carousel-control-next,
-.carousel-control-prev /*, .carousel-indicators */ {
+  }
+  .carousel-control-next,
+  .carousel-control-prev /*, .carousel-indicators */ {
     filter: invert(100%);
-}
-
-.color{
+  }
+  
+  .color {
     color: green;
-}
+  }
+  h5 {
+    color: #f0b27a;
+    position: relative;
+  }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  
+  .p_1 {
+      font-size: 14px;
+  }
+  
+  .b_1 {
+      font-size: 14px;
+  }
+  
+  .colo {
+      background-color: transparent;
+      border: none;
+  }
+  .marg{
+      margin-left:85%;
+  }
+  
+  .im{
+       border-radius: 10px;
+  }
+  @media screen and (max-width: 1000px){
+     
+   .marg{
+       margin-left:60%;
+   }
+  
+   }
+   
+  
