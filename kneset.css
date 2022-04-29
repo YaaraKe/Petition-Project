@@ -61,3 +61,17 @@ b{
     background-color: #c86712e6;
 }
 
+#information{
+    display:inline-block;
+}
+
+details > summary {
+    list-style-type: none;
+}
+details{
+    margin-left:0.5rem;
+}
+#info{
+    text-align: left; 
+    font-size:12px;
+}
