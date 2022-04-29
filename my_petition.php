@@ -28,7 +28,7 @@
     <nav class="navbar navbar-expand-md navbar-light" style="background-color :#F0B27A">
 
         <a class="navbar-brand" href="#">
-            <img src="../NavBar/UcanClaim.png" width="95" height="40" class="d-inline-block align-top" alt="">
+            <img src="../NavBar/UcanClaim.png" width="85" height="40" class="d-inline-block align-top" alt="">
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
