@@ -67,3 +67,14 @@
     border: 1px solid #3c763d;
     margin-bottom: 20px;
   }
+
+  SVG:hover{
+    /* color: rgb(74, 159, 228); */
+    color: orange;
+/* margin-left: -45px; */
+
+}
+
+input{
+    margin-right: 5px;
+}

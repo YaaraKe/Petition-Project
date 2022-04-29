@@ -79,7 +79,7 @@
     </nav>
 
     <br>
-
+<!-- display all the petition that user created-->
     <section>
     <div class="container">
     <h1> My petitions</h1>
@@ -145,7 +145,7 @@
     }
     
 }
-
+// In case user did not create a petition
 else{
     echo "you still have not petitions, You can create new one";
      ?>

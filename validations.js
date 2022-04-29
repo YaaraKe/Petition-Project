@@ -90,16 +90,6 @@ else if(blacklist.test(subject.value)){
 
 }
 
-// function serachbox(){
-//     var search = document.search.char;
-//   var blacklist=/["';`]+/;
-//   if(blacklist.test(search.value)){
-//         setErrorFor(search,"\n" +"You can not enter spacial characters.");
-//         return false;
-//   }
-//   return true;
-// }
-
 
 function sign_name(){
     var namef = document.signedForm.signName;
