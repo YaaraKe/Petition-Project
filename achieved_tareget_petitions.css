@@ -1,47 +1,46 @@
+html, body{
+  height: 100%;
+}
 
-/*#personal_img{*/
-/*    background-image: url('../photos/confeti.png');*/
-/*    background-size: 60%;*/
-/*   background-repeat: no-repeat;*/
-/*}*/
 
-.show{
-  background-color:#F0B27A;
-  border-radius: 25px;
-  padding:2rem;
+.show_2{
+    background-color:#F0B27A;
+    border-radius: 25px;
+    padding:2rem;
+    background-repeat: no-repeat;
 }
 #text_con{
-  width:70%;
+    width:70%;
 }
 #bold_p{
-  font-weight: bold;
-  font-style: italic;
+    font-weight: bold;
+    font-style: italic;
 }
 @media screen and (max-width: 1000px) {
-.img_jump {
-    display:none;
-}
-#text_con{
-    width:80%;
-}
-#personal_img{
- background-size:80%;
-}
+  .img_jump {
+      display:none;
+  }
+  #text_con{
+      width:80%;
+  }
+  #personal_img{
+   background-size:80%;
+  }
 }
 
 @media screen and (max-width: 600px) {
 
-#text_con{
-    margin-left:3rem;
-}
-#personal_img{
- background-position:25% 2%
-}
+  #text_con{
+      margin-left:3rem;
+  }
+  #personal_img{
+   background-position:25% 2%
+  }
 }
 
 @media screen and (max-width: 400px) {
 
-#personal_img{
- background-size:100%;
-}
+  #personal_img{
+   background-size:100%;
+  }
 }

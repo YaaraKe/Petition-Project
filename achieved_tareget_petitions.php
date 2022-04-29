@@ -11,6 +11,17 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" type="text/css" href="all_petitions.css">
     <link rel="stylesheet" type="text/css" href="achieved_tareget_petitions.css">
+    <style>
+        /* body {
+                background-color:# ;
+            } */
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,7 +49,8 @@
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Petition<span class="sr-only"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color :#F0B27A;
+                        border: none;outline: none;scroll-behavior: smooth">
                             <a class="dropdown-item" href="all_petitions.php">Sign a Petition</a>
                             <a class="dropdown-item" href="new_petition.html">Create a Petition</a>
                             <a class="dropdown-item" href="achieved_tareget_petitions.php">Completed petitions</a>
@@ -72,14 +84,14 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-3 mx-auto img_jump" style="float: right;">
-                <img src="../photos/juming.gif" alt="welcome_img" style="width:100%">
+                <img src="../photos/jumping.gif" alt="welcome_img" style="width:100%">
             </div>
             <div id="personal_img" class="col mx-auto">
                 <br>
                 <br>
                 <br>
                 <br>
-                <p id="text_con" class="show">We are happy to present you all the Petitions that have been <span id="bold_p">successfully completed</span>, thanks to all the people that signed and made a difference</p>
+                <p id="text_con" class="show_2">We are happy to present you all the Petitions that have been <span id="bold_p">successfully completed</span>, thanks to all the people that signed and made a difference</p>
                 <br>
             </div>
         </div>
@@ -120,11 +132,7 @@
                                                 ?></p>
                                 <p class="card-text" style="font-family: Times New Roman, Times, serif;" href="signed_petition.php?data=<?php echo $record['id_petition'] ?>"> <?php echo substr_replace($record['content'], "...", 95); ?></p>
                             </div>
-                            <a href="signed_petition.php?data=<?php echo $record['id_petition'] ?>" class="btn btn-primary rem"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
-                                    <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                                </svg> | Sign now</a>
                             <hr>
-                            <br>
                             <!--  progress bar -->
                             <h3>Signtures Progress</h3>
                             <div class="w3-grey w3-round-large">
