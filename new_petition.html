@@ -31,7 +31,7 @@
     <nav class="navbar navbar-expand-md navbar-light" style="background-color :#F0B27A">
 
         <a class="navbar-brand" href="#">
-            <img src="../NavBar/UcanClaim.png" width="95" height="40" class="d-inline-block align-top" alt="">
+            <img src="../NavBar/UcanClaim.png" width="85" height="40" class="d-inline-block align-top" alt="">
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -97,7 +97,8 @@
                     <!-- Subject Input -->
                     <div class="form-control ">
                         <label>Subject:</label>
-                        <input class="form-control" id="subject" type="text" name="subject" placeholder="Subject" required>
+                        <input class="form-control" id="subject" type="text" name="subject" placeholder="Subject"
+                            required>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-pen-fill" viewBox="0 0 16 16">
                             <path
@@ -111,7 +112,8 @@
                     <div class="form-control ">
                         <label>Petition Content: </label>
                         <br>
-                        <textarea class="form-control" rows="20" cols="80" id="Content" name="Content" required></textarea>
+                        <textarea class="form-control" rows="20" cols="80" id="Content" name="Content"
+                            required></textarea>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-body-text" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -125,14 +127,15 @@
                     <div class="form-control ">
                         <label for="img">Select image:</label>
                         <input class="form-control" type="file" id="img" name="img" accept="image/*" required>
+                        <small>Error message</small>
 
                     </div>
 
                     <!--signatures amounts -->
                     <div class="form-control ">
                         <label>How many signatures do you need? </label>
-                        <input class="form-control" id="sign_num" type="number" name="sign_num" placeholder="Goal number" required min="1"
-                            max="999999999">
+                        <input class="form-control" id="sign_num" type="number" name="sign_num"
+                            placeholder="Goal number" required min="1" max="999999999">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-pin-angle-fill" viewBox="0 0 16 16">
                             <path
@@ -144,8 +147,8 @@
                     <!--When to notify -->
                     <div class="form-control ">
                         <label>How many signatures to alert you? </label>
-                        <input class="form-control" id="alert_sign" type="number" name="alert_sign" placeholder="Alert number" min="0"
-                            max="999999998" required>
+                        <input class="form-control" id="alert_sign" type="number" name="alert_sign"
+                            placeholder="Alert number" min="0" max="999999998" required>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-envelope-exclamation-fill" viewBox="0 0 16 16">
                             <path
@@ -157,12 +160,19 @@
                     </div>
 
                     <hr>
-                    <button type="reset" value="Reset" name="reset" class="btn btn-outline-secondary">           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser" viewBox="0 0 16 16">
-                        <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414l-3.879-3.879zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
-                      </svg> | Reset</button>
+                    <button type="reset" value="Reset" name="reset" class="btn btn-outline-secondary"> <svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-eraser" viewBox="0 0 16 16">
+                            <path
+                                d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414l-3.879-3.879zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z" />
+                        </svg> | Reset</button>
                     <button type="submit" value="Send" name="submit" onclick="return ValidatePetitionForm()"
-                        class="btn btn-outline-primary">Submit</button>
-                    
+                        class="btn btn-outline-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path
+                                d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+                        </svg> | Submit</button>
+
                     <hr>
                     <br>
                 </form>

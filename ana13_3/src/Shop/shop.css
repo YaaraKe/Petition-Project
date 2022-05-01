@@ -1,19 +1,35 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .border {
-    float: left;
-    margin: 1rem;
-    border: grey;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.border_1 {
+  float: left;
+  margin: 0.5rem;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.img_shop {
+    height:16rem;
+    width: 16rem;
+    display: block;
     border-radius: 8px;
-    padding: 15px;
-  }
-  
-  .img {
-      height:10rem;
-      width: 10rem;
-      display: block;
-  }
+    margin-bottom: 1rem;
+}
+#poster{
+  width:100%;
+  margin-bottom: 1rem;
+}
+h3{
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.footer_1{
+  background-color: #F8F9FA;
+
+}
+#clear{
+  clear: both;
+}

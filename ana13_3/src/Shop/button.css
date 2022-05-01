@@ -1,21 +1,21 @@
 #button {
-    background-color: #40bb45;
-    border: none;
-    color: white;
-    padding: 5px 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 8px;
-    margin-top: 1rem;
-  }
-  
-  button:hover {
-    background-color: green;
-  }
-  #links{
-    color: #070707;
-    text-decoration: none;
-  }
+  background-color: #F0B27A;
+  border: none;
+  color: white;
+  padding: 5px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+#links {
+  color: #070707;
+  text-decoration: none;
+}
+#button:hover {
+  background-color: #c86712e6;
+}

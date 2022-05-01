@@ -1,6 +1,7 @@
 function ValidatePetitionForm(){
     
     var subject = document.petitionForm.subject;
+    var img = document.petitionForm.img;
     var content = document.petitionForm.Content;
     var target = document.petitionForm.sign_num;
     var alertf = document.petitionForm.alert_sign.value;
@@ -71,7 +72,16 @@ else if(blacklist.test(subject.value)){
         setSuccessFor(alertn);
         counter++;
      }
-   if(counter==4){
+     if(img.value===""){
+         setErrorFor(img,"\n" +"You must upload a image.");
+         
+     }
+     else{
+          setSuccessFor(img);
+        counter++;
+     
+     }
+   if(counter==5){
        return true;
    }
    else{ return false;}
@@ -79,7 +89,6 @@ else if(blacklist.test(subject.value)){
 
 
 }
-
 
 
 function sign_name(){
