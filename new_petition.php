@@ -1,12 +1,15 @@
 <?php
 
  include 'db_conn.php';
-
+session_start(); 
  
  if(isset($_POST['submit'])){
 
-    //Insert tha DB the new petition details
     $check=getimagesize($_FILES["img"]["tmp_name"]);
+   // $extensions_arr = array("jpg","jpeg","png","gif");
+
+    // Check extension
+	//if( in_array($imageFileType,$extensions_arr) ){
         if(check!==false){
 
         $title =  $_REQUEST['subject'];
@@ -23,6 +26,7 @@
         if(mysqli_query($conn, $sql)){
             echo '<script> alert ("your petition uploaded successfully.") </script>'; 
             echo "(<script> window.location='new_petition.html';</script>)";
+            //header("Location: new_petition.html");
   
         } else{
             echo " Sorry please try again later $sql. " 
