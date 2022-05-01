@@ -33,25 +33,25 @@ const Shop = () => {
         <img class="img_shop" src={paper} alt=""></img>
         <b>{art.title1}</b>
         <div>{art.amount1} ₪</div>
-        <Button link={"../pageShop/picProduct1/product1.php"} />
+        <Button link={"../pageShop/product.php?data=10001"} />
       </div>
       <div class="border_1">
         <img class="img_shop" src={scotch} alt=""></img>
         <b>{art.title2}</b>
         <div>{art.amount2} ₪</div>
-        <Button link={"../pageShop/picProduct2/product2.php"} />
+        <Button link={"../pageShop/product.php?data=20001"} />
       </div>
       <div class="border_1">
         <img class="img_shop" src={sharpi} alt=""></img>
         <b>{art.title3}</b>
         <div>{art.amount3} ₪</div>
-        <Button link={"../pageShop/picProduct3/product3.php"} />
+        <Button link={"../pageShop/product.php?data=30001"} />
       </div>
       <div class="border_1">
         <img class="img_shop" src={colorsharp} alt=""></img>
         <b>{art.title4}</b>
         <div>{art.amount4} ₪</div>
-        <Button link={"../pageShop/picProduct4/product4.php"} />
+        <Button link={"../pageShop/product.php?data=40001"} />
       </div>
       <div id="clear"></div>
       <div class="bg-white">
