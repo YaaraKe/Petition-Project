@@ -89,8 +89,8 @@
     <br><br>
 
     <?php
-    include 'db_conn.php';
      session_start();
+    include 'db_conn.php';
     $id = $_GET['data'];
     $id = mysqli_real_escape_string($conn, $id);
 
