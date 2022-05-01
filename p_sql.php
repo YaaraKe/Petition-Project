@@ -62,12 +62,14 @@ if (isset($_POST['reg_user'])) {
        echo $email;//מייל חדש
        echo $current_mail;//זה המייל מהסשן
 
-$query13 = "UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail' ";
-$query_petition = "UPDATE `all_petitions` SET `email`='$email' WHERE `email`='$current_mail' ";
-$query_signed = "UPDATE `signatures` SET `email_signed`='$email' WHERE `email_signed`='$current_mail' ";
+  //  $query13 = "UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail' ";
+    $query_petition = "SET FOREIGN_KEY_CHECKS=0;
+                        UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail';
+                        UPDATE `all_petitions` SET `email`='$email' WHERE `email`='$current_mail';
+                        UPDATE `signatures` SET `email_signed`='$email' WHERE `email_signed`='$current_mail';
+                        SET FOREIGN_KEY_CHECKS=1;";
     mysqli_query($conn, $query_petition);
-  	mysqli_query($conn, $query13);
-    mysqli_query($conn, $query_signed);
+  	// mysqli_query($conn, $query13);
    	$_SESSION['user_name'] = $email;
   }
  }

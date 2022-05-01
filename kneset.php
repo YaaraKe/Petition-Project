@@ -156,7 +156,7 @@
                     <small> Error message </small>
                 </div>
                 <div class="form-control ">
-                    <p style="color:blue;"> Click on a Member of Knesset in the list below or select all</p>
+                    <p style="color:blue;"> Click on a Member of Knesset in the list above or select all</p>
                     <label> Recipient Email address:</label> <input class="form-control" type="text" name="tomail" id="toemail" required
                         disabled>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
