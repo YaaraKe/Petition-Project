@@ -15,10 +15,11 @@
 
 </head>
      <body class="align">
+      <img src="../NavBar/UcanClaim.png" width="200" height="100" class="d-inline-block align-top" alt="">
 
         <div class="grid">
 
-          <h1><b>Welcome!</b></h1>
+          <h1 style="text-align: center;"><b>Welcome!</b></h1>
       
           <form action="login.php" method="POST" class="form login">
             <?php if (isset($_GET['error'])) { ?>
