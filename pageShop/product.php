@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="..\picStylesheet.css" rel="stylesheet">
+    <link href="picStylesheet.css" rel="stylesheet">
     <title>Product</title>
 
     <!-- Required meta tags -->
@@ -14,7 +14,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="../pageshop.js"></script>
+    <script src="pageshop.js"></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
     <script type='text/javascript' src=''></script>
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
@@ -151,6 +151,7 @@
                 </div>
                 <div id="container"></div>
                 <div id="update" style="display:none"></div>
+                <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded(document.getElementById('price1').innerHTML.replace('₪', ''))"></script>
             </div>
 
             <section class="pt-4 pb-4">
@@ -185,9 +186,9 @@
                                                     <div class="card" style="border: none;">
                                                         <?php echo '<img class="img-fluid im" alt="product" src="data:image/jpeg;base64,' . base64_encode($row['photo']) . '"/>'; ?>
                                                         <div class="card-body">
-                                                            <b class="b_1" class="card-title"><?php echo $row['name']; ?></b>
+                                                            <a href="../pageShop/product.php?data=<?php echo $row['id'] ?>"><b class="b_1" class="card-title"><?php echo $row['name']; ?></b></a>
                                                             <p class="p_1" id="price1"><?php echo $row['cost']; ?>₪</p>
-
+                                                            
                                                         </div>
 
                                                     </div>
@@ -199,7 +200,7 @@
                                     <div class="carousel-item">
                                         <div class="row">
                                             <?php
-                                            $sql2 = "SELECT DISTINCT * FROM shop WHERE NOT id= $id LIMIT 2, 3;";
+                                            $sql2 = "SELECT DISTINCT * FROM shop WHERE NOT id= $id LIMIT 3, 3;";
                                             $resultset2 = mysqli_query($connection, $sql2);
                                             ?>
                                             <?php
@@ -209,7 +210,7 @@
                                                     <div class="card" style="border: none;">
                                                         <?php echo '<img class="img-fluid im" alt="product" src="data:image/jpeg;base64,' . base64_encode($row['photo']) . '"/>'; ?>
                                                         <div class="card-body">
-                                                            <b class="b_1" class="card-title"><?php echo $row['name']; ?></b>
+                                                            <a href="../pageShop/product.php?data=<?php echo $row['id'] ?>"><b class="b_1" class="card-title"><?php echo $row['name']; ?></b></a>
                                                             <p class="p_1" id="price1"><?php echo $row['cost']; ?>₪</p>
                                                         </div>
 
@@ -246,8 +247,6 @@
                 }
             </script>
 
-        </div>
-
     </main>
     <footer class="bg-white">
         <div class="bg-light py-2">
@@ -257,7 +256,6 @@
         </div>
     </footer>
 
-    <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded(document.getElementById('price1').innerHTML.replace('₪', ''))"></script>
 </body>
 
 </html>
