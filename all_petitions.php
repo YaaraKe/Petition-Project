@@ -77,6 +77,7 @@
 
     <br>
 
+    <!-- search box -->
     <section>
         <form style="text-align:center;" action="" method="POST">
 <input style="width:20%"; id="search" name="char" type="text" placeholder="Search petition">
@@ -107,13 +108,13 @@ $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT
 
 
 $resultset = mysqli_query($conn, $sql);
+// if user searched
  if(mysqli_num_rows($resultset)!=0){
         ?>
         <div class="bg-image col-12">
             <div class="container">
                 <div class="row">
                     <?php
-                    // LOOP TILL END OF DATA
                     while ($record = mysqli_fetch_assoc($resultset)) {
                     ?>
 
@@ -151,16 +152,17 @@ $resultset = mysqli_query($conn, $sql);
         <br>
             <?php
  }
+// if the petition was not found
       else{
           ?>
          <h5 style="text-align:center;"> The petition was not found</h5>
           <?php
       }
-       
+     //  if user didnt serch  
 }
 else{
         // SQL query to select data from database
-        $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition) AND (`content` LIKE '%%$char%%' OR `title` LIKE '%%$char%%') AND (p.id_petition NOT IN (SELECT id_petition FROM signatures WHERE `email_signed`='" . mysqli_escape_string($conn,$email) . "'))";
+        $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition) AND (p.id_petition NOT IN (SELECT id_petition FROM signatures WHERE `email_signed`='" . mysqli_escape_string($conn,$email) . "'))";
         $resultset = mysqli_query($conn, $sql);
         ?>
         <div class="bg-image col-12">

@@ -120,6 +120,7 @@
         <div class="row" style="justify-content: center">
             <br>
             <hr>
+            <!-- search box -->
             <form name="search" style="text-align:center;" action="" method="POST">
                 <input style="width:20%" ; id="search" name="char" type="text" placeholder="Search name">
                 <button class="button" style="margin: auto;" id="submit" name="submit2" type="submit"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -145,7 +146,7 @@
             </form>
             <?php
 
-
+// it user searched
             if (isset($_POST["submit2"])) {
                 include_once("db_conn.php");
                 $char = $_REQUEST['char'];
@@ -191,6 +192,7 @@
                             <?php }
                         } else {
                             ?>
+                            <!-- if we couldnt find a member who matched to the search value -->
                             <h5 style="text-align:center;"> The knesset member was not found</h5>
                         <?php
                         }
@@ -200,7 +202,7 @@
 
         </div>
         <?php
-
+// if user didnt searched
             } else {
 
                 include_once("db_conn.php");
