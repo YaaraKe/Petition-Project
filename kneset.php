@@ -185,7 +185,7 @@
                                     <b class="card-title">
 
                                         <?php echo $record['full_name']; ?>
-
+                                        
                                     </b>
 
                                     <p id="size_p1"> <?php echo $record['Party']; ?></p>
@@ -232,7 +232,7 @@
                     // LOOP TILL END OF DATA 
                     while ($record = mysqli_fetch_assoc($result)) {
                         $res = $record['Email'];
-                        $kneeset_name=$record['full_name']
+                        $knesset_name=$record['full_name']
                     ?>
 
 
