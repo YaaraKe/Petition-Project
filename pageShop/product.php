@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="..\picStylesheet.css" rel="stylesheet">
+    <link href="picStylesheet.css" rel="stylesheet">
     <title>Product</title>
 
     <!-- Required meta tags -->
@@ -14,7 +14,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="../pageshop.js"></script>
+    <script src="pageshop.js"></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
     <script type='text/javascript' src=''></script>
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
@@ -23,13 +23,9 @@
 
 <body>
 
-   <!-- IMPORT BOOTSTRAP SCRIPTS-->	
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"	
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"	
-        crossorigin="anonymous"></script>	
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"	
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"	
-        crossorigin="anonymous"></script>
+    <!-- IMPORT BOOTSTRAP SCRIPTS-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!-- nav bar for the website -->
     <br>
@@ -80,7 +76,17 @@
 
     </nav>
     <br>
-
+    <?php
+    $sname = "localhost";
+    $unmae = "nofarrei_user";
+    $password = "12345";
+    $db_name = "nofarrei_Petition";
+    $connection = mysqli_connect($sname, $unmae, $password, $db_name);
+    // SQL query to select data from database
+    $id = $_GET['data'];
+    $sql = "SELECT DISTINCT * FROM shop WHERE id= $id ";
+    $resultset = mysqli_query($connection, $sql);
+    ?>
 
     <!-- Show more information about the product -->
     <main class="container">
@@ -92,19 +98,23 @@
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                     </ol>
-
-                    <!-- Carousle of pictures of the product -->
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100 size" src="..\picProduct1\pic1.jpg" alt="First slide">
+                    <?php
+                    // LOOP TILL END OF DATA
+                    while ($row = mysqli_fetch_assoc($resultset)) {
+                    ?>
+                        <!-- Carousle of pictures of the product -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <?php echo '<img class="d-block w-100 size"  alt="First slide" src="data:image/jpeg;base64,' . base64_encode($row['pic1']) . '"/>'; ?>
+                            </div>
+                            <div class="carousel-item">
+                                <?php echo '<img class="d-block w-100 size"  alt="Second slide" src="data:image/jpeg;base64,' . base64_encode($row['pic2']) . '"/>'; ?>
+                            </div>
+                            <div class="carousel-item">
+                                <?php echo '<img class="d-block w-100 size"  alt="Third slide" src="data:image/jpeg;base64,' . base64_encode($row['pic3']) . '"/>'; ?>
+                            </div>
                         </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100 size" src="..\picProduct1\pic2.jpg" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100 size" src="..\picProduct1\pic3.jpg" alt="Third slide">
-                        </div>
-                    </div>
+                    <?php } ?>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only"></span>
@@ -116,23 +126,17 @@
                 </div>
             </div>
 
-            <?php
-            $sname = "localhost";
-            $unmae = "nofarrei_user";
-            $password = "12345";
-            $db_name = "nofarrei_Petition";
-            $connection = mysqli_connect($sname, $unmae, $password, $db_name);
-            // SQL query to select data from database
-            $sql = "SELECT DISTINCT * FROM shop WHERE id =10001  LIMIT 1";
-            $resultset = mysqli_query($connection, $sql);
-            ?>
             <!-- Information of the product -->
             <div class="col-md-4">
                 <div>
                     <br>
                     <?php
+                    // SQL query to select data from database
+                    $id = $_GET['data'];
+                    $sql_1 = "SELECT DISTINCT * FROM shop WHERE id= $id ";
+                    $resultset_1 = mysqli_query($connection, $sql_1);
                     // LOOP TILL END OF DATA
-                    while ($row = mysqli_fetch_assoc($resultset)) {
+                    while ($row = mysqli_fetch_assoc($resultset_1)) {
                     ?>
                         <p>UcanClaim</p>
                         <!-- 22" x 28" - Assorted Colors - 50/ Carton -->
@@ -147,6 +151,7 @@
                 </div>
                 <div id="container"></div>
                 <div id="update" style="display:none"></div>
+                <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded(document.getElementById('price1').innerHTML.replace('₪', ''))"></script>
             </div>
 
             <section class="pt-4 pb-4">
@@ -170,7 +175,7 @@
                                     <div class="carousel-item active">
                                         <div class="row">
                                             <?php
-                                            $sql1 = "SELECT DISTINCT * FROM shop WHERE NOT id=10001 LIMIT 3";
+                                            $sql1 = "SELECT DISTINCT * FROM shop WHERE NOT id= $id LIMIT 3";
                                             $resultset1 = mysqli_query($connection, $sql1);
                                             ?>
                                             <?php
@@ -178,12 +183,12 @@
                                             while ($row = mysqli_fetch_assoc($resultset1)) {
                                             ?>
                                                 <div class="col-md-4 mb-3">
-                                                    <div class="card" style="border: none;"> 
+                                                    <div class="card" style="border: none;">
                                                         <?php echo '<img class="img-fluid im" alt="product" src="data:image/jpeg;base64,' . base64_encode($row['photo']) . '"/>'; ?>
                                                         <div class="card-body">
-                                                            <b class="b_1" class="card-title"><?php echo $row['name']; ?></b>
+                                                            <a href="../pageShop/product.php?data=<?php echo $row['id'] ?>"><b class="b_1" class="card-title"><?php echo $row['name']; ?></b></a>
                                                             <p class="p_1" id="price1"><?php echo $row['cost']; ?>₪</p>
-
+                                                            
                                                         </div>
 
                                                     </div>
@@ -195,17 +200,17 @@
                                     <div class="carousel-item">
                                         <div class="row">
                                             <?php
-                                            $sql2 = "SELECT DISTINCT * FROM shop WHERE NOT id=10001 LIMIT 2, 3;";
+                                            $sql2 = "SELECT DISTINCT * FROM shop WHERE NOT id= $id LIMIT 3, 3;";
                                             $resultset2 = mysqli_query($connection, $sql2);
                                             ?>
                                             <?php
                                             while ($row = mysqli_fetch_assoc($resultset2)) {
                                             ?>
                                                 <div class="col-md-4 mb-3">
-                                                    <div class="card" style="border: none;"> 
+                                                    <div class="card" style="border: none;">
                                                         <?php echo '<img class="img-fluid im" alt="product" src="data:image/jpeg;base64,' . base64_encode($row['photo']) . '"/>'; ?>
                                                         <div class="card-body">
-                                                            <b class="b_1" class="card-title"><?php echo $row['name']; ?></b>
+                                                            <a href="../pageShop/product.php?data=<?php echo $row['id'] ?>"><b class="b_1" class="card-title"><?php echo $row['name']; ?></b></a>
                                                             <p class="p_1" id="price1"><?php echo $row['cost']; ?>₪</p>
                                                         </div>
 
@@ -242,18 +247,15 @@
                 }
             </script>
 
-        </div>
-        
     </main>
-                            <footer class="bg-white">
-                <div class="bg-light py-2">
-                    <div class="container text-center">
-                        <p class="text-muted mb-0 py-2">© 2022 UCanClaim All rights reserved.</p>
-                    </div>
-                </div>
-            </footer>
-            
-    <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded(document.getElementById('price1').innerHTML.replace('₪', ''))"></script>
+    <footer class="bg-white">
+        <div class="bg-light py-2">
+            <div class="container text-center">
+                <p class="text-muted mb-0 py-2">© 2022 UCanClaim All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
 </body>
 
 </html>

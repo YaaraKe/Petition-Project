@@ -95,12 +95,17 @@
             <small class="text-muted">Choose your petition</small>
         </h3>
         <?php
+       include_once("db_conn.php");
 
-        include_once("db_conn.php");
+
+        session_start();
+        $email=$_SESSION['user_name']; 
 
 if(isset($_POST["submit2"])){
 $char= $_REQUEST['char'];
-$sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition) AND (`content` LIKE '%%$char%%' OR `title` LIKE '%%$char%%')";
+$sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition) AND (`content` LIKE '%%$char%%' OR `title` LIKE '%%$char%%') AND (p.id_petition NOT IN (SELECT id_petition FROM signatures WHERE `email_signed`='" . mysqli_escape_string($conn,$email) . "'))";
+
+
 $resultset = mysqli_query($conn, $sql);
  if(mysqli_num_rows($resultset)!=0){
         ?>
@@ -155,7 +160,7 @@ $resultset = mysqli_query($conn, $sql);
 }
 else{
         // SQL query to select data from database
-        $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition)";
+        $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition) AND (`content` LIKE '%%$char%%' OR `title` LIKE '%%$char%%') AND (p.id_petition NOT IN (SELECT id_petition FROM signatures WHERE `email_signed`='" . mysqli_escape_string($conn,$email) . "'))";
         $resultset = mysqli_query($conn, $sql);
         ?>
         <div class="bg-image col-12">
