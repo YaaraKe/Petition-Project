@@ -67,8 +67,8 @@
                                 class="sr-only"></span></a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="p_form.php">Profile</a>
-                            <a class="dropdown-item" href="../my_petition.php">Petitions created by me</a>
-                            <a class="dropdown-item" href="../my_signed_petitions.php">Petitions signed by me</a>
+                            <a class="dropdown-item" href="../my_petition.php">Created Petitions</a>
+                            <a class="dropdown-item" href="../my_signed_petitions.php">Signed Petitions</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="logout.php">Log Out</a>
                         </div>
@@ -83,7 +83,7 @@
 <!-- display all the petition that user created-->
     <section>
     <div class="container">
-    <h1> My petitions</h1>
+    <h1> Petitions Signed By Me</h1>
         <!-- PHP CODE TO FETCH DATA FROM ROWS-->
         <?php    
        session_start();
