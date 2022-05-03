@@ -60,17 +60,11 @@ if (isset($_POST['reg_user'])) {
    if (count($errors1) == 0) {
 
   //  $query13 = "UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail' ";
-<<<<<<< HEAD
     $query_petition = "SET FOREIGN_KEY_CHECKS=0;
                         UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail';
                         UPDATE `all_petitions` SET `email`='$email' WHERE `email`='$current_mail';
                         UPDATE `signatures` SET `email_signed`='$email' WHERE `email_signed`='$current_mail';
                         SET FOREIGN_KEY_CHECKS=1;";
-=======
-    $query_petition = "
-                        UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail'";
-                       
->>>>>>> 79e213d4c065a08ff35f7d628f82ba2ed3b0e5e9
     mysqli_query($conn, $query_petition);
   	// mysqli_query($conn, $query13);
    	$_SESSION['user_name'] = $email;
