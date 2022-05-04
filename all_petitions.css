@@ -44,3 +44,54 @@ p {
 .card:hover .yes {
   display: none;
 }
+
+button{
+    border:none;
+     background: white;
+}
+      section{
+         text-align:center;
+         width:100%;
+      }   
+    /* Formatting search box */
+    .search-box{
+        /*size of search box*/
+        width: 500px;
+        position: relative;
+        /*display: inline-block;*/
+        font-size: 14px;
+        margin:auto;
+         
+    }
+    .search-box input[type="text"]{
+        height: 32px;
+        padding: 5px 10px;
+        border: 1px solid #CCCCCC;
+        font-size: 14px;
+    }
+    .result{
+        position: absolute;        
+        z-index: 999;
+        top: 100%;
+        left: 12px;
+    }
+    .search-box input[type="text"], .result{
+        /*size of results*/
+        width: 400px;
+        box-sizing: border-box;
+    }
+    
+    /* Formatting result items */
+    .result div{
+        margin: 0;
+        padding: 7px 10px;
+        border: 1px solid #CCCCCC;
+        border-top: none;
+        cursor: pointer;
+       background: white;
+     
+    }
+    .result div:hover{
+        background: #f2f2f2;
+    }
+    

@@ -80,13 +80,13 @@
 
     <!-- search box -->
     <section>
-        <form style="text-align:center;" action="" method="POST">
-<input style="width:20%"; id="search" name="char" type="text" placeholder="Search petition">
+        <form style="text-align:center;" action="" method="POST" class="search-box">
+<input  id="search" name="char" autocomplete="off"  type="text" placeholder="Search petition">
 <button style="margin: auto;" id="submit" name="submit2" type="submit"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
 </svg> |  Search
 </button>
-
+<div class="result"> </div>
 
 
 <br>
@@ -105,7 +105,7 @@
 
 if(isset($_POST["submit2"])){
 $char= $_REQUEST['char'];
-$sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition) AND (`content` LIKE '%%$char%%' OR `title` LIKE '%%$char%%') AND (p.id_petition NOT IN (SELECT id_petition FROM signatures WHERE `email_signed`='" . mysqli_escape_string($conn,$email) . "'))";
+$sql = "SELECT * FROM all_petitions AS p WHERE (target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition)) AND (`content` LIKE '%%$char%%' OR `title` LIKE '%%$char%%') AND (p.id_petition NOT IN (SELECT id_petition FROM signatures WHERE `email_signed`='" . mysqli_escape_string($conn,$email) . "'))";
 
 
 $resultset = mysqli_query($conn, $sql);
@@ -163,7 +163,7 @@ $resultset = mysqli_query($conn, $sql);
 }
 else{
         // SQL query to select data from database
-        $sql = "SELECT * FROM all_petitions AS p WHERE target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition) AND (p.id_petition NOT IN (SELECT id_petition FROM signatures WHERE `email_signed`='" . mysqli_escape_string($conn,$email) . "'))";
+        $sql = "SELECT * FROM all_petitions AS p WHERE (target_singatures > (SELECT COUNT(*) FROM signatures AS s WHERE p.id_petition = s.id_petition)) AND (p.id_petition NOT IN (SELECT id_petition FROM signatures WHERE `email_signed`='" . mysqli_escape_string($conn,$email) . "'))";
         $resultset = mysqli_query($conn, $sql);
         ?>
         <div class="bg-image col-12">
@@ -225,3 +225,28 @@ else{
 </body>
 
 </html>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('.search-box input[type="text"]').on("keyup input", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result");
+        if(inputVal.length){
+            $.get("backend_petition_search.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    // Set search input value on click of result item
+    $(document).on("click", ".result div", function(){
+        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+        $(this).parent(".result").empty();
+    });
+});
+</script>

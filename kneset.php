@@ -91,7 +91,6 @@
                         border: none;outline: none;scroll-behavior: smooth">
                             <a class="dropdown-item" href="all_petitions.php">Sign a Petition</a>
                             <a class="dropdown-item" href="new_petition.html">Create a Petition</a>
-                            <a class="dropdown-item" href="search-form.php">nofar</a>
                             <a class="dropdown-item" href="achieved_tareget_petitions.php">Completed petitions</a>
                         </div>
                     </li>
@@ -120,11 +119,6 @@
 
     </nav>
     <br>
-
-<!--lllllllllllllllllllllllllllllllllllllllllllllll-->
-
-    
-    
     
     <!-- display  Knesset members -->
 
