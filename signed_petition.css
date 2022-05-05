@@ -35,3 +35,8 @@
     width: 60%;
      margin: auto;
 }
+
+.no_petition{
+    text-align: center;
+    color: red;
+}
