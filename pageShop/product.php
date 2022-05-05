@@ -26,56 +26,8 @@
     <!-- IMPORT BOOTSTRAP SCRIPTS-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-    <!-- nav bar for the website -->
-    <br>
-    <nav class="navbar navbar-expand-md navbar-light" style="background-color :#F0B27A">
-
-        <a class="navbar-brand" href="#">
-            <img src="/NavBar/UcanClaim.png" width="85" height="40" class="d-inline-block align-top" alt="">
-        </a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="container">
-            <div class="collapse navbar-collapse justify-content-between " id="navbarNav">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/home.php">Home<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Petition<span class="sr-only"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/all_petitions.php">Sign a Petition</a>
-                            <a class="dropdown-item" href="/new_petition.html">Create a Petition</a>
-                            <a class="dropdown-item" href="/achieved_tareget_petitions.php">Completed petitions</a>
-                        </div>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/index_react/index.html">Shop<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/kneset.php">Contact a Knesset Member<span class="sr-only"></span></a>
-                    </li>
-
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account<span class="sr-only"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Profile</a>
-                            <a class="dropdown-item" href="../my_petition.php">Created Petitions</a>
-                            <a class="dropdown-item" href="../my_signed_petitions.php">Signed Petitions</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="logout.php">Log Out</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </nav>
+    <!-- NavBar -->
+    <nav id="navbar"> </nav>
     <br>
     <?php
     $sname = "localhost";
@@ -189,7 +141,7 @@
                                                         <div class="card-body">
                                                             <a href="../pageShop/product.php?data=<?php echo $row['id'] ?>"><b class="b_1" class="card-title"><?php echo $row['name']; ?></b></a>
                                                             <p class="p_1" id="price1"><?php echo $row['cost']; ?>₪</p>
-                                                            
+
                                                         </div>
 
                                                     </div>
@@ -249,14 +201,18 @@
             </script>
 
     </main>
-    <footer class="bg-white">
-        <div class="bg-light py-2">
-            <div class="container text-center">
-                <p class="text-muted mb-0 py-2">© 2022 UCanClaim All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- footer -->
+    <div id="footer"></div>
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $("document").ready(function() {
+        //  navbar
+        $("#navbar").load("../common/NavBar.html");
+        //  footer
+        $("#footer").load("../common/footer.html");
+    });
+</script>
 
 </html>

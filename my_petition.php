@@ -16,120 +16,80 @@
     <!-- IMPORT BOOTSTRAP SCRIPTS-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-    <!-- nav bar for the website -->
-    <br>
-    <nav class="navbar navbar-expand-md navbar-light" style="background-color :#F0B27A">
-
-        <a class="navbar-brand" href="#">
-            <img src="../NavBar/UcanClaim.png" width="85" height="40" class="d-inline-block align-top" alt="">
-        </a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="container">
-            <div class="collapse navbar-collapse justify-content-between " id="navbarNav">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../home.php">Home<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Petition<span class="sr-only"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color :#F0B27A;
-                        border: none;outline: none;scroll-behavior: smooth">
-                            <a class="dropdown-item" href="all_petitions.php">Sign a Petition</a>
-                            <a class="dropdown-item" href="new_petition.html">Create a Petition</a>
-                            <a class="dropdown-item" href="achieved_tareget_petitions.php">Completed petitions</a>
-                        </div>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../index_react/index.html">Shop<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../kneset.php">Contact a Knesset Member<span class="sr-only"></span></a>
-                    </li>
-
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account<span class="sr-only"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="p_form.php">Profile</a>
-                            <a class="dropdown-item" href="../my_petition.php">Created Petitions</a>
-                            <a class="dropdown-item" href="../my_signed_petitions.php">Signed Petitions</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="logout.php">Log Out</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </nav>
-
-    <br>
+    <!-- NavBar -->
+    <nav id="navbar"> </nav>
 
     <section>
-            <h3> Petitions Created By Me</h3>
-            <!-- PHP CODE TO FETCH DATA FROM ROWS-->
-            <?php
-            session_start();
-            include_once("db_conn.php");
-            $email = $_SESSION['user_name'];
+        <h3> Petitions Created By Me</h3>
+        <!-- PHP CODE TO FETCH DATA FROM ROWS-->
+        <?php
+        session_start();
+        include_once("db_conn.php");
+        $email = $_SESSION['user_name'];
 
-            $sql = "SELECT * FROM all_petitions WHERE `email`='" . mysqli_escape_string($conn, $email) . "'";
-            // check the query
-            $result = mysqli_query($conn, $sql);
-            if ($result === FALSE) {
-                die(mysqli_error($conn));
-            }
-            if (mysqli_num_rows($result) != 0) {
-            ?>
-                <div class="bg-image col-12">
-                    <div class="container">
-                        <div class="row">
-                            <?php
+        $sql = "SELECT * FROM all_petitions AS p WHERE p.id_petition IN (SELECT id_petition FROM signatures WHERE `email_signed`='" . mysqli_escape_string($conn, $email) . "')";
+        // check the query
+        $result = mysqli_query($conn, $sql);
+        if ($result === FALSE) {
+            die(mysqli_error($conn));
+        }
+        if (mysqli_num_rows($result) != 0) {
+        ?>
+            <div class="bg-image col-12">
+                <div class="container">
+                    <div class="row">
+                        <?php
 
-                            // LOOP TILL END OF DATA
-                            while ($record = mysqli_fetch_assoc($result)) {
+                        // LOOP TILL END OF DATA
+                        while ($record = mysqli_fetch_assoc($result)) {
 
-                            ?>
-                                <div class="card">
+                        ?>
+                            <div class="card">
 
-                                    <?php echo '<img style="height:10rem" src="data:image/jpeg;base64,' . base64_encode($record['photo']) . '" class="card-img-top yes"/> 
-                                     <img style="height:10rem" src="../photos/change_hover.jpg" class="card-img-top no">'; ?>
+                                <?php echo '<img style="height:10rem" src="data:image/jpeg;base64,' . base64_encode($record['photo']) . '" class="card-img-top yes"/> 
+                                     <img style="height:10rem" src="../photos/hover_done.jpg" class="card-img-top no">'; ?>
 
-                                    <div class="card-body">
-                                        <p id="date"> <?php echo $record['date']; ?></p>
-                                        <p class="card-title" style="font-weight: bold;"> <?php echo $record['title']; ?></p>
-                                        <br>
-                                        <p class="card-text" style="font-family: Times New Roman, Times, serif;" href="signed_petition.php?data=<?php echo $record['id_petition'] ?>"> <?php echo substr_replace($record['content'], "...", 95); ?></p>
-                                    </div>
-                                    <a href="send_or_delete_petition.php?data=<?php echo $record['id_petition']; ?>" class="btn btn-primary rem"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text" viewBox="0 0 16 16">
-                                            <path d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z" />
-                                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
-                                        </svg> | To my petition</a>
-                                        <hr>
+                                <div class="card-body">
+                                    <p id="date"> <?php echo $record['date']; ?></p>
+                                    <p class="card-title" style="font-weight: bold;"> <?php echo $record['title']; ?></p>
+                                    <br>
+                                    <p class="card-text" style="font-family: Times New Roman, Times, serif;" href="signed_petition.php?data=<?php echo $record['id_petition'] ?>"> <?php echo substr_replace($record['content'], "...", 95); ?></p>
                                 </div>
-    
+                                <a href="send_or_delete_petition.php?data=<?php echo $record['id_petition']; ?>" class="btn btn-primary rem"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text" viewBox="0 0 16 16">
+                                        <path d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z" />
+                                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
+                                    </svg> | To the petition</a>
+                                <hr>
+                            </div>
+
 
                         <?php } ?>
                     </div>
-                        <br>
-                        
-                    </div>
-                </div>
-                <br>
-            <?php
-            } else {
-                echo "you still have not petitions, You can create new one";
-            ?>
-                <a href="new_petition.html">here.</a>
-            <?php
-            }
-            ?>
+                    <br>
 
+                </div>
+            </div>
+            <br>
+        <?php
+        } else {
+            echo "you still have not signed on petitions, You can sign on ";
+        ?>
+            <a href="new_petition.html">here.</a>
+        <?php
+        }
+        ?>
+    </section>
+    <!-- footer -->
+    <div id="footer"></div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $("document").ready(function() {
+        //  navbar
+        $("#navbar").load("../common/NavBar.html");
+        //  footer
+        $("#footer").load("../common/footer.html");
+    });
+</script>
 
 </html>
