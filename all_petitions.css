@@ -72,8 +72,8 @@ button{
     .result{
         position: absolute;        
         z-index: 999;
-        top: 100%;
-        left: 12px;
+        /*top: 100%;*/
+        left: 9px;
     }
     .search-box input[type="text"], .result{
         /*size of results*/
@@ -89,6 +89,7 @@ button{
         border-top: none;
         cursor: pointer;
        background: white;
+       width: 400px;
      
     }
     .result div:hover{
