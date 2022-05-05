@@ -119,7 +119,7 @@
                     ?>
                         <div class="card">
 
-                            <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($record['photo']) . '" class="card-img-top"/> '; ?>
+                            <?php echo '<img style="height:10rem" src="data:image/jpeg;base64,' . base64_encode($record['photo']) . '" class="card-img-top"/> '; ?>
 
                             <div class="card-body">
                                 <p id="date"> <?php echo $record['date']; ?></p>

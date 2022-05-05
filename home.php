@@ -146,7 +146,7 @@ if (isset($_SESSION['user_name'])) {
 
                                 <div class="card">
                                 <?php } ?>
-                                <?php echo '<img class="card-img-top" alt="petition_img" src="data:image/jpeg;base64,' . base64_encode($record['photo']) . '"/>'; ?>
+                                <?php echo '<img style="height:10rem" class="card-img-top" alt="petition_img" src="data:image/jpeg;base64,' . base64_encode($record['photo']) . '"/>'; ?>
 
 
                                 <div class="card-body">

@@ -121,7 +121,7 @@ $resultset = mysqli_query($conn, $sql);
 
                         <div class="card">
 
-                            <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($record['photo']) . '" class="card-img-top yes"/> 
+                            <?php echo '<img style="height:10rem" src="data:image/jpeg;base64,' . base64_encode($record['photo']) . '" class="card-img-top yes"/> 
                                 <img src="../photos/hover.jpg" class="card-img-top no">'; ?>
 
                             <div class="card-body">
@@ -176,7 +176,7 @@ else{
 
                         <div class="card">
 
-                            <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($record['photo']) . '" class="card-img-top yes"/> 
+                            <?php echo '<img style="height:10rem" src="data:image/jpeg;base64,' . base64_encode($record['photo']) . '" class="card-img-top yes"/> 
                                 <img src="../photos/hover.jpg" class="card-img-top no">'; ?>
 
                             <div class="card-body">
