@@ -135,11 +135,17 @@
                     </svg> | Search
                 </button>
 <div class="result"></div>
+
+
  </form>
 
-                <br>
-                <br>
+
+ <br>
+                <br >
+                
+               
                 <h3> Choose to whom the Email will be sent </h3>
+                 <div id="center">
                 <details id="information">
                     <summary><i style="font-size:18px" class="fa">&#xf05a;</i></summary>
                     <p id="info"><u>Steps to send a email:</u><br>
@@ -150,8 +156,9 @@
                             Thank you for choosing UcanClaim
                         </b></p>
                 </details>
-           
-           
+                </div>
+
+
            
             <?php
 
@@ -433,7 +440,7 @@
     </script>
 
 
-<!--search-->
+<!--search drop down-->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
 $(document).ready(function(){

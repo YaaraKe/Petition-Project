@@ -84,13 +84,13 @@
 		var user_part_name = user_name_full.split("@")[0];
 	</script>
 
-<main style="margin:auto;">
+<main class="container" >
 	<div id="personal_text" class="col">
 
 		<br>
 
-		<div style="float:left;" class="col-md-4 ">
-			<div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
+		<div id="main" class="col-md-4 ">
+			<div class="d-flex flex-column align-items-center text-center p-1 py-9"><img class="rounded-circle mt-5"
 					width="270px"
 					src="https://st4.depositphotos.com/1915171/25578/v/450/depositphotos_255782984-stock-illustration-user-settings-line-icon-profile.jpg"><span
 					class="font-weight-bold">
@@ -104,7 +104,7 @@
 
 	</div>
 
-	<div style="float:left; width: 30%;">
+	<div id="forms">
 
 		<div class="header">
 			<h2>Change Email</h2>
@@ -119,13 +119,13 @@
 			<div class="input-group">
 				<label>Your Password</label>
 				<input type="password" name="password_1" id="password_email">
-				<svg id="visible" onclick="visability()" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+				<svg id="visible" onclick="visability()" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
 					fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
 					<path
 						d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
 					<path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
 				</svg>
-				<svg id="unvisible" onclick="visability()" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+				<svg id="unvisible" onclick="visability()" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
 					fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
 					<path
 						d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
@@ -150,13 +150,13 @@
 			<div class="input-group">
 				<label>Previous password</label>
 				<input type="password" name="pas3" id="pass3">
-				<svg id="visible3" onclick="visability3()" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+				<svg id="visible3" onclick="visability3()" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
 					fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
 					<path
 						d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
 					<path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
 				</svg>
-				<svg id="unvisible3" onclick="visability3()" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+				<svg id="unvisible3" onclick="visability3()" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
 					fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
 					<path
 						d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
@@ -169,13 +169,13 @@
 			<div class="input-group">
 				<label>New Password</label>
 				<input type="password" name="pas1" id="pass1">
-				<svg id="visible1" onclick="visability4()" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+				<svg id="visible1" onclick="visability4()" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
 					fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
 					<path
 						d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
 					<path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
 				</svg>
-				<svg id="unvisible1" onclick="visability1()" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+				<svg id="unvisible1" onclick="visability1()" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
 					fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
 					<path
 						d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
@@ -188,13 +188,13 @@
 			<div class="input-group">
 				<label>Confirm password</label>
 				<input type="password" name="pas2" id="pass2">
-				<svg id="visible2" onclick="visability2()" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+				<svg id="visible2" onclick="visability2()" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
 					fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
 					<path
 						d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
 					<path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
 				</svg>
-				<svg id="unvisible2" onclick="visability2()" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+				<svg id="unvisible2" onclick="visability2()" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
 					fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
 					<path
 						d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />

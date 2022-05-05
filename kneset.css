@@ -71,10 +71,12 @@ details > summary {
 }
 details{
     margin-left:0.5rem;
+    
 }
 #info{
     text-align: left; 
     font-size:12px;
+    
 }
 
 
@@ -96,8 +98,8 @@ details{
     .result{
         position: absolute;        
         z-index: 999;
-        top: 100%;
-        left: 13px;
+        /*top: 100%;*/
+        left: 25px;
     }
     .search-box input[type="text"], .result{
         width: 80%;
@@ -111,9 +113,21 @@ details{
         border-top: none;
         cursor: pointer;
        background: white;
+       width:380px;
     }
     .result p:hover{
         background: #f2f2f2;
     }
     
+    
+    #center{
+        width: 600px;
+        text-align: center;
+        margin: auto;
+    }
+    
+    i{
+      text-align: center;
+       margin: auto;
+    }
   

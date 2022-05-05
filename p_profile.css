@@ -4,6 +4,12 @@ SVG:hover{
 /* margin-left: -45px; */
 
 }
+svg{
+    position:absolute;
+    margin-top:40px;
+    left:350px;
+    color:grey;
+}
 
 input{
     margin-right: 5px;
@@ -22,7 +28,7 @@ input{
 
   
   .header {
-    width: 100%;
+    width: 450px;
     margin: 50px auto 0px;
     color: rgb(15, 9, 9);
     background: #f1c778;
@@ -33,7 +39,7 @@ input{
     padding: 20px;
   }
   form, .content {
-    width: 100%;
+    width: 450px;
     margin: 0px auto;
     padding: 20px;
     border: 1px solid #f1c778;
@@ -81,3 +87,15 @@ input{
     border: 1px solid #3c763d;
     margin-bottom: 20px;
   }
+  
+  #main, #forms{
+      float:left;
+  }
+  
+  @media only screen and (max-width:600px){
+    #main, #forms{
+         float: none;
+      }
+  }
+  
+ 
