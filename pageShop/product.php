@@ -96,15 +96,18 @@
                         <h2><?php echo $row['name']; ?></h2><br>
                         <p><?php echo $row['description']; ?></p>
 
+
                         <div>
-                            <p id="price1"><?php echo $row['cost']; ?>₪</p>
+                            <b style="font-size:18px;" id="price1"><?php echo $row['cost']; ?>₪</b>
+                            <p id="dropdown"></p>
                         </div>
                     <?php } ?>
                     <br>
                 </div>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
                 <div id="container"></div>
                 <div id="update" style="display:none"></div>
-                <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded(document.getElementById('price1').innerHTML.replace('₪', ''))"></script>
+                <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded(document.getElementById('price1').innerHTML)"></script>
             </div>
 
             <section class="pt-4 pb-4">
@@ -184,8 +187,10 @@
                 var element = document.getElementById('update');
                 element.addEventListener('DOMSubtreeModified', updateModified);
 
+
                 function updateModified(e) {
                     console.log(element.innerHTML);
+
                     if (element.innerHTML == "success") {
                         <?php
                         $sql1 = "UPDATE shop SET status=status-1 WHERE id=1 LIMIT 1";
