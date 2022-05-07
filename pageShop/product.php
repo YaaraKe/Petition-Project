@@ -129,12 +129,14 @@ if (isset($_POST['add_to_cart'])) {
                             <input type="hidden" name="product_name" value="<?php echo $row['name']; ?>">
                             <input type="hidden" name="product_cost" value="<?php echo $row['cost']; ?>">
                             <input type="hidden" name="product_image" value="<?php echo $row['image']; ?>">
-                            <input type="submit" class="btn" value="add to cart" name="add_to_cart">
+
+
+                            <div>
+                                <b style="font-size:18px;" id="price1"><?php echo $row['cost']; ?>₪</b>
+                                <p id="dropdown"></p>
+                            </div>
+                            <input type="submit" id="btn_cart" value="add to cart" name="add_to_cart">
                         </form>
-                        <div>
-                            <b style="font-size:18px;" id="price1"><?php echo $row['cost']; ?>₪</b>
-                            <p id="dropdown"></p>
-                        </div>
 
                     <?php } ?>
                     <br>
