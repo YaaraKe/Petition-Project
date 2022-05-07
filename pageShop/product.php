@@ -31,13 +31,13 @@
     <br>
     <?php
     $sname = "localhost";
-    $unmae = "nofarrei_user";
-    $password = "12345";
-    $db_name = "nofarrei_Petition";
+    $unmae = "root";
+    $password = "";
+    $db_name = "test";
     $connection = mysqli_connect($sname, $unmae, $password, $db_name);
     // SQL query to select data from database
     $id = $_GET['data'];
-    $sql = "SELECT DISTINCT * FROM shop WHERE id= $id ";
+    $sql = "SELECT DISTINCT * FROM shop WHERE id= 1 ";
     $resultset = mysqli_query($connection, $sql);
     ?>
 
@@ -86,7 +86,7 @@
                     <?php
                     // SQL query to select data from database
                     $id = $_GET['data'];
-                    $sql_1 = "SELECT DISTINCT * FROM shop WHERE id= $id ";
+                    $sql_1 = "SELECT DISTINCT * FROM shop WHERE id= 1 ";
                     $resultset_1 = mysqli_query($connection, $sql_1);
                     // LOOP TILL END OF DATA
                     while ($row = mysqli_fetch_assoc($resultset_1)) {
@@ -104,12 +104,15 @@
                     <?php } ?>
                     <br>
                 </div>
+                <a href="cart.php?data=1" class="btn btn-primary rem"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
+                                    </svg> | add to cart</a>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
                 <div id="container"></div>
                 <div id="update" style="display:none"></div>
                 <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded(document.getElementById('price1').innerHTML)"></script>
             </div>
-
+            
             <section class="pt-4 pb-4">
                 <div class="container">
                     <div class="row">
@@ -131,7 +134,7 @@
                                     <div class="carousel-item active">
                                         <div class="row">
                                             <?php
-                                            $sql1 = "SELECT DISTINCT * FROM shop WHERE NOT id= $id LIMIT 3";
+                                            $sql1 = "SELECT DISTINCT * FROM shop WHERE NOT id= 1 LIMIT 3";
                                             $resultset1 = mysqli_query($connection, $sql1);
                                             ?>
                                             <?php
@@ -156,7 +159,7 @@
                                     <div class="carousel-item">
                                         <div class="row">
                                             <?php
-                                            $sql2 = "SELECT DISTINCT * FROM shop WHERE NOT id= $id LIMIT 3, 3;";
+                                            $sql2 = "SELECT DISTINCT * FROM shop WHERE NOT id= 1 LIMIT 3, 3;";
                                             $resultset2 = mysqli_query($connection, $sql2);
                                             ?>
                                             <?php
