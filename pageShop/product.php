@@ -1,3 +1,26 @@
+<?php
+
+$connection = mysqli_connect('localhost', 'nofarrei_user', '12345', 'nofarrei_Petition') or die('connection failed');
+
+if (isset($_POST['add_to_cart'])) {
+
+    $product_id = $_POST['product_id'];
+    $product_name = $_POST['product_name'];
+    $product_cost = $_POST['product_cost'];
+    $product_image = $_POST['product_image'];
+    $product_quantity = 1;
+
+    $select_cart = mysqli_query($connection, "SELECT * FROM `cart` WHERE id = $product_id");
+
+    if (mysqli_num_rows($select_cart) > 0) {
+        $message[] = 'product already added to cart';
+    } else {
+        $insert_product = mysqli_query($connection, "INSERT INTO `cart`(id,name, price, image, quantity) VALUES('$product_id','$product_name', '$product_cost', '$product_image', '$product_quantity')");
+        $message[] = 'product added to cart succesfully';
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,22 +45,27 @@
 </head>
 
 <body>
+    <?php
+
+    if (isset($message)) {
+        foreach ($message as $message) {
+            echo '<div class="message"><span>' . $message . '</span> <i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i> </div>';
+        };
+    };
+
+    ?>
 
     <!-- IMPORT BOOTSTRAP SCRIPTS-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
     <!-- NavBar -->
     <nav id="navbar"> </nav>
     <br>
     <?php
-    $sname = "localhost";
-    $unmae = "root";
-    $password = "";
-    $db_name = "test";
-    $connection = mysqli_connect($sname, $unmae, $password, $db_name);
     // SQL query to select data from database
     $id = $_GET['data'];
-    $sql = "SELECT DISTINCT * FROM shop WHERE id= 1 ";
+    $sql = "SELECT DISTINCT * FROM shop WHERE id= $id ";
     $resultset = mysqli_query($connection, $sql);
     ?>
 
@@ -86,33 +114,37 @@
                     <?php
                     // SQL query to select data from database
                     $id = $_GET['data'];
-                    $sql_1 = "SELECT DISTINCT * FROM shop WHERE id= 1 ";
+                    $sql_1 = "SELECT DISTINCT * FROM shop WHERE id= $id ";
                     $resultset_1 = mysqli_query($connection, $sql_1);
                     // LOOP TILL END OF DATA
                     while ($row = mysqli_fetch_assoc($resultset_1)) {
                     ?>
+
                         <p>UcanClaim</p>
                         <!-- 22" x 28" - Assorted Colors - 50/ Carton -->
                         <h2><?php echo $row['name']; ?></h2><br>
                         <p><?php echo $row['description']; ?></p>
-
-
+                        <form action="" method="post">
+                            <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
+                            <input type="hidden" name="product_name" value="<?php echo $row['name']; ?>">
+                            <input type="hidden" name="product_cost" value="<?php echo $row['cost']; ?>">
+                            <input type="hidden" name="product_image" value="<?php echo $row['image']; ?>">
+                            <input type="submit" class="btn" value="add to cart" name="add_to_cart">
+                        </form>
                         <div>
                             <b style="font-size:18px;" id="price1"><?php echo $row['cost']; ?>₪</b>
                             <p id="dropdown"></p>
                         </div>
+
                     <?php } ?>
                     <br>
                 </div>
-                <a href="cart.php?data=1" class="btn btn-primary rem"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
-                                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-                                    </svg> | add to cart</a>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
                 <div id="container"></div>
                 <div id="update" style="display:none"></div>
                 <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded(document.getElementById('price1').innerHTML)"></script>
             </div>
-            
+
             <section class="pt-4 pb-4">
                 <div class="container">
                     <div class="row">
@@ -134,7 +166,7 @@
                                     <div class="carousel-item active">
                                         <div class="row">
                                             <?php
-                                            $sql1 = "SELECT DISTINCT * FROM shop WHERE NOT id= 1 LIMIT 3";
+                                            $sql1 = "SELECT DISTINCT * FROM shop WHERE NOT id=$id LIMIT 3";
                                             $resultset1 = mysqli_query($connection, $sql1);
                                             ?>
                                             <?php
@@ -159,7 +191,7 @@
                                     <div class="carousel-item">
                                         <div class="row">
                                             <?php
-                                            $sql2 = "SELECT DISTINCT * FROM shop WHERE NOT id= 1 LIMIT 3, 3;";
+                                            $sql2 = "SELECT DISTINCT * FROM shop WHERE NOT id=$id LIMIT 3, 3;";
                                             $resultset2 = mysqli_query($connection, $sql2);
                                             ?>
                                             <?php
@@ -196,7 +228,7 @@
 
                     if (element.innerHTML == "success") {
                         <?php
-                        $sql1 = "UPDATE shop SET status=status-1 WHERE id=1 LIMIT 1";
+                        $sql1 = "UPDATE shop SET status=status-1 WHERE id=$id LIMIT 1";
 
                         if ($connection->query($sql1) === TRUE) {
                             echo "success";
@@ -217,7 +249,7 @@
 <script>
     $("document").ready(function() {
         //  navbar
-        $("#navbar").load("../common/NavBar.html");
+        $("#navbar").load("../common/NavBar.php");
         //  footer
         $("#footer").load("../common/footer.html");
     });
