@@ -1,3 +1,26 @@
+<?php
+
+$connection = mysqli_connect('localhost', 'nofarrei_user', '12345', 'nofarrei_Petition') or die('connection failed');
+
+if (isset($_POST['add_to_cart'])) {
+
+    $product_id = $_POST['product_id'];
+    $product_name = $_POST['product_name'];
+    $product_cost = $_POST['product_cost'];
+    $product_image = $_POST['product_image'];
+    $product_quantity = 1;
+
+    $select_cart = mysqli_query($connection, "SELECT * FROM `cart` WHERE id = $product_id");
+
+    if (mysqli_num_rows($select_cart) > 0) {
+        $message[] = 'product already added to cart';
+    } else {
+        $insert_product = mysqli_query($connection, "INSERT INTO `cart`(id,name, price, image, quantity) VALUES('$product_id','$product_name', '$product_cost', '$product_image', '$product_quantity')");
+        $message[] = 'product added to cart succesfully';
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,67 +45,24 @@
 </head>
 
 <body>
+    <?php
+
+    if (isset($message)) {
+        foreach ($message as $message) {
+            echo '<div class="message"><span>' . $message . '</span> <i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i> </div>';
+        };
+    };
+
+    ?>
 
     <!-- IMPORT BOOTSTRAP SCRIPTS-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <!-- nav bar for the website -->
-    <br>
-    <nav class="navbar navbar-expand-md navbar-light" style="background-color :#F0B27A">
-
-        <a class="navbar-brand" href="#">
-            <img src="/NavBar/UcanClaim.png" width="85" height="40" class="d-inline-block align-top" alt="">
-        </a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="container">
-            <div class="collapse navbar-collapse justify-content-between " id="navbarNav">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/home.php">Home<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Petition<span class="sr-only"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/all_petitions.php">Sign a Petition</a>
-                            <a class="dropdown-item" href="/new_petition.html">Create a Petition</a>
-                            <a class="dropdown-item" href="/achieved_tareget_petitions.php">Completed petitions</a>
-                        </div>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/index_react/index.html">Shop<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/kneset.php">Contact a Knesset Member<span class="sr-only"></span></a>
-                    </li>
-
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account<span class="sr-only"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Profile</a>
-                            <a class="dropdown-item" href="../my_petition.php">Created Petitions</a>
-                            <a class="dropdown-item" href="../my_signed_petitions.php">Signed Petitions</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="logout.php">Log Out</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </nav>
+    <!-- NavBar -->
+    <nav id="navbar"> </nav>
     <br>
     <?php
-    $sname = "localhost";
-    $unmae = "nofarrei_user";
-    $password = "12345";
-    $db_name = "nofarrei_Petition";
-    $connection = mysqli_connect($sname, $unmae, $password, $db_name);
     // SQL query to select data from database
     $id = $_GET['data'];
     $sql = "SELECT DISTINCT * FROM shop WHERE id= $id ";
@@ -139,20 +119,32 @@
                     // LOOP TILL END OF DATA
                     while ($row = mysqli_fetch_assoc($resultset_1)) {
                     ?>
+
                         <p>UcanClaim</p>
                         <!-- 22" x 28" - Assorted Colors - 50/ Carton -->
                         <h2><?php echo $row['name']; ?></h2><br>
                         <p><?php echo $row['description']; ?></p>
+                        <form action="" method="post">
+                            <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
+                            <input type="hidden" name="product_name" value="<?php echo $row['name']; ?>">
+                            <input type="hidden" name="product_cost" value="<?php echo $row['cost']; ?>">
+                            <input type="hidden" name="product_image" value="<?php echo $row['image']; ?>">
 
-                        <div>
-                            <p id="price1"><?php echo $row['cost']; ?>₪</p>
-                        </div>
+
+                            <div>
+                                <b style="font-size:18px;" id="price1"><?php echo $row['cost']; ?>₪</b>
+                                <p id="dropdown"></p>
+                            </div>
+                            <input type="submit" id="btn_cart" value="add to cart" name="add_to_cart">
+                        </form>
+
                     <?php } ?>
                     <br>
                 </div>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
                 <div id="container"></div>
                 <div id="update" style="display:none"></div>
-                <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded(document.getElementById('price1').innerHTML.replace('₪', ''))"></script>
+                <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded(document.getElementById('price1').innerHTML)"></script>
             </div>
 
             <section class="pt-4 pb-4">
@@ -176,7 +168,7 @@
                                     <div class="carousel-item active">
                                         <div class="row">
                                             <?php
-                                            $sql1 = "SELECT DISTINCT * FROM shop WHERE NOT id= $id LIMIT 3";
+                                            $sql1 = "SELECT DISTINCT * FROM shop WHERE NOT id=$id LIMIT 3";
                                             $resultset1 = mysqli_query($connection, $sql1);
                                             ?>
                                             <?php
@@ -189,7 +181,7 @@
                                                         <div class="card-body">
                                                             <a href="../pageShop/product.php?data=<?php echo $row['id'] ?>"><b class="b_1" class="card-title"><?php echo $row['name']; ?></b></a>
                                                             <p class="p_1" id="price1"><?php echo $row['cost']; ?>₪</p>
-                                                            
+
                                                         </div>
 
                                                     </div>
@@ -201,7 +193,7 @@
                                     <div class="carousel-item">
                                         <div class="row">
                                             <?php
-                                            $sql2 = "SELECT DISTINCT * FROM shop WHERE NOT id= $id LIMIT 3, 3;";
+                                            $sql2 = "SELECT DISTINCT * FROM shop WHERE NOT id=$id LIMIT 3, 3;";
                                             $resultset2 = mysqli_query($connection, $sql2);
                                             ?>
                                             <?php
@@ -232,11 +224,13 @@
                 var element = document.getElementById('update');
                 element.addEventListener('DOMSubtreeModified', updateModified);
 
+
                 function updateModified(e) {
                     console.log(element.innerHTML);
+
                     if (element.innerHTML == "success") {
                         <?php
-                        $sql1 = "UPDATE shop SET status=status-1 WHERE id=1 LIMIT 1";
+                        $sql1 = "UPDATE shop SET status=status-1 WHERE id=$id LIMIT 1";
 
                         if ($connection->query($sql1) === TRUE) {
                             echo "success";
@@ -249,14 +243,18 @@
             </script>
 
     </main>
-    <footer class="bg-white">
-        <div class="bg-light py-2">
-            <div class="container text-center">
-                <p class="text-muted mb-0 py-2">© 2022 UCanClaim All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- footer -->
+    <div id="footer"></div>
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $("document").ready(function() {
+        //  navbar
+        $("#navbar").load("../common/NavBar.php");
+        //  footer
+        $("#footer").load("../common/footer.html");
+    });
+</script>
 
 </html>

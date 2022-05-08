@@ -241,8 +241,16 @@ function calculateNewTransactionInfo(shippingOptionId) {
  * ability to pay.
  */
 function onGooglePayLoaded(a) {
-  const paymentsClient = getGooglePaymentsClient();
-  paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest())
+      document.getElementById('dropdown').innerHTML="<label>Amount: <select name='price' id='price' class='price'><option value='1'selected>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></label>";
+        $("select.price").change(function () {
+             var amount="1";
+             amount = $(this).children("option:selected").val();
+             var final_price=parseInt(a)*parseInt(amount);
+             localStorage.setItem('value2', `${final_price}`);
+        });
+
+     const paymentsClient = getGooglePaymentsClient();
+     paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest())
       .then(function(response) {
         if (response.result) {
           addGooglePayButton();
@@ -254,11 +262,11 @@ function onGooglePayLoaded(a) {
         // show error in developer console for debugging
         console.error(err);
       });
-      var price =parseInt(a);
-      console.log(price);
-
-      getGoogleTransactionInfo(price);
-      localStorage.setItem('value1', `${price}`);
+       var price =parseInt(a);
+       localStorage.setItem('value1', `${price}`);
+        
+         getGoogleTransactionInfo(price);
+        
 }
 
 /**
@@ -286,9 +294,10 @@ function addGooglePayButton() {
  * @returns {object} transaction info, suitable for use as transactionInfo property of PaymentDataRequest
  */
 function getGoogleTransactionInfo() {
-  let str = localStorage.getItem('value1');
-  console.log("this value");
+  let str = localStorage.getItem('value2');
+  console.log("this price");
   console.log(str);
+
   return {
         displayItems: [
         {
