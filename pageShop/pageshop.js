@@ -7,8 +7,9 @@
  */
  const baseRequest = {
   apiVersion: 2,
-  apiVersionMinor: 0
+  apiVersionMinor: 0,
 };
+
 
 /**
  * Card networks supported by your site and your gateway
@@ -186,7 +187,7 @@ function onPaymentAuthorized(paymentData) {
 function onPaymentDataChanged(intermediatePaymentData) {
   return new Promise(function(resolve, reject) {
 
-        let shippingAddress = intermediatePaymentData.shippingAddress;
+    let shippingAddress = intermediatePaymentData.shippingAddress;
     let shippingOptionData = intermediatePaymentData.shippingOptionData;
     let paymentDataRequestUpdate = {};
 
@@ -245,6 +246,8 @@ function onGooglePayLoaded(a) {
         $("select.price").change(function () {
              var amount="1";
              amount = $(this).children("option:selected").val();
+             var final_amount=parseInt(amount);
+             localStorage.setItem('value3', `${final_amount}`);
              var final_price=parseInt(a)*parseInt(amount);
              localStorage.setItem('value2', `${final_price}`);
         });
@@ -295,8 +298,12 @@ function addGooglePayButton() {
  */
 function getGoogleTransactionInfo() {
   let str = localStorage.getItem('value2');
+  let amo = localStorage.getItem('value3');
+  console.log("this amount");
+  console.log(amo);
   console.log("this price");
   console.log(str);
+
 
   return {
         displayItems: [
