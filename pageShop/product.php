@@ -222,15 +222,21 @@ if (isset($_POST['add_to_cart'])) {
             </section>
             <script type="text/javascript">
                 var element = document.getElementById('update');
+                var str = localStorage.getItem('value3');
                 element.addEventListener('DOMSubtreeModified', updateModified);
+                str.addEventListener('DOMSubtreeModified', updateModified);
+
+
 
 
                 function updateModified(e) {
+                    var str = localStorage.getItem('value3');
                     console.log(element.innerHTML);
+                    console.log(str + " amount");
 
                     if (element.innerHTML == "success") {
                         <?php
-                        $sql1 = "UPDATE shop SET status=status-1 WHERE id=$id LIMIT 1";
+                        $sql1 = "UPDATE shop SET status=status-num WHERE id=$id LIMIT 1";
 
                         if ($connection->query($sql1) === TRUE) {
                             echo "success";
@@ -238,8 +244,8 @@ if (isset($_POST['add_to_cart'])) {
                             echo "Error updating record: " . $connection->error;
                         }
                         ?>
-                    }
-                }
+                    };
+                };
             </script>
 
     </main>
