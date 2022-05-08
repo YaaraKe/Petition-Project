@@ -26,13 +26,13 @@
     <!--<link href="petitions_errors.css" rel="stylesheet">-->
     <!--<script src="validations.js"></script>-->
     <script>
-        function email_choesen(clicked_id,knesset_name) {
+        function email_choesen(clicked_id, knesset_name) {
             var emails = document.getElementById("toemail").value;
             if (document.getElementById("toemail").value != "") {
                 emails = document.getElementById("toemail").value = emails + ",";
             }
             document.getElementById("toemail").value = emails + clicked_id;
-//added
+            //added
             var to_name = document.getElementById("toname").value;
             if (document.getElementById("toname").value != "") {
                 to_name = document.getElementById("toname").value = to_name + ", ";
@@ -68,58 +68,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link href="petitions_errors.css" rel="stylesheet">
 
-    <!-- nav bar for the website -->
-    <br>
-    <nav class="navbar navbar-expand-md navbar-light" style="background-color :#F0B27A">
+    <!-- NavBar -->
+    <nav id="navbar"> </nav>
 
-        <a class="navbar-brand" href="#">
-            <img src="../NavBar/UcanClaim.png" width="85" height="40" class="d-inline-block align-top" alt="">
-        </a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="container">
-            <div class="collapse navbar-collapse justify-content-between " id="navbarNav">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../home.php">Home<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Petition<span class="sr-only"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color :#F0B27A;
-                        border: none;outline: none;scroll-behavior: smooth">
-                            <a class="dropdown-item" href="all_petitions.php">Sign a Petition</a>
-                            <a class="dropdown-item" href="new_petition.html">Create a Petition</a>
-                            <a class="dropdown-item" href="achieved_tareget_petitions.php">Completed petitions</a>
-                        </div>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../index_react/index.html">Shop<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../kneset.php">Contact a Knesset Member<span class="sr-only"></span></a>
-                    </li>
-
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account<span class="sr-only"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="p_form.php">Profile</a>
-                            <a class="dropdown-item" href="../my_petition.php">Created Petitions</a>
-                            <a class="dropdown-item" href="../my_signed_petitions.php">Signed Petitions</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="logout.php">Log Out</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </nav>
-    <br>
-    
     <!-- display  Knesset members -->
 
 
@@ -129,40 +80,33 @@
             <hr>
             <!-- search box -->
             <form class="search-box" name="search" style="text-align:center;" action="" method="POST">
-                <input autocomplete="off"  id="search" name="char" type="text" placeholder="Search name">
-                <button class="button" style="margin: auto;" id="submit" name="submit2" type="submit"> <svg id="svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <input autocomplete="off" id="search" name="char" type="text" placeholder="Search name">
+                <button class="button" id="submit" name="submit2" type="submit"> <svg id="svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                     </svg> | Search
                 </button>
-<div class="result"></div>
+                <div class="result"></div>
+            </form>
+
+            <br>
+            <br>
+            <h3> Choose to whom the Email will be sent </h3>
+            <details id="information">
+                <summary><i style="font-size:18px" class="fa">&#xf05a;</i></summary>
+                <p id="info"><u>Steps to send a email:</u><br>
+                    1. Please press the button of whom you like to send the email.<br>
+                    2. Scoll down until you reach the title "Send Email to a Knesset Member".<br>
+                    3. Write all the details asked in the form.<br>
+                    4. After finishing please press "send email"<br><b>
+                        Thank you for choosing UcanClaim
+                    </b></p>
+            </details>
 
 
- </form>
 
-
- <br>
-                <br >
-                
-               
-                <h3> Choose to whom the Email will be sent </h3>
-                 <div id="center">
-                <details id="information">
-                    <summary><i style="font-size:18px" class="fa">&#xf05a;</i></summary>
-                    <p id="info"><u>Steps to send a email:</u><br>
-                        1. Please press the button of whom you like to send the email.<br>
-                        2. Scoll down until you reach the title "Send Email to a Knesset Member".<br>
-                        3. Write all the details asked in the form.<br>
-                        4. After finishing please press "send email"<br><b>
-                            Thank you for choosing UcanClaim
-                        </b></p>
-                </details>
-                </div>
-
-
-           
             <?php
 
-// it user searched
+            // it user searched
             if (isset($_POST["submit2"])) {
                 include_once("db_conn.php");
                 $char = $_REQUEST['char'];
@@ -184,7 +128,7 @@
                             // LOOP TILL END OF DATA 
                             while ($record = mysqli_fetch_assoc($result)) {
                                 $res = $record['Email'];
-                                $knesset_name=$record['full_name'];
+                                $knesset_name = $record['full_name'];
                             ?>
 
 
@@ -195,7 +139,7 @@
                                     <b class="card-title">
 
                                         <?php echo $record['full_name']; ?>
-                                        
+
                                     </b>
 
                                     <p id="size_p1"> <?php echo $record['Party']; ?></p>
@@ -219,7 +163,7 @@
 
         </div>
         <?php
-// if user didnt searched
+                // if user didnt searched
             } else {
 
                 include_once("db_conn.php");
@@ -242,7 +186,7 @@
                     // LOOP TILL END OF DATA 
                     while ($record = mysqli_fetch_assoc($result)) {
                         $res = $record['Email'];
-                        $knesset_name=$record['full_name']
+                        $knesset_name = $record['full_name']
                     ?>
 
 
@@ -269,7 +213,7 @@
                 ?>
                 </div>
             </div>
-
+    </div>
     </div>
 <?php
 
@@ -290,14 +234,10 @@
                 <br>
                 <div class="form-control ">
                     <p style="color:blue;"> Click on a Member of Knesset in the list above or select all</p>
-                    <label> Recipient Email address:</label> <input class="form-control" type="text" name="tomail" id="toemail" required
-                        disabled>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-envelope-check-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 4.697v4.974A4.491 4.491 0 0 0 12.5 8a4.49 4.49 0 0 0-1.965.45l-.338-.207L16 4.697Z" />
-                        <path
-                            d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z" />
+                    <label> Recipient Email address:</label> <input class="form-control" type="text" name="tomail" id="toemail" required disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-check-fill" viewBox="0 0 16 16">
+                        <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 4.697v4.974A4.491 4.491 0 0 0 12.5 8a4.49 4.49 0 0 0-1.965.45l-.338-.207L16 4.697Z" />
+                        <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z" />
                     </svg>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-index-thumb-fill" viewBox="0 0 16 16">
                         <path d="M8.5 1.75v2.716l.047-.002c.312-.012.742-.016 1.051.046.28.056.543.18.738.288.273.152.456.385.56.642l.132-.012c.312-.024.794-.038 1.158.108.37.148.689.487.88.716.075.09.141.175.195.248h.582a2 2 0 0 1 1.99 2.199l-.272 2.715a3.5 3.5 0 0 1-.444 1.389l-1.395 2.441A1.5 1.5 0 0 1 12.42 16H6.118a1.5 1.5 0 0 1-1.342-.83l-1.215-2.43L1.07 8.589a1.517 1.517 0 0 1 2.373-1.852L5 8.293V1.75a1.75 1.75 0 0 1 3.5 0z" />
@@ -337,7 +277,7 @@
                     </svg>
                     <small> Error message </small>
                 </div>
-               
+
                 <br>
                 <button type="reset" value="Reset" name="reset" class="btn btn-outline-secondary"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
@@ -351,7 +291,6 @@
             <br><br>
 
         </div>
-    </div>
 
 
 
@@ -359,112 +298,127 @@
 
 
 
-    <!-- validation form -->
-    <script>
-        function kneset_validate() {
+        <!-- validation form -->
+        <script>
+            function kneset_validate() {
 
-            var to_send = document.getElementById("toname");
-            var msg = document.getElementById("msg");
-            var tomail = document.getElementById("toemail");
-            var userName = document.getElementById("fromname");
-            var counter = 0;
-            var blacklist = /["';`]+/;
+                var to_send = document.getElementById("toname");
+                var msg = document.getElementById("msg");
+                var tomail = document.getElementById("toemail");
+                var userName = document.getElementById("fromname");
+                var counter = 0;
+                var blacklist = /["';`]+/;
 
 
 
-            if (to_send.value.match(/\D/) === null) {
+                if (to_send.value.match(/\D/) === null) {
 
-                setErrorFor(to_send, "\n" + "You must enter some content.");
+                    setErrorFor(to_send, "\n" + "You must enter some content.");
 
-            } else if (blacklist.test(to_send.value)) {
-                setErrorFor(to_send, "\n" + "You can not enter spacial characters.");
-            } else {
-                setSuccessFor(to_send);
-                counter++;
-            }
-            if (msg.value.match(/\D/) === null) {
-
-                setErrorFor(msg, "\n" + "You must enter some content to your message.");
-            } else if (blacklist.test(msg.value)) {
-                setErrorFor(msg, "\n" + "You can not enter spacial characters.");
-            } else if (msg.value.length < 5) {
-                setErrorFor(msg, "\n" + "Message content must be longer than 5 characters.");
-            } else {
-                setSuccessFor(msg);
-                counter++;
-            }
-
-            if (userName.value.match(/\D/) === null) {
-
-                setErrorFor(userName, "\n" + "You must enter some content to the name.");
-            } else if (blacklist.test(userName.value)) {
-                setErrorFor(userName, "\n" + "You can not enter spacial characters.");
-            } else {
-                setSuccessFor(userName);
-                counter++;
-            }
-
-            if (tomail.value == "") {
-                setErrorFor(tomail, "\n" + "You must select an Email address from the table.");
-            } else {
-                setSuccessFor(tomail);
-                counter++;
-            }
-            if (counter == 4) {
-                //   sendMail();
-                var emails = document.getElementById("toemail").value;
-                var emails_list = emails.split(",");
-                for (var i = 0; i < emails_list.length; i++) {
-                    var email = emails_list[i];
-                    sendMail(email);
+                } else if (blacklist.test(to_send.value)) {
+                    setErrorFor(to_send, "\n" + "You can not enter spacial characters.");
+                } else {
+                    setSuccessFor(to_send);
+                    counter++;
                 }
-                alert("Your message was sent successfully.")
-                return true;
-            } else {
-                return false;
+                if (msg.value.match(/\D/) === null) {
+
+                    setErrorFor(msg, "\n" + "You must enter some content to your message.");
+                } else if (blacklist.test(msg.value)) {
+                    setErrorFor(msg, "\n" + "You can not enter spacial characters.");
+                } else if (msg.value.length < 5) {
+                    setErrorFor(msg, "\n" + "Message content must be longer than 5 characters.");
+                } else {
+                    setSuccessFor(msg);
+                    counter++;
+                }
+
+                if (userName.value.match(/\D/) === null) {
+
+                    setErrorFor(userName, "\n" + "You must enter some content to the name.");
+                } else if (blacklist.test(userName.value)) {
+                    setErrorFor(userName, "\n" + "You can not enter spacial characters.");
+                } else {
+                    setSuccessFor(userName);
+                    counter++;
+                }
+
+                if (tomail.value == "") {
+                    setErrorFor(tomail, "\n" + "You must select an Email address from the table.");
+                } else {
+                    setSuccessFor(tomail);
+                    counter++;
+                }
+                if (counter == 4) {
+                    //   sendMail();
+                    var emails = document.getElementById("toemail").value;
+                    var emails_list = emails.split(",");
+                    for (var i = 0; i < emails_list.length; i++) {
+                        var email = emails_list[i];
+                        sendMail(email);
+                    }
+                    alert("Your message was sent successfully.")
+                    return true;
+                } else {
+                    return false;
+                }
             }
-        }
 
-        function setErrorFor(input, msg) {
+            function setErrorFor(input, msg) {
 
-            const formControl = input.parentElement;
-            const small = formControl.querySelector("small");
-            small.innerText = msg;
-            formControl.className = 'form-control error';
-        }
+                const formControl = input.parentElement;
+                const small = formControl.querySelector("small");
+                small.innerText = msg;
+                formControl.className = 'form-control error';
+            }
 
-        function setSuccessFor(input) {
-            const formControl = input.parentElement;
-            formControl.className = 'form-control success';
-        }
-    </script>
+            function setSuccessFor(input) {
+                const formControl = input.parentElement;
+                formControl.className = 'form-control success';
+            }
+        </script>
 
 
-<!--search drop down-->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-$(document).ready(function(){
-    $('.search-box input[type="text"]').on("keyup input", function(){
-        /* Get input value on change */
-        var inputVal = $(this).val();
-        var resultDropdown = $(this).siblings(".result");
-        if(inputVal.length){
-            $.get("backend-search.php", {term: inputVal}).done(function(data){
-                // Display the returned data in browser
-                resultDropdown.html(data);
+        <!--search-->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.search-box input[type="text"]').on("keyup input", function() {
+                    /* Get input value on change */
+                    var inputVal = $(this).val();
+                    var resultDropdown = $(this).siblings(".result");
+                    if (inputVal.length) {
+                        $.get("backend-search.php", {
+                            term: inputVal
+                        }).done(function(data) {
+                            // Display the returned data in browser
+                            resultDropdown.html(data);
+                        });
+                    } else {
+                        resultDropdown.empty();
+                    }
+                });
+
+                // Set search input value on click of result item
+                $(document).on("click", ".result p", function() {
+                    $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+                    $(this).parent(".result").empty();
+                });
             });
-        } else{
-            resultDropdown.empty();
-        }
-    });
-    
-    // Set search input value on click of result item
-    $(document).on("click", ".result p", function(){
-        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
-        $(this).parent(".result").empty();
-    });
-});
-</script>
+        </script>
+    </div>
+</div>
+<!-- footer -->
+<div id="footer"></div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $("document").ready(function() {
+        //  navbar
+        $("#navbar").load("../common/NavBar.php");
+        //  footer
+        $("#footer").load("../common/footer.html");
+    });
+</script>
 
 </html>
