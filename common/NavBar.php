@@ -30,9 +30,6 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="../kneset.php">Contact a Knesset Member<span class="sr-only"></span></a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../cart.php">Cart<span class="sr-only"></span></a>
-                    </li>
 
                 </ul>
 
@@ -40,16 +37,10 @@
 
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <?php
-                        $connection = mysqli_connect('localhost', 'root', '', 'test') or die('connection failed');
-                        $select_rows = mysqli_query($connection, "SELECT * FROM `cart`") or die('query failed');
-                        $row_count = mysqli_num_rows($select_rows);
-
-                        ?>
-                        <a class="nav-link" href="cart.php" class="cart">cart <span class="sr-only"><?php echo $row_count; ?></span> </a>
+                        <a class="nav-link" href="../cart.php"><span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAABK0lEQVRYhe2VP05CQRCHPymwsSOcgMRwBi2k4S4cAQ+gyB3suQM2qLEzXoEGsLBSaCjkUcy8ZPmTPPb3lFDsl2wmb3f2ze/Nzs6DRCJxgrwBmY8foHtsAa+BgAxYAY1ji8gZuIjOfwWoFKw/u71xO2YzO7HjMVbAyG0LOAueVZ6UTVNMfVMMWgXmwC9Q314sygDAi9uWKOAauAA+gC9FwHYdxNJ2OxT308SO4BOrg1jefb+aQUCvgxp29gvgfJ/DIUcAeh20PcYIWJYRoNZBfv7S9QtpYC1ZaT4r4LKsALCf0ndk8Dlw+xfBwRpKH5hhRdnzuVgfmQd2v/Be8JHJr+IV1t0yn4v12eDQWxASNqOshE80PXbTeyf4yFQ9wBSY+Iv3FWGRTyJxWqwBUZF8jqhPfG0AAAAASUVORK5CYII="></span> </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account<span class="sr-only"></span></a>
+                        <a style="padding-top: 0.8rem;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account<span class="sr-only"></span></a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="p_form.php">Profile</a>
                             <a class="dropdown-item" href="../my_petition.php">Created Petitions</a>

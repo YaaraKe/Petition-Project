@@ -227,7 +227,7 @@ if (isset($_POST['add_to_cart'])) {
                 str.addEventListener('DOMSubtreeModified', updateModified);
 
 
-
+                
 
                 function updateModified(e) {
                     var str = localStorage.getItem('value3');
