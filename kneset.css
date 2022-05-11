@@ -83,7 +83,7 @@ details{
 
     /* Formatting search box */
     .search-box{
-        width: 500px;
+        width: 400px;
         position: relative;
         /*display: inline-block;*/
         font-size: 14px;
@@ -99,10 +99,9 @@ details{
         position: absolute;        
         z-index: 999;
         /*top: 100%;*/
-        left: 25px;
+        left: 73px;
     }
     .search-box input[type="text"], .result{
-        width: 80%;
         box-sizing: border-box;
     }
     /* Formatting result items */
@@ -113,7 +112,7 @@ details{
         border-top: none;
         cursor: pointer;
        background: white;
-       width:380px;
+       width: 180px;
     }
     .result p:hover{
         background: #f2f2f2;

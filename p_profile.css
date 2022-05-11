@@ -1,110 +1,110 @@
 SVG:hover{
-  /* color: rgb(74, 159, 228); */
-  color: orange;
-/* margin-left: -45px; */
-
-}
-label > svg {
-  position: absolute;
-  top: 70%;
-  left: 170px;
-  transform: translateY(-50%);
-  color:grey;
-}
-
-input{
-  margin-right: 5px;
-}
-
-
-* {
-  margin: 0px;
-  padding: 0px;
-  font-family: Arial, Helvetica, sans-serif;
-  box-sizing: border-box;
-}
-
-
-.header {
-  width: 16rem;
-  margin: 50px auto 0px;
-  color: rgb(15, 9, 9);
-  background: #f1c778;
-  text-align: center;
-  border: 1px solid #f1ce83;
-  border-bottom: none;
-  border-radius: 10px 10px 0px 0px;
-  padding: 20px;
-}
-form, .content {
-  width: 16rem;
-  margin: 0px auto;
-  padding: 20px;
-  border: 1px solid #f1c778;
-  background: white;
-  border-radius: 0px 0px 10px 10px;
-}
-
-.input-group {
-  margin: 10px 0px 10px 0px;
-}
-.input-group label {
-  display: block;
-  text-align: left;
-  margin: 3px;
-}
-.input-group input {
-  height: 30px;
-  width: 93%;
-  padding: 5px 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid gray;
-}
-.btn {
-  padding: 10px;
-  font-size: 15px;
-  color: black;
-  background: #f1c778;
-  border: none;
-  border-radius: 5px;
-}
-.error {
-  width: 92%; 
-  margin: 0px auto; 
-  padding: 10px; 
-  border: 1px solid #a94442; 
-  color: #a94442; 
-  background: #f2dede; 
-  border-radius: 5px; 
-  text-align: left;
-}
-.success {
-  color: #3c763d; 
-  background: #3c5532; 
-  border: 1px solid #3c763d;
-  margin-bottom: 20px;
-}
-#personal_text{
-    float:left;
-}
-
-#main, #forms{
-    float:left;
-}
-
-@media only screen and (max-width:800px){
+    /* color: rgb(74, 159, 228); */
+    color: orange;
+  /* margin-left: -45px; */
+  
+  }
+  label > svg {
+    position: absolute;
+    top: 70%;
+    left: 170px;
+    transform: translateY(-50%);
+    color:grey;
+  }
+  
+  input{
+    margin-right: 5px;
+  }
+  
+  
+  * {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+  }
+  
+  
+  .header {
+    width: 16rem;
+    margin: 50px auto 0px;
+    color: rgb(15, 9, 9);
+    background: #f1c778;
+    text-align: center;
+    border: 1px solid #f1ce83;
+    border-bottom: none;
+    border-radius: 10px 10px 0px 0px;
+    padding: 20px;
+  }
+  form, .content {
+    width: 16rem;
+    margin: 0px auto;
+    padding: 20px;
+    border: 1px solid #f1c778;
+    background: white;
+    border-radius: 0px 0px 10px 10px;
+  }
+  
+  .input-group {
+    margin: 10px 0px 10px 0px;
+  }
+  .input-group label {
+    display: block;
+    text-align: left;
+    margin: 3px;
+  }
+  .input-group input {
+    height: 30px;
+    width: 93%;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+  .btn {
+    padding: 10px;
+    font-size: 15px;
+    color: black;
+    background: #f1c778;
+    border: none;
+    border-radius: 5px;
+  }
+  .error {
+    width: 92%; 
+    margin: 0px auto; 
+    padding: 10px; 
+    border: 1px solid #a94442; 
+    color: #a94442; 
+    background: #f2dede; 
+    border-radius: 5px; 
+    text-align: left;
+  }
+  .success {
+    color: #3c763d; 
+    background: #3c5532; 
+    border: 1px solid #3c763d;
+    margin-bottom: 20px;
+  }
+  #personal_text{
+      float:left;
+  }
+  
   #main, #forms{
-       float: none;
-    }
-}
-@media only screen and (max-width:500px){
-#personal_text{
-    float:none;
-}
-}
-@media only screen and (max-width:1000px) and (min-width:550px){
-#personal_text{
-    display:none;
-}
-}
+      float:left;
+  }
+  
+  @media only screen and (max-width:800px){
+    #main, #forms{
+         float: none;
+      }
+  }
+  @media only screen and (max-width:500px){
+  #personal_text{
+      float:none;
+  }
+  }
+  @media only screen and (max-width:1000px) and (min-width:550px){
+  #personal_text{
+      display:none;
+  }
+  }
