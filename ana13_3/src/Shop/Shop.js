@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import Form from "./Form";
 import paper from "../picShop/paper.jpg";
 import scotch from "../picShop/scotch.jpg";
 import sharpi from "../picShop/Sharpi.jpg";
@@ -42,6 +43,7 @@ const Shop = () => {
         <b>{art.title1}</b>
         <div>{art.amount1} ₪</div>
         <Button link={"../pageShop/product.php?data=10001"} />
+        <Form></Form>
       </div>
       <div class="border_1">
         <img class="img_shop" src={scotch} alt=""></img>

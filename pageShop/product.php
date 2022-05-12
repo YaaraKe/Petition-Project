@@ -11,7 +11,7 @@ if (isset($_POST['add_to_cart'])) {
     $product_quantity = 1;
 
     $select_cart = mysqli_query($connection, "SELECT * FROM `cart` WHERE id = $product_id");
-
+    //to make it alert
     if (mysqli_num_rows($select_cart) > 0) {
         $message[] = 'product already added to cart';
     } else {
@@ -45,15 +45,6 @@ if (isset($_POST['add_to_cart'])) {
 </head>
 
 <body>
-    <?php
-
-    if (isset($message)) {
-        foreach ($message as $message) {
-            echo '<div class="message"><span>' . $message . '</span> <i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i> </div>';
-        };
-    };
-
-    ?>
 
     <!-- IMPORT BOOTSTRAP SCRIPTS-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -61,7 +52,15 @@ if (isset($_POST['add_to_cart'])) {
 
     <!-- NavBar -->
     <nav id="navbar"> </nav>
-    <br>
+    <?php
+
+    if (isset($message)) {
+        foreach ($message as $message) {
+            echo '<p style="front-size:14px; margin-left: 1rem;margin:0.5rem; color:#F0B27A; border-radius: 0.5rem; padding-left:1rem;"><span>' . $message . '</span></p>';
+        };
+    };
+
+    ?>
     <?php
     // SQL query to select data from database
     $id = $_GET['data'];
@@ -128,12 +127,20 @@ if (isset($_POST['add_to_cart'])) {
                             <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
                             <input type="hidden" name="product_name" value="<?php echo $row['name']; ?>">
                             <input type="hidden" name="product_cost" value="<?php echo $row['cost']; ?>">
-                            <input type="hidden" name="product_image" value="<?php echo $row['image']; ?>">
 
 
                             <div>
                                 <b style="font-size:18px;" id="price1"><?php echo $row['cost']; ?>₪</b>
-                                <p id="dropdown"></p>
+                                <p> <label for="amount-select">Choose an amount:</label>
+
+                                    <select name="amount" id="amount-select" onchange="updateAmount()">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </p>
                             </div>
                             <input type="submit" id="btn_cart" value="add to cart" name="add_to_cart">
                         </form>
@@ -144,7 +151,7 @@ if (isset($_POST['add_to_cart'])) {
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
                 <div id="container"></div>
                 <div id="update" style="display:none"></div>
-                <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded(document.getElementById('price1').innerHTML)"></script>
+                <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
             </div>
 
             <section class="pt-4 pb-4">
@@ -180,7 +187,7 @@ if (isset($_POST['add_to_cart'])) {
                                                         <?php echo '<img class="img-fluid im" alt="product" src="data:image/jpeg;base64,' . base64_encode($row['photo']) . '"/>'; ?>
                                                         <div class="card-body">
                                                             <a href="../pageShop/product.php?data=<?php echo $row['id'] ?>"><b class="b_1" class="card-title"><?php echo $row['name']; ?></b></a>
-                                                            <p class="p_1" id="price1"><?php echo $row['cost']; ?>₪</p>
+                                                            <p class="p_1"><?php echo $row['cost']; ?>₪</p>
 
                                                         </div>
 
@@ -204,7 +211,7 @@ if (isset($_POST['add_to_cart'])) {
                                                         <?php echo '<img class="img-fluid im" alt="product" src="data:image/jpeg;base64,' . base64_encode($row['photo']) . '"/>'; ?>
                                                         <div class="card-body">
                                                             <a href="../pageShop/product.php?data=<?php echo $row['id'] ?>"><b class="b_1" class="card-title"><?php echo $row['name']; ?></b></a>
-                                                            <p class="p_1" id="price1"><?php echo $row['cost']; ?>₪</p>
+                                                            <p class="p_1"><?php echo $row['cost']; ?>₪</p>
                                                         </div>
 
                                                     </div>
@@ -222,15 +229,12 @@ if (isset($_POST['add_to_cart'])) {
             </section>
             <script type="text/javascript">
                 var element = document.getElementById('update');
-                var str = localStorage.getItem('value3');
+                var str = localStorage.getItem('amount');
                 element.addEventListener('DOMSubtreeModified', updateModified);
-                str.addEventListener('DOMSubtreeModified', updateModified);
 
-
-                
 
                 function updateModified(e) {
-                    var str = localStorage.getItem('value3');
+                    var str = localStorage.getItem('amount');
                     console.log(element.innerHTML);
                     console.log(str + " amount");
 
@@ -251,6 +255,22 @@ if (isset($_POST['add_to_cart'])) {
     </main>
     <!-- footer -->
     <div id="footer"></div>
+
+    <script>
+        updatePrice();
+        updateAmount();
+
+        function updateAmount() {
+            let amount = document.getElementById("amount-select").value;
+            localStorage.setItem('amount', `${amount}`);
+        }
+
+        function updatePrice() {
+            let price = document.getElementById("price1").innerHTML;
+            price = price.replace("₪", "");
+            localStorage.setItem('price', `${price}`);
+        }
+    </script>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

@@ -157,10 +157,10 @@ function onPaymentAuthorized(paymentData) {
     .then(function() {
       resolve({transactionState: 'SUCCESS'});
       document.getElementById('update').innerHTML="success";
-      setTimeout(function(){
-      alert("Your order was successfully processed. After receiving the payment we will send you the receipt to your email."); }, 1000);
+    //   setTimeout(function(){
+    //   alert("Your order was successfully processed. After receiving the payment we will send you the receipt to your email."); }, 1000);
 
-    })
+     })
     .catch(function() {
         resolve({
         transactionState: 'ERROR',
@@ -241,16 +241,7 @@ function calculateNewTransactionInfo(shippingOptionId) {
  * Display a Google Pay payment button after confirmation of the viewer's
  * ability to pay.
  */
-function onGooglePayLoaded(a) {
-      document.getElementById('dropdown').innerHTML="<label>Amount: <select name='price' id='price' class='price'><option value='1'selected>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></label>";
-        $("select.price").change(function () {
-             var amount="1";
-             amount = $(this).children("option:selected").val();
-             var final_amount=parseInt(amount);
-             localStorage.setItem('value3', `${final_amount}`);
-             var final_price=parseInt(a)*parseInt(amount);
-             localStorage.setItem('value2', `${final_price}`);
-        });
+function onGooglePayLoaded() {
 
      const paymentsClient = getGooglePaymentsClient();
      paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest())
@@ -265,10 +256,7 @@ function onGooglePayLoaded(a) {
         // show error in developer console for debugging
         console.error(err);
       });
-       var price =parseInt(a);
-       localStorage.setItem('value1', `${price}`);
-        
-         getGoogleTransactionInfo(price);
+      
         
 }
 
@@ -297,31 +285,32 @@ function addGooglePayButton() {
  * @returns {object} transaction info, suitable for use as transactionInfo property of PaymentDataRequest
  */
 function getGoogleTransactionInfo() {
-  let str = localStorage.getItem('value2');
-  let amo = localStorage.getItem('value3');
-  console.log("this amount");
-  console.log(amo);
-  console.log("this price");
-  console.log(str);
-
+    
+  let price = parseInt(window.localStorage.getItem('price'));
+  console.log(price+" price");
+  let amount = parseInt(window.localStorage.getItem('amount'));
+  console.log(amount+" amount")
+  let subtotalPrice = price * amount;
+  let taxPrice = 0;
+  let totalPrice = subtotalPrice + taxPrice;
 
   return {
         displayItems: [
         {
           label: "Subtotal",
           type: "SUBTOTAL",
-          price: str,
+          price: subtotalPrice.toString(),
         },
         {
         label: "Tax",
         type: "TAX",
-        price: "0",
+        price: taxPrice.toString(),
       }
     ],
     countryCode: 'US',
     currencyCode: "ILS",
     totalPriceStatus: "FINAL",
-    totalPrice: str,
+    totalPrice: totalPrice.toString(),
     totalPriceLabel: "Total"
   };
 }
