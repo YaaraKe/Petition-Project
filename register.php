@@ -9,7 +9,10 @@
 		crossorigin="anonymous"></script>
 </head>
 <body>
+    
+        <img src="../photos/UcanClaim.png" width="200" height="100" class="img" alt="">
   <div class="header">
+     
   	<h2>Sign Up</h2>
   </div>
 	

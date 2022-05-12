@@ -16,7 +16,7 @@
 
 </head>
      <body class="align">
-      <img src="../NavBar/UcanClaim.png" width="200" height="100" class="d-inline-block align-top" alt="">
+      <img src="../common/UcanClaim.png" width="200" height="100" class="d-inline-block align-top" alt="">
 
         <div class="grid">
 
@@ -86,11 +86,11 @@
 </html>
 
 
-<!-- passwords visability -->
+
 
 <script>
 
- 
+//  passwords visability
 	function visability1() {
 		var x = document.getElementById("login__password");
 		if (x.type === "password") {
