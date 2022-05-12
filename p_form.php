@@ -60,6 +60,10 @@
 							<input type="email" name="email">
 						</div>
 						<div class="input-group">
+							<label>Confirm Email</label>
+							<input type="email" name="email2">
+						</div>
+						<div class="input-group">
 							<label>Your Password
 							<input type="password" name="password_1" id="password_email">
 							<svg id="visible" onclick="visability()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">

@@ -16,7 +16,6 @@ $errors1 = array();
 
 //press change password button
 if (isset($_POST['reg_user'])) {
-  // $_SESSION['password'] = md5($_POST['password_1']);
   // receive all input values from the form
   $email = mysqli_real_escape_string($conn, $_POST['email']);
   $password_1 = mysqli_real_escape_string($conn, $_POST['password_1']);
@@ -39,9 +38,6 @@ if (isset($_POST['reg_user'])) {
   }
   }
           
-    //   if($password2!=$current_pass){
-    //       array_push($errors1, "Wrong password");
-    //   }
     }
   // first check the database to make sure 
   // a user does not already exist with the same username and/or email
@@ -58,15 +54,8 @@ if (isset($_POST['reg_user'])) {
 
   // Finally, register user if there are no errors in the form
    if (count($errors1) == 0) {
-
-  //  $query13 = "UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail' ";
-    $query_petition = "SET FOREIGN_KEY_CHECKS=0;
-                        UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail';
-                        UPDATE `all_petitions` SET `email`='$email' WHERE `email`='$current_mail';
-                        UPDATE `signatures` SET `email_signed`='$email' WHERE `email_signed`='$current_mail';
-                        SET FOREIGN_KEY_CHECKS=1;";
+    $query_petition = "UPDATE `users` SET `user_name`='$email' WHERE `user_name`='$current_mail';";
     mysqli_query($conn, $query_petition);
-  	// mysqli_query($conn, $query13);
    	$_SESSION['user_name'] = $email;
   }
  }
@@ -81,6 +70,7 @@ if (isset($_POST['reg_user'])) {
   // by adding (array_push()) corresponding error unto $errors array
   if (empty($oldpass)){  array_push($errors, "Current password is required"); }
     else if (empty($pass1)){  array_push($errors, " New password is required"); }
+    else  if (strlen($pass1)<5){ array_push($errors, "New password must be over 5 characters");}
     else if (empty($pass2)){  array_push($errors, "Please confirm your new password"); }
     else if ($pass1!=$pass2){  array_push($errors, "Passwords not match"); }
     else{
@@ -97,9 +87,5 @@ if (isset($_POST['reg_user'])) {
     $query14 = "UPDATE `users` SET `upassword`='$newpass' WHERE `user_name`='$current_mail' ";
   	mysqli_query($conn, $query14);
    	$_SESSION['password'] = $newpass;
-//     $_SESSION['password'] = $password;
-//   	$_SESSION['success'] = "You are now logged in";
-//     echo "<script>alert ('Welcome to UCanClaim!');
-//     window.location='home.php' </script>";
   }
  }
