@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+$email = $_SESSION['user_name'];
 $connection = mysqli_connect('localhost', 'nofarrei_user', '12345', 'nofarrei_Petition') or die('connection failed');
 
 if (isset($_POST['add_to_cart'])) {
@@ -10,12 +11,12 @@ if (isset($_POST['add_to_cart'])) {
     $product_image = $_POST['product_image'];
     $product_quantity = 1;
 
-    $select_cart = mysqli_query($connection, "SELECT * FROM `cart` WHERE id = $product_id");
+    $select_cart = mysqli_query($connection, "SELECT * FROM `cart` WHERE id = $product_id AND `email`= '" . $email . "'");
     //to make it alert
     if (mysqli_num_rows($select_cart) > 0) {
         $message[] = 'product already added to cart';
     } else {
-        $insert_product = mysqli_query($connection, "INSERT INTO `cart`(id,name, price, image, quantity) VALUES('$product_id','$product_name', '$product_cost', '$product_image', '$product_quantity')");
+        $insert_product = mysqli_query($connection, "INSERT INTO `cart`(id,name, price, image, quantity, email) VALUES('$product_id','$product_name', '$product_cost', '$product_image', '$product_quantity', '$email')");
         $message[] = 'product added to cart succesfully';
     }
 }

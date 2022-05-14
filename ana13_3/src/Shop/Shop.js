@@ -43,7 +43,6 @@ const Shop = () => {
         <b>{art.title1}</b>
         <div>{art.amount1} ₪</div>
         <Button link={"../pageShop/product.php?data=10001"} />
-        <Form></Form>
       </div>
       <div class="border_1">
         <img class="img_shop" src={scotch} alt=""></img>

@@ -19,13 +19,6 @@ if (isset($_POST['order_btn'])) {
         };
     };
 
-    echo $email;
-    echo "mail     ->   ";
-    echo $unique;
-    echo "number     ->   ";
-    echo $price_total;
-    echo "price     ->   ";
-
 
 
     $total_product = implode(', ', $product_name);
@@ -42,7 +35,7 @@ VALUES('$unique','$total_product','$price_total', '2022-11-11' ,'$email')") or d
          <div class='order-detail'>
           <span>oder number: " . $unique . "</span>
             <span>" . $total_product . "</span>
-            <span class='total'> total : $" . $price_total . "</span>
+            <span class='total'> total : ₪" . $price_total . "</span>
          </div>
             <a href='../index_react/index.html' class='btn'>continue shopping</a>
          </div>
@@ -78,15 +71,26 @@ VALUES('$unique','$total_product','$price_total', '2022-11-11' ,'$email')") or d
 <body>
 
 
+    <!-- navbar -->
+    <div id="navbar"></div>
+
     <div class="container">
 
         <section class="checkout-form">
 
-            <h1 class="heading">complete your order</h1>
+            <h1 class="heading-1">complete your order</h1>
+            <details class="col-3" id="change">
+                <summary>Payment Process</summary>
+                <p style="font-size:11px;">Please make sure you paid with Googlepay before pressing the "order now" button</p>
+            </details>
 
             <form action="" method="post">
 
-                <div class="display-order">
+                <!--<div class="display-order">-->
+                <div>
+                    <hr>
+                    <p id="order_de">Order details</p>
+                    <p class="des">Products (quantity)</p>
                     <?php
                     $select_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE `email`= '" . $email . "'");
                     $total = 0;
@@ -96,7 +100,8 @@ VALUES('$unique','$total_product','$price_total', '2022-11-11' ,'$email')") or d
                             $total_price = number_format($fetch_cart['price'] * $fetch_cart['quantity']);
                             $grand_total = $total += $total_price;
                     ?>
-                            <span><?= $fetch_cart['name']; ?>(<?= $fetch_cart['quantity']; ?>)</span>
+
+                            <span style="display:block;margin-bottom: 0.6rem;"><?= $fetch_cart['name']; ?>(<?= $fetch_cart['quantity']; ?>)</span>
 
                     <?php
                         }
@@ -104,14 +109,25 @@ VALUES('$unique','$total_product','$price_total', '2022-11-11' ,'$email')") or d
                         echo "<div class='display-order'><span>your cart is empty!</span></div>";
                     }
                     ?>
-                    <span id="price1" class="grand-total"><?= $grand_total; ?>₪</span>
+                    <!--class="grand-total"-->
+                    <p class="des">Total amount</p>
+                    <span style="display:block;margin-bottom: 0.6rem;" id="price1"><?= $grand_total; ?>₪</span>
                     <!--<p  style="display:none;">100</p>-->
                 </div>
-                <input id="order_now" type="submit" value="order now" name="order_btn" class="btn" disabled>
+
+
+                <div id="container"></div>
+                <div id="update" style="display:none;"></div>
+                <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
+                <div id="sub">
+
+                    <button id="order_now" type="submit" value="order now" name="order_btn" class="btn" disabled>Order now <svg xmlns="http://www.w3.org/2000/svg" style="margin-left:0.5rem;" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                        </svg></button>
+                </div>
             </form>
-            <div id="container"></div>
-            <div id="update"></div>
-            <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
+            <br>
+
 
 
         </section>

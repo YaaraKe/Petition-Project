@@ -1,15 +1,13 @@
-
 /**
  * Define the version of the Google Pay API referenced when creating your
  * configuration
  *
  * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#PaymentDataRequest|apiVersion in PaymentDataRequest}
  */
- const baseRequest = {
+const baseRequest = {
   apiVersion: 2,
   apiVersionMinor: 0,
 };
-
 
 /**
  * Card networks supported by your site and your gateway
@@ -17,7 +15,14 @@
  * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
  * @todo confirm card networks supported by your site and gateway
  */
-const allowedCardNetworks = ["AMEX", "DISCOVER", "JCB", "MASTERCARD", "MIR", "VISA"];
+const allowedCardNetworks = [
+  "AMEX",
+  "DISCOVER",
+  "JCB",
+  "MASTERCARD",
+  "MIR",
+  "VISA",
+];
 
 /**
  * Card authentication methods supported by your site and your gateway
@@ -38,11 +43,11 @@ const allowedCardAuthMethods = ["PAN_ONLY", "CRYPTOGRAM_3DS"];
  * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#gateway|PaymentMethodTokenizationSpecification}
  */
 const tokenizationSpecification = {
-  type: 'PAYMENT_GATEWAY',
+  type: "PAYMENT_GATEWAY",
   parameters: {
-    'gateway': 'example',
-    'gatewayMerchantId': 'exampleGatewayMerchantId'
-  }
+    gateway: "example",
+    gatewayMerchantId: "exampleGatewayMerchantId",
+  },
 };
 
 /**
@@ -52,11 +57,11 @@ const tokenizationSpecification = {
  * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
  */
 const baseCardPaymentMethod = {
-  type: 'CARD',
+  type: "CARD",
   parameters: {
     allowedAuthMethods: allowedCardAuthMethods,
-    allowedCardNetworks: allowedCardNetworks
-  }
+    allowedCardNetworks: allowedCardNetworks,
+  },
 };
 
 /**
@@ -65,13 +70,9 @@ const baseCardPaymentMethod = {
  *
  * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
  */
-const cardPaymentMethod = Object.assign(
-  {},
-  baseCardPaymentMethod,
-  {
-    tokenizationSpecification: tokenizationSpecification
-  }
-);
+const cardPaymentMethod = Object.assign({}, baseCardPaymentMethod, {
+  tokenizationSpecification: tokenizationSpecification,
+});
 
 /**
  * An initialized google.payments.api.PaymentsClient object or null if not yet set
@@ -91,13 +92,9 @@ let paymentsClient = null;
  * @returns {object} Google Pay API version, payment methods supported by the site
  */
 function getGoogleIsReadyToPayRequest() {
-  return Object.assign(
-      {},
-      baseRequest,
-      {
-        allowedPaymentMethods: [baseCardPaymentMethod]
-      }
-  );
+  return Object.assign({}, baseRequest, {
+    allowedPaymentMethods: [baseCardPaymentMethod],
+  });
 }
 
 /**
@@ -114,12 +111,17 @@ function getGooglePaymentDataRequest() {
     // @todo a merchant ID is available for a production environment after approval by Google
     // See {@link https://developers.google.com/pay/api/web/guides/test-and-deploy/integration-checklist|Integration checklist}
     // merchantId: '12345678901234567890',
-    merchantName: 'Example Merchant'
+    merchantName: "Example Merchant",
   };
 
-  paymentDataRequest.callbackIntents = ["SHIPPING_ADDRESS",  "SHIPPING_OPTION", "PAYMENT_AUTHORIZATION"];
+  paymentDataRequest.callbackIntents = [
+    "SHIPPING_ADDRESS",
+    "SHIPPING_OPTION",
+    "PAYMENT_AUTHORIZATION",
+  ];
   paymentDataRequest.shippingAddressRequired = true;
-  paymentDataRequest.shippingAddressParameters = getGoogleShippingAddressParameters();
+  paymentDataRequest.shippingAddressParameters =
+    getGoogleShippingAddressParameters();
   paymentDataRequest.shippingOptionRequired = true;
 
   return paymentDataRequest;
@@ -132,46 +134,43 @@ function getGooglePaymentDataRequest() {
  * @returns {google.payments.api.PaymentsClient} Google Pay API client
  */
 function getGooglePaymentsClient() {
-  if ( paymentsClient === null ) {
+  if (paymentsClient === null) {
     paymentsClient = new google.payments.api.PaymentsClient({
       environment: "TEST",
       merchantInfo: {
         merchantName: "Example Merchant",
-        merchantId: "01234567890123456789"
+        merchantId: "01234567890123456789",
       },
       paymentDataCallbacks: {
         onPaymentAuthorized: onPaymentAuthorized,
-        onPaymentDataChanged: onPaymentDataChanged
-      }
+        onPaymentDataChanged: onPaymentDataChanged,
+      },
     });
   }
   return paymentsClient;
 }
 
-
 function onPaymentAuthorized(paymentData) {
-        return new Promise(function(resolve, reject){
-
-  // handle the response
-  processPayment(paymentData)
-    .then(function() {
-      resolve({transactionState: 'SUCCESS'});
-      document.getElementById('update').innerHTML="success";
-    //   setTimeout(function(){
-    //   alert("Your order was successfully processed. After receiving the payment we will send you the receipt to your email."); }, 1000);
-
-     })
-    .catch(function() {
+  return new Promise(function (resolve, reject) {
+    // handle the response
+    processPayment(paymentData)
+      .then(function () {
+        resolve({ transactionState: "SUCCESS" });
+        document.getElementById("update").innerHTML = "success";
+        setTimeout(function () {
+          alert("Your Payment Has Been Successfully Received");
+        }, 1000);
+      })
+      .catch(function () {
         resolve({
-        transactionState: 'ERROR',
-        error: {
-          intent: 'PAYMENT_AUTHORIZATION',
-          message: 'Insufficient funds',
-          reason: 'PAYMENT_DATA_INVALID'
-        }
+          transactionState: "ERROR",
+          error: {
+            intent: "PAYMENT_AUTHORIZATION",
+            message: "Insufficient funds",
+            reason: "PAYMENT_DATA_INVALID",
+          },
+        });
       });
-    });
-
   });
 }
 
@@ -185,24 +184,30 @@ function onPaymentAuthorized(paymentData) {
  * @returns Promise<{object}> Promise of PaymentDataRequestUpdate object to update the payment sheet.
  */
 function onPaymentDataChanged(intermediatePaymentData) {
-  return new Promise(function(resolve, reject) {
-
+  return new Promise(function (resolve, reject) {
     let shippingAddress = intermediatePaymentData.shippingAddress;
     let shippingOptionData = intermediatePaymentData.shippingOptionData;
     let paymentDataRequestUpdate = {};
 
-    if (intermediatePaymentData.callbackTrigger == "INITIALIZE" || intermediatePaymentData.callbackTrigger == "SHIPPING_ADDRESS") {
-      if(shippingAddress.administrativeArea == "NJ")  {
+    if (
+      intermediatePaymentData.callbackTrigger == "INITIALIZE" ||
+      intermediatePaymentData.callbackTrigger == "SHIPPING_ADDRESS"
+    ) {
+      if (shippingAddress.administrativeArea == "NJ") {
         paymentDataRequestUpdate.error = getGoogleUnserviceableAddressError();
+      } else {
+        paymentDataRequestUpdate.newShippingOptionParameters =
+          getGoogleDefaultShippingOptions();
+        let selectedShippingOptionId =
+          paymentDataRequestUpdate.newShippingOptionParameters
+            .defaultSelectedOptionId;
+        paymentDataRequestUpdate.newTransactionInfo =
+          calculateNewTransactionInfo(selectedShippingOptionId);
       }
-      else {
-        paymentDataRequestUpdate.newShippingOptionParameters = getGoogleDefaultShippingOptions();
-        let selectedShippingOptionId = paymentDataRequestUpdate.newShippingOptionParameters.defaultSelectedOptionId;
-        paymentDataRequestUpdate.newTransactionInfo = calculateNewTransactionInfo(selectedShippingOptionId);
-      }
-    }
-    else if (intermediatePaymentData.callbackTrigger == "SHIPPING_OPTION") {
-      paymentDataRequestUpdate.newTransactionInfo = calculateNewTransactionInfo(shippingOptionData.id);
+    } else if (intermediatePaymentData.callbackTrigger == "SHIPPING_OPTION") {
+      paymentDataRequestUpdate.newTransactionInfo = calculateNewTransactionInfo(
+        shippingOptionData.id
+      );
     }
 
     resolve(paymentDataRequestUpdate);
@@ -218,18 +223,20 @@ function onPaymentDataChanged(intermediatePaymentData) {
  * @returns {object} transaction info, suitable for use as transactionInfo property of PaymentDataRequest
  */
 function calculateNewTransactionInfo(shippingOptionId) {
-        let newTransactionInfo = getGoogleTransactionInfo();
+  let newTransactionInfo = getGoogleTransactionInfo();
 
   let shippingCost = getShippingCosts()[shippingOptionId];
   newTransactionInfo.displayItems.push({
     type: "LINE_ITEM",
     label: "Shipping cost",
     price: shippingCost,
-    status: "FINAL"
+    status: "FINAL",
   });
 
-  let totalPrice = 0.00;
-  newTransactionInfo.displayItems.forEach(displayItem => totalPrice += parseFloat(displayItem.price));
+  let totalPrice = 0.0;
+  newTransactionInfo.displayItems.forEach(
+    (displayItem) => (totalPrice += parseFloat(displayItem.price))
+  );
   newTransactionInfo.totalPrice = totalPrice.toString();
 
   return newTransactionInfo;
@@ -242,22 +249,20 @@ function calculateNewTransactionInfo(shippingOptionId) {
  * ability to pay.
  */
 function onGooglePayLoaded() {
-
-     const paymentsClient = getGooglePaymentsClient();
-     paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest())
-      .then(function(response) {
-        if (response.result) {
-          addGooglePayButton();
-          // @todo prefetch payment data to improve performance after confirming site functionality
-          // prefetchGooglePaymentData();
-        }
-      })
-      .catch(function(err) {
-        // show error in developer console for debugging
-        console.error(err);
-      });
-      
-        
+  const paymentsClient = getGooglePaymentsClient();
+  paymentsClient
+    .isReadyToPay(getGoogleIsReadyToPayRequest())
+    .then(function (response) {
+      if (response.result) {
+        addGooglePayButton();
+        // @todo prefetch payment data to improve performance after confirming site functionality
+        // prefetchGooglePaymentData();
+      }
+    })
+    .catch(function (err) {
+      // show error in developer console for debugging
+      console.error(err);
+    });
 }
 
 /**
@@ -268,14 +273,13 @@ function onGooglePayLoaded() {
  */
 function addGooglePayButton() {
   const paymentsClient = getGooglePaymentsClient();
-  const button =
-      paymentsClient.createButton({
-        onClick: onGooglePaymentButtonClicked,
-        buttonColor: "white",
-        buttonType: "pay",
-        allowedPaymentMethods: [baseCardPaymentMethod]
-      });
-  document.getElementById('container').appendChild(button);
+  const button = paymentsClient.createButton({
+    onClick: onGooglePaymentButtonClicked,
+    buttonColor: "white",
+    buttonType: "pay",
+    allowedPaymentMethods: [baseCardPaymentMethod],
+  });
+  document.getElementById("container").appendChild(button);
 }
 
 /**
@@ -285,33 +289,32 @@ function addGooglePayButton() {
  * @returns {object} transaction info, suitable for use as transactionInfo property of PaymentDataRequest
  */
 function getGoogleTransactionInfo() {
-    
-  let price = parseInt(window.localStorage.getItem('price'));
-  console.log(price+" price");
-  let amount = parseInt(window.localStorage.getItem('amount'));
-  console.log(amount+" amount")
+  let price = parseInt(window.localStorage.getItem("price"));
+  console.log(price + " price");
+  let amount = parseInt(window.localStorage.getItem("amount"));
+  console.log(amount + " amount");
   let subtotalPrice = price * amount;
   let taxPrice = 0;
   let totalPrice = subtotalPrice + taxPrice;
 
   return {
-        displayItems: [
-        {
-          label: "Subtotal",
-          type: "SUBTOTAL",
-          price: subtotalPrice.toString(),
-        },
-        {
+    displayItems: [
+      {
+        label: "Subtotal",
+        type: "SUBTOTAL",
+        price: subtotalPrice.toString(),
+      },
+      {
         label: "Tax",
         type: "TAX",
         price: taxPrice.toString(),
-      }
+      },
     ],
-    countryCode: 'US',
+    countryCode: "US",
     currencyCode: "ILS",
     totalPriceStatus: "FINAL",
     totalPrice: totalPrice.toString(),
-    totalPriceLabel: "Total"
+    totalPriceLabel: "Total",
   };
 }
 
@@ -319,11 +322,11 @@ function getGoogleTransactionInfo() {
  * Provide a key value store for shippping options.
  */
 function getShippingCosts() {
-        return {
+  return {
     "shipping-001": "0.00",
     "shipping-002": "1.99",
-    "shipping-003": "10.00"
-  }
+    "shipping-003": "10.00",
+  };
 }
 
 /**
@@ -333,9 +336,9 @@ function getShippingCosts() {
  * @returns {object} shipping address details, suitable for use as shippingAddressParameters property of PaymentDataRequest
  */
 function getGoogleShippingAddressParameters() {
-        return  {
-        allowedCountryCodes: ['US'],
-    phoneNumberRequired: true
+  return {
+    allowedCountryCodes: ["US"],
+    phoneNumberRequired: true,
   };
 }
 
@@ -346,25 +349,25 @@ function getGoogleShippingAddressParameters() {
  * @returns {object} shipping option parameters, suitable for use as shippingOptionParameters property of PaymentDataRequest
  */
 function getGoogleDefaultShippingOptions() {
-        return {
-      defaultSelectedOptionId: "shipping-001",
-      shippingOptions: [
-        {
-          "id": "shipping-001",
-          "label": "Free: Standard shipping",
-          "description": "Free Shipping delivered in 5 business days."
-        },
-        {
-          "id": "shipping-002",
-          "label": "$1.99: Standard shipping",
-          "description": "Standard shipping delivered in 3 business days."
-        },
-        {
-          "id": "shipping-003",
-          "label": "$10: Express shipping",
-          "description": "Express shipping delivered in 1 business day."
-        },
-      ]
+  return {
+    defaultSelectedOptionId: "shipping-001",
+    shippingOptions: [
+      {
+        id: "shipping-001",
+        label: "Free: Standard shipping",
+        description: "Free Shipping delivered in 5 business days.",
+      },
+      {
+        id: "shipping-002",
+        label: "$1.99: Standard shipping",
+        description: "Standard shipping delivered in 3 business days.",
+      },
+      {
+        id: "shipping-003",
+        label: "$10: Express shipping",
+        description: "Express shipping delivered in 1 business day.",
+      },
+    ],
   };
 }
 
@@ -375,11 +378,11 @@ function getGoogleDefaultShippingOptions() {
  * @returns {object} payment data error, suitable for use as error property of PaymentDataRequestUpdate
  */
 function getGoogleUnserviceableAddressError() {
-        return {
+  return {
     reason: "SHIPPING_ADDRESS_UNSERVICEABLE",
     message: "Cannot ship to the selected address",
-    intent: "SHIPPING_ADDRESS"
-        };
+    intent: "SHIPPING_ADDRESS",
+  };
 }
 
 /**
@@ -391,13 +394,12 @@ function prefetchGooglePaymentData() {
   const paymentDataRequest = getGooglePaymentDataRequest();
   // transactionInfo must be set but does not affect cache
   paymentDataRequest.transactionInfo = {
-    totalPriceStatus: 'NOT_CURRENTLY_KNOWN',
-    currencyCode: 'ILS'
+    totalPriceStatus: "NOT_CURRENTLY_KNOWN",
+    currencyCode: "ILS",
   };
   const paymentsClient = getGooglePaymentsClient();
   paymentsClient.prefetchPaymentData(paymentDataRequest);
 }
-
 
 /**
  * Show Google Pay payment sheet when Google Pay payment button is clicked
@@ -417,15 +419,14 @@ function onGooglePaymentButtonClicked() {
  * @see {@link https://developers.google.com/pay/api/web/reference/response-objects#PaymentData|PaymentData object reference}
  */
 function processPayment(paymentData) {
-        return new Promise(function(resolve, reject) {
-        setTimeout(function() {
-        // show returned data in developer console for debugging
-         console.log(paymentData);
-                // @todo pass payment token to your gateway to process payment
-        paymentToken = paymentData.paymentMethodData.tokenizationData.token;
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      // show returned data in developer console for debugging
+      console.log(paymentData);
+      // @todo pass payment token to your gateway to process payment
+      paymentToken = paymentData.paymentMethodData.tokenizationData.token;
 
-
-        resolve({});
+      resolve({});
     }, 3000);
   });
 }
