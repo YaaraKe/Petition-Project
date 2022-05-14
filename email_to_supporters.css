@@ -6,9 +6,13 @@
    margin: auto;
 }
 
+
+
 #first_title{
-    background-color: #cde4f7; 
+    background-color:#f1c778;
     font-style:oblique;
+    
+    
 }
 .form-control{
     display: block;
@@ -32,6 +36,9 @@ display: block;
 
 }
 
+input, textarea {
+    width:70%;
+}
 
 
 
