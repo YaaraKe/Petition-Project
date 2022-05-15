@@ -63,7 +63,7 @@ b{
 
 #information{
     display:inline-block;
-    text-align: center;
+   align-items: center;
 }
 
 details > summary {
@@ -76,8 +76,26 @@ details{
 #info{
     text-align: left; 
     font-size:12px;
+    margin-left:25rem;
     
+} 
+
+@media (max-width:1000px){
+    
+    #info{
+       margin-left:5rem;
+    }
+
 }
+
+@media (max-width:400px){
+    
+    #info{
+       margin-left:0.5rem;
+    }
+
+}
+
 
 
 
@@ -125,8 +143,9 @@ details{
         margin: auto;
     }
     
-    i{
-      text-align: center;
-       margin: auto;
+    #information{
+       text-align: center;
+       margin: auto; 
     }
+   
   
