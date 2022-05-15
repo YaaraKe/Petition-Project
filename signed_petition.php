@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -91,7 +90,7 @@
             <form method="post" name="signedForm" action="">
                 <div class="header">
                     <h3> Sign on a petition</h3 </div>
-                    <!-- Name Input********************** -->
+                    <!-- Name Input -->
                     <div class="form-control ">
                         <label> Full Name:</label>
                         <input id="Namef" type="text" name="signName" placeholder="Name" required>

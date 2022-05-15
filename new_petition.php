@@ -6,11 +6,7 @@ session_start();
  if(isset($_POST['submit'])){
 
     $check=getimagesize($_FILES["img"]["tmp_name"]);
-   // $extensions_arr = array("jpg","jpeg","png","gif");
-
-    // Check extension
-	//if( in_array($imageFileType,$extensions_arr) ){
-        if(check!==false){
+        if($check!==false){
 
         $title =  $_REQUEST['subject'];
         $photo = addslashes(file_get_contents($_FILES["img"]["tmp_name"]));
