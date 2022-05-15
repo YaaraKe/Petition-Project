@@ -25,9 +25,7 @@ if(isset($_REQUEST["term"])){
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
                     echo "<div>" . $row['title'] . "</div>";
                 }
-            } else{
-                echo "<div>No matches found</div>";
-            }
+            } 
         } else{
             echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
         }
