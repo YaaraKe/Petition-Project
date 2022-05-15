@@ -1,0 +1,199 @@
+/* CTA CSS */
+.cta-padding35 {
+  padding: 35px 0 35px;
+  background-color: #b40028;
+  color: #fff;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Buttons */
+.site-btn {
+  font-size: 1px;
+  padding: 13px 30px;
+  border-radius: 5px;
+  border: 1px solid #b40028;
+  min-width: 200px;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  color: #b40028;
+  background-color: transparent;
+  transition: all 0.25s ease-in-out;
+  margin: 10px 0px 10px 0px;
+}
+.site-btn:hover {
+  background: #b40028;
+  border: 1px solid #fff;
+  font-weight: 700px;
+}
+
+/* Social Icons */
+
+.social-icons {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+}
+.social {
+  margin: 7px 7px 7px 0px;
+  color: #232323;
+}
+
+#social-fb:hover {
+  color: #3b5998;
+  transition: all 0.25s;
+}
+#social-tw:hover {
+  color: #4099ff;
+  transition: all 0.25s;
+}
+#social-gp:hover {
+  color: #d34836;
+  transition: all 0.25s;
+}
+#social-em:hover {
+  color: #f39c12;
+  transition: all 0.25s;
+}
+
+/* Site Heading */
+.site-heading h3 {
+  font-size: 40px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+.border {
+  background: #e1e1e1;
+  height: 1px;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 45px;
+}
+
+.paddingTB60 {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.image-aboutus-banner {
+  background: url("../pictures/about_us.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  color: blue;
+  padding-top: 110px;
+  padding-bottom: 110px;
+}
+
+.image-aboutus-sm-banner {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("https://images.pexels.com/photos/631008/pexels-photo-631008.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  color: #fff;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.strong{
+    color:grey;
+}
+.lg-text {
+  font-size: 52px;
+  font-weight: 600;
+  text-transform: none;
+  color: #f0b27a;
+  margin-left: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.image-aboutus-para {
+  color: #f0b27a;
+  margin-left: 2rem;
+}
+
+.wid {
+  width: 18rem;
+  font-size: 14px;
+
+}
+.rad {
+  border-radius: 50%;
+  width: 15rem;
+}
+/* font CSS */
+body {
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  font-style: normal;
+  color: #494949;
+  font-size: 16px;
+}
+
+a:hover {
+  color: #465cff;
+}
+
+h1 {
+  font-size: 35px;
+  line-height: 40px;
+  letter-spacing: 0px;
+  font-weight: 600;
+  color: #000;
+}
+h2 {
+  font-size: 30px;
+  line-height: 40px;
+  letter-spacing: 0px;
+  font-weight: 600;
+  color: #000;
+}
+
+h3 {
+  line-height: 26px;
+  font-size: 20px;
+  letter-spacing: 0px;
+  font-weight: 600;
+  font-style: normal;
+  color: #000;
+}
+h4 {
+  font-size: 19px;
+  letter-spacing: 0px;
+  font-weight: 600;
+  font-style: normal;
+  color: #000;
+}
+
+
+a {
+  color: #494949;
+}
+
+.capital {
+  text-transform: uppercase;
+}
+
+i {
+  font-style: normal;
+  font-size: 42px;
+  text-align: center;
+  line-height: 64px;
+}
+
+@media screen and (max-width: 900px) {
+    .team-box {
+      margin-left: 31%;
+    }
+  }
+@media screen and (max-width: 790px) {
+  .team-box {
+    margin-left: 25%;
+  }
+}
+
+

@@ -23,7 +23,7 @@ if (isset($_POST['order_btn'])) {
 
     $total_product = implode(', ', $product_name);
     $detail_query = mysqli_query($conn, "INSERT INTO `order`(number_order, total_products, total_price, date, email) 
-VALUES('$unique','$total_product','$price_total', '2022-11-11' ,'$email')") or die('query failed');
+VALUES('$unique','$total_product','$price_total', now() ,'$email')") or die('query failed');
 
 
 
