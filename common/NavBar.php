@@ -19,9 +19,9 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Petition<span class="sr-only"></span></a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color :#F0B27A;
                         border: none;outline: none;scroll-behavior: smooth">
-                            <a class="dropdown-item" href="all_petitions.php">Sign a Petition</a>
-                            <a class="dropdown-item" href="new_petition.html">Create a Petition</a>
-                            <a class="dropdown-item" href="achieved_tareget_petitions.php">Completed petitions</a>
+                            <a class="dropdown-item" href="../all_petitions.php">Sign a Petition</a>
+                            <a class="dropdown-item" href="../new_petition.html">Create a Petition</a>
+                            <a class="dropdown-item" href="../achieved_tareget_petitions.php">Completed petitions</a>
                         </div>
                     </li>
                     <li class="nav-item active">
@@ -46,7 +46,7 @@
                             <a class="dropdown-item" href="../my_petition.php">Created Petitions</a>
                             <a class="dropdown-item" href="../my_signed_petitions.php">Signed Petitions</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="logout.php">Log Out</a>
+                            <a class="dropdown-item" href="../logout.php">Log Out</a>
                         </div>
                     </li>
                 </ul>
