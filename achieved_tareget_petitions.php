@@ -82,7 +82,7 @@
                                                 echo $name1[0];
 
                                                 ?></p>
-                                <p class="card-text" style="font-family: Times New Roman, Times, serif;" href="signed_petition.php?data=<?php echo $record['id_petition'] ?>"> <?php echo substr_replace($record['content'], "...", 95); ?></p>
+                                <p class="card-text" style="font-family: Times New Roman, Times, serif;" href="signed_petition.php?data=<?php echo $record['id_petition'] ?>"> <?php echo substr_replace($record['content'], "...", 80); ?></p>
                             </div>
                             <hr>
                             <!--  progress bar -->
@@ -93,15 +93,15 @@
                             </div>
                         </div>
                         <br>
-
+                    <?php } ?>
                 </div>
             </div>
         </div>
         <br>
+    </section>
 
 
 
-    <?php } ?>
 
 
     <!-- footer -->
@@ -115,7 +115,7 @@
 <script>
     $("document").ready(function() {
         //  navbar
-        $("#navbar").load("../common/NavBar.html");
+        $("#navbar").load("../common/NavBar.php");
         //  footer
         $("#footer").load("../common/footer.html");
     });
