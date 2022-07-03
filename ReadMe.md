@@ -1,4 +1,4 @@
-![alt text](common\UcanClaim.png)
+![alt text](../common/UcanClaim.png)
 # UcanClaim
 Me and my Team (Yaara Keller and Nofar Refaeli) are proud to present you our final project for Information systems at The Academic College of Tel-Aviv, Yaffo that got us to the <ins> **Top 6 this year from 85 projects** </ins>.
 
