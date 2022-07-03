@@ -1,6 +1,6 @@
 <picture><img width="200" src="common\UcanClaim.png"></picture>
 # UcanClaim
-My team and I (Yaara Keller and Nofar Refaeli) are proud to present you our final project for Information systems at The Academic College of Tel-Aviv, Yaffo that got us to the <ins> **Top 6 this year from 85 projects** </ins>.
+My team and I are proud to present you our final project for Information systems at The Academic College of Tel-Aviv, Yaffo that got us to the <ins> **Top 6 this year from 85 projects** </ins>.
 
 UcanClaim is a new platform that allows you to make every change in the world you want to see.
 
