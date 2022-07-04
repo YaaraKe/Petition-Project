@@ -6,11 +6,17 @@ UcanClaim is a new platform that allows you to make every change in the world yo
 
 <ins>UcanClaim allows you:</ins>
 
-- Upload petitions <br>
-- Sign petitions <br>
-- Send to the Members of Knesset an email and a thank you letter to all members who have signed your petition <br>
-- Notifications to your mail every time you sign a petition <br>
-- Shop supplies for protesting and pay through Google Pay <br>
-- See every petition you have uploaded and signed <br>
+UcanClaim allows you to:
+- ✔ Upload petitions 
+- ✔ Sign petitions
+- ✔Send to the Members of Knesset an email and a thank you letter to all members who have signed your petition
+- ✔ Notifications to your mail every time you sign a petition and the number of signatures the petition has received
+- ✔ Shop supplies for protesting and pay through Google Pay
+- ✔ See every petition you have uploaded and signed
+- ✔ Contact your supporters anonymously
+- ✔ Manage your profile
+
+Presentation of our Project: https://lnkd.in/dFmZ9Ezr <br>
+Marketing video: https://lnkd.in/dm9bnRZF<br>
 
 Our link to the Platform is  https://nofarreis.mtacloud.co.il/
